@@ -29,12 +29,7 @@ static void GetTime( struct timespec* time )
 	clock_gettime( CLOCK_MONOTONIC_COARSE, time );
 }
 
-static void PrintTimeDiff( const char* name, struct timespec* timeEarlier, struct timespec* timeLater )
-{
-	printf( "%-10s %f\n", name, GetMicroDiff( timeEarlier, timeLater ) );
-}
-
-void* thread_func( void *arg )
+static void* thread_func( void *arg )
 {
 	THREAD_INFO* threadInfo = ( THREAD_INFO* ) arg;
 	
@@ -47,12 +42,41 @@ void* thread_func( void *arg )
 	pthread_exit( NULL );
 }
 
-int main( int argc, const char* argv[ ] )
+static unsigned long getCount( int argc, char* const argv[ ] )
 {
-	const int count = 100;
+	int opt;
+	int count = 1000;
 	
+	do
+	{
+		opt = getopt( argc, argv, "c:" );
+		
+		switch( opt )
+		{
+			case( 'c' ):
+				count = atoi( optarg );
+				break;
+			case( -1 ):
+				break;
+			default:
+				fprintf( stderr, "Unknown flag %c\n", opt );
+				fprintf( stderr, "Usage: %s [-c count]\n", argv[ 0 ] );
+				exit( -1 );
+				break;
+		}
+		
+	} while( opt != -1 );
+	
+	return count;
+}
+
+int main( int argc, char* const argv[ ] )
+{	
 	int i;
 	pthread_t thread;
+	
+	unsigned long count = getCount( argc, argv );
+	
 	THREAD_INFO* threadInfo = calloc( count, sizeof( THREAD_INFO ) );
 	
 	for( i = 0; i < count; i++ )
