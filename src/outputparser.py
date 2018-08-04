@@ -21,15 +21,15 @@ class Data:
 	def cnt( self ):
 		return np.count_nonzero( self.data )
 	def max( self ):
-		return np.max( self.data )
+		return np.max( self.data[ np.nonzero( self.data ) ] )
 	def min( self ):
-		return np.min( self.data )
+		return np.min( self.data[ np.nonzero( self.data ) ] )
 	def avg( self ):
-		return np.average( self.data )
+		return np.average( self.data[ np.nonzero( self.data ) ] )
 	def std( self ):
-		return np.std( self.data )
+		return np.std( self.data[ np.nonzero( self.data ) ] )
 		
-	def toJSON( self ):
+	def toJSON( self ):	
 		return {
 			'count': self.cnt( ),
 			'max': self.max( ),
@@ -83,6 +83,14 @@ def parseData( inputRawData, dataName, jsonFileName ):
 	with open( jsonFileName, 'w' ) as f:
 		json.dump( existingData, f, indent=4, sort_keys=True )
 
+def writeThreadInfo( jsonData, type, f ):
+	f.write( '\n' )
+	f.write( '|Name|Count|Max|Min|Average|Std Dev|\n' )
+	f.write( '|----|-----|---|---|-------|-------|\n' )
+	for key in jsonData:
+		data = jsonData[ key ][ type ]
+		f.write( '|{}|{}|{:.3f}|{:.3f}|{:.3f}|{:.3f}|\n'.format( key, data[ 'count' ], data[ 'max' ], data[ 'min' ], data[ 'avg' ], data[ 'std' ] ) )
+		
 def createMarkdown( jsonFileName, markdownFileName, markdownHeaderFileName ):
 	header = open( markdownHeaderFileName, 'r' ).read( )
 
@@ -95,21 +103,11 @@ def createMarkdown( jsonFileName, markdownFileName, markdownHeaderFileName ):
 		f.write( '# Thread Start/Stop\n' )
 		f.write( '## Thread Start\n' )
 		f.write( 'Each measurement is the time (in ms) between the call to start the task and the task actually running\n' )
-		f.write( '\n' )
-		f.write( '|Name|Count|Max|Min|Average|Std Dev|\n' )
-		f.write( '|----|-----|---|---|-------|-------|\n' )
-		for key in jsonData:
-			data = jsonData[ key ][ 'start' ]
-			f.write( '|{}|{}|{:.3f}|{:.3f}|{:.3f}|{:.3f}|\n'.format( key, data[ 'count' ], data[ 'max' ], data[ 'min' ], data[ 'avg' ], data[ 'std' ] ) )
+		writeThreadInfo( jsonData, 'start', f )
 		f.write( '\n' )
 		f.write( '## Thread Shutdown\n' )
 		f.write( 'Each measurement is the time (in ms) between task exiting and the main receiving notification that the task has exited\n' )
-		f.write( '\n' )
-		f.write( '|Name|Count|Max|Min|Average|Std Dev|\n' )
-		f.write( '|----|-----|---|---|-------|-------|\n' )
-		for key in jsonData:
-			data = jsonData[ key ][ 'end' ]
-			f.write( '|{}|{}|{:.3f}|{:.3f}|{:.3f}|{:.3f}|\n'.format( key, data[ 'count' ], data[ 'max' ], data[ 'min' ], data[ 'avg' ], data[ 'std' ] ) )
+		writeThreadInfo( jsonData, 'end', f )
 		
 def main( ):
 	parser = argparse.ArgumentParser( description='Process thread data.' )

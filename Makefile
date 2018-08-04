@@ -37,8 +37,8 @@ endef
 
 #########################################
 
-build: pthread_c
-run: build run_pthread_c
+build: pthread_c pthread_cpp
+run: build run_pthread_c run_pthread_cpp
 	@echo "COMPILING RESULTS"
 	@$(call run_parser,compile_results)
 
@@ -57,5 +57,17 @@ pthread_c:
 run_pthread_c:
 	$(call run_with_timer,$(PTHREAD_C_NAME),$(PTHREAD_C_BUILD)/$(PTHREAD_C_NAME),$(PTHREAD_C_OUTPUT))
 	$(call process_with_timer,$(PTHREAD_C_NAME),$(PTHREAD_C_OUTPUT))
+
+#########################################
+
+PTHREAD_CPP_NAME=pthread_cpp
+PTHREAD_CPP_SRC=$(SRC)/$(PTHREAD_CPP_NAME)
+PTHREAD_CPP_BUILD=$(BUILD)/$(PTHREAD_CPP_NAME)
+PTHREAD_CPP_OUTPUT=$(BUILD)/output
+pthread_cpp:
+	$(call cmake_build_with_timer,$(PTHREAD_CPP_NAME),$(PTHREAD_CPP_BUILD),$(PTHREAD_CPP_SRC))
+run_pthread_cpp:
+	$(call run_with_timer,$(PTHREAD_CPP_NAME),$(PTHREAD_CPP_BUILD)/$(PTHREAD_CPP_NAME),$(PTHREAD_CPP_OUTPUT))
+	$(call process_with_timer,$(PTHREAD_CPP_NAME),$(PTHREAD_CPP_OUTPUT))
 
 #########################################
