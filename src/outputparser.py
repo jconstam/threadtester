@@ -82,19 +82,48 @@ def parseData( inputRawData, dataName, jsonFileName ):
 	
 	with open( jsonFileName, 'w' ) as f:
 		json.dump( existingData, f, indent=4, sort_keys=True )
-	
+
+def createMarkdown( jsonFileName, markdownFileName, markdownHeaderFileName ):
+	header = open( markdownHeaderFileName, 'r' ).read( )
+
+	with open( jsonFileName, 'r' ) as f:
+		jsonData = json.load( f )
+			
+	with open( markdownFileName, 'w' ) as f:
+		f.write( header )
+		f.write( '\n' )
+		f.write( '# Thread Start/Stop\n' )
+		f.write( '## Thread Start\n' )
+		f.write( 'Each measurement is the time (in ms) between the call to start the task and the task actually running\n' )
+		f.write( '\n' )
+		f.write( '|Name|Count|Max|Min|Average|Std Dev|\n' )
+		f.write( '|----|-----|---|---|-------|-------|\n' )
+		for key in jsonData:
+			data = jsonData[ key ][ 'start' ]
+			f.write( '|{}|{}|{:.3f}|{:.3f}|{:.3f}|{:.3f}|\n'.format( key, data[ 'count' ], data[ 'max' ], data[ 'min' ], data[ 'avg' ], data[ 'std' ] ) )
+		f.write( '\n' )
+		f.write( '## Thread Shutdown\n' )
+		f.write( 'Each measurement is the time (in ms) between task exiting and the main receiving notification that the task has exited\n' )
+		f.write( '\n' )
+		f.write( '|Name|Count|Max|Min|Average|Std Dev|\n' )
+		f.write( '|----|-----|---|---|-------|-------|\n' )
+		for key in jsonData:
+			data = jsonData[ key ][ 'end' ]
+			f.write( '|{}|{}|{:.3f}|{:.3f}|{:.3f}|{:.3f}|\n'.format( key, data[ 'count' ], data[ 'max' ], data[ 'min' ], data[ 'avg' ], data[ 'std' ] ) )
 		
 def main( ):
 	parser = argparse.ArgumentParser( description='Process thread data.' )
-	parser.add_argument( '--file', help='JSON file to store data' )
 	parser.add_argument( '--name', help='Data name' )
+	parser.add_argument( '--jsonfile', help='JSON file to store data' )
+	parser.add_argument( '--markdownheader', help='Markdown file header' )
+	parser.add_argument( '--markdownfile', help='Markdown file to be generated' )
 	
 	args = parser.parse_args( )
 	
 	if select.select( [ sys.stdin ], [ ], [ ], 0.0 )[ 0 ]:
-		parseData( [ x.strip( ) for x in sys.stdin.read( ).split( '\n' ) ], args.name, args.file )
+		parseData( [ x.strip( ) for x in sys.stdin.read( ).split( '\n' ) ], args.name, args.jsonfile )
 	else:
-		print 'DO SOMETHING?'
+		createMarkdown( args.jsonfile, args.markdownfile, args.markdownheader )
 
 if __name__ == '__main__':
 	sys.exit( main( ) )

@@ -6,6 +6,8 @@ SRC				=	$(ROOT)/src
 
 OUTPUT_PARSER	=	python $(SRC)/outputparser.py
 DATA_FILE		=	$(BUILD)/data.json
+MD_HEADER_FILE	=	$(ROOT)/README_HEADER.md
+MD_FILE			=	$(ROOT)/README.md
 
 #########################################
 
@@ -20,15 +22,25 @@ define run_with_timer
 	@d=$$(date +%s); $(2) -c $(RUN_COUNT) > $(3) && echo "\tTook $$(($$(date +%s)-d)) seconds"
 endef
 
+define run_parser
+	$(OUTPUT_PARSER) \
+			--name $(1) \
+			--jsonfile $(DATA_FILE) \
+			--markdownheader $(MD_HEADER_FILE) \
+			--markdownfile $(MD_FILE)
+endef
+
 define process_with_timer
 	@echo "PROCESSING $(1)"
-	@d=$$(date +%s); cat $(2) | $(OUTPUT_PARSER) --name $(1) --file $(DATA_FILE) && echo "\tTook $$(($$(date +%s)-d)) seconds"
+	@d=$$(date +%s); cat $(2) | $(call run_parser,$(1))	&& echo "\tTook $$(($$(date +%s)-d)) seconds"
 endef
 
 #########################################
 
 build: pthread_c
 run: build run_pthread_c
+	@echo "COMPILING RESULTS"
+	@$(call run_parser,compile_results)
 
 clean:
 	@echo "Cleaning up $(BUILD)"
