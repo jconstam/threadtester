@@ -14,11 +14,11 @@ Each measurement is the time (in ms) between the call to start the task and the 
 
 |Name|Count|Max|Min|Average|Std Dev|
 |----|-----|---|---|-------|-------|
-|pthread_c|100000|3.414|0.000|0.120|0.020|
+|pthread_c|100000|52.516|0.000|0.120|0.168|
 
 ## Thread Shutdown
 Each measurement is the time (in ms) between task exiting and the main receiving notification that the task has exited
 
 |Name|Count|Max|Min|Average|Std Dev|
 |----|-----|---|---|-------|-------|
-|pthread_c|100000|3.414|0.000|0.120|0.020|
+|pthread_c|100000|1.861|0.000|0.090|0.015|

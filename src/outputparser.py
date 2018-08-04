@@ -61,7 +61,7 @@ class ThreadInfo:
 	def toJSON( self ):
 		return { 
 			'start': self.starts.toJSON( ),
-			'end': self.starts.toJSON( )
+			'end': self.ends.toJSON( )
 			}
 
 def parseData( inputRawData, dataName, jsonFileName ):
