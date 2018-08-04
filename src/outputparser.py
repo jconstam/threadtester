@@ -1,48 +1,100 @@
+import os
 import sys
-import fileinput
+import json
+import select
+import argparse
 
 import numpy as np
 
-class ThreadInfo:
+class Data:
 	def __init__( self, size ):
 		self.index = 0
-		self.starts = np.zeros( size )
-		self.ends = np.zeros( size )
+		self.data = np.zeros( size )
 		
-	def addTimes( self, start, end ):
-		self.starts[ self.index ] = start
-		self.ends[ self.index ] = end
+	def add( self, value ):
+		self.data[ self.index ] = value
 		self.index = self.index + 1
 		
 	def resetIndex( self ):
-		self.index = 0
+		self.index = 0;
+	
+	def cnt( self ):
+		return np.count_nonzero( self.data )
+	def max( self ):
+		return np.max( self.data )
+	def min( self ):
+		return np.min( self.data )
+	def avg( self ):
+		return np.average( self.data )
+	def std( self ):
+		return np.std( self.data )
 		
-	def printInfo( self, array ):
-		print '\tCount:  {}'.format( np.count_nonzero( array ) )
-		print '\tMax:    {:.3f}'.format( np.max( array ) )
-		print '\tMin:    {:.3f}'.format( np.min( array ) )
-		print '\tAvg:    {:.3f}'.format( np.average( array ) )
-		print '\tStdDev: {:.3f}'.format( np.std( array ) )
-		
-	def printStartInfo( self ):
-		self.printInfo( self.starts )
-		
-	def printEndInfo( self ):
-		self.printInfo( self.ends )
+	def toJSON( self ):
+		return {
+			'count': self.cnt( ),
+			'max': self.max( ),
+			'min': self.min( ),
+			'avg': self.avg( ),
+			'std': self.std( )
+			}
+	
 
-def main( ):
-	inputRawData = [ x.strip( ) for x in fileinput.input( ) ]
+class ThreadInfo:
+	def __init__( self, size ):
+		self.starts = Data( size )
+		self.ends = Data( size )
+		
+	def addTimes( self, start, end ):
+		self.starts.add( start )
+		self.ends.add( end )
+		
+	def resetIndex( self ):
+		self.starts.resetIndex( )
+		self.ends.resetIndex( )
+		
+	def startInfo( self ):
+		return self.starts
+		
+	def endInfo( self ):
+		return self.ends
+		
+	def toJSON( self ):
+		return { 
+			'start': self.starts.toJSON( ),
+			'end': self.starts.toJSON( )
+			}
 
-	data = ThreadInfo( len( inputRawData ) )
+def parseData( inputRawData, dataName, jsonFileName ):
+	newData = ThreadInfo( len( inputRawData ) )
 	
 	for line in inputRawData:
-		numbers = line.split( )
-		data.addTimes( float( numbers[ 0 ] ), float( numbers[ 1 ] ) )
+		if line != '':
+			numbers = line.split( )
+			newData.addTimes( float( numbers[ 0 ] ), float( numbers[ 1 ] ) )
+	
+	if os.path.exists( jsonFileName ):
+		with open( jsonFileName, 'r' ) as f:
+			existingData = json.load( f )
+	else:
+		existingData = {}
+	
+	existingData[ dataName ] = newData.toJSON( )
+	
+	with open( jsonFileName, 'w' ) as f:
+		json.dump( existingData, f, indent=4, sort_keys=True )
+	
 		
-	print 'Thread Startup:'
-	data.printStartInfo( )
-	print 'Thread Shutdown:'
-	data.printEndInfo( )
+def main( ):
+	parser = argparse.ArgumentParser( description='Process thread data.' )
+	parser.add_argument( '--file', help='JSON file to store data' )
+	parser.add_argument( '--name', help='Data name' )
+	
+	args = parser.parse_args( )
+	
+	if select.select( [ sys.stdin ], [ ], [ ], 0.0 )[ 0 ]:
+		parseData( [ x.strip( ) for x in sys.stdin.read( ).split( '\n' ) ], args.name, args.file )
+	else:
+		print 'DO SOMETHING?'
 
 if __name__ == '__main__':
 	sys.exit( main( ) )

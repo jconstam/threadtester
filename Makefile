@@ -5,15 +5,24 @@ BUILD			=	$(ROOT)/build
 SRC				=	$(ROOT)/src
 
 OUTPUT_PARSER	=	python $(SRC)/outputparser.py
+DATA_FILE		=	$(BUILD)/data.json
 
 #########################################
 
 define cmake_build_with_timer
-	@d=$$(date +%s); cd $(1) && cmake $(2) >/dev/null && make >/dev/null && echo "\tTook $$(($$(date +%s)-d)) seconds"
+	@echo "BUILDING $(1)"
+	@mkdir -p $(2)
+	@d=$$(date +%s); cd $(2) && cmake $(3) >/dev/null && make >/dev/null && echo "\tTook $$(($$(date +%s)-d)) seconds"
 endef
 
 define run_with_timer
-	@d=$$(date +%s); $(1) -c $(RUN_COUNT) > $(2) && echo "\tTook $$(($$(date +%s)-d)) seconds"
+	@echo "RUNNING $(1)"
+	@d=$$(date +%s); $(2) -c $(RUN_COUNT) > $(3) && echo "\tTook $$(($$(date +%s)-d)) seconds"
+endef
+
+define process_with_timer
+	@echo "PROCESSING $(1)"
+	@d=$$(date +%s); cat $(2) | $(OUTPUT_PARSER) --name $(1) --file $(DATA_FILE) && echo "\tTook $$(($$(date +%s)-d)) seconds"
 endef
 
 #########################################
@@ -32,12 +41,9 @@ PTHREAD_C_SRC=$(SRC)/$(PTHREAD_C_NAME)
 PTHREAD_C_BUILD=$(BUILD)/$(PTHREAD_C_NAME)
 PTHREAD_C_OUTPUT=$(BUILD)/output
 pthread_c:
-	@echo "BUILDING pThreads (C)"
-	@mkdir -p $(PTHREAD_C_BUILD)
-	$(call cmake_build_with_timer,$(PTHREAD_C_BUILD),$(PTHREAD_C_SRC))
+	$(call cmake_build_with_timer,$(PTHREAD_C_NAME),$(PTHREAD_C_BUILD),$(PTHREAD_C_SRC))
 run_pthread_c:
-	@echo "RUNNING pThreads (C)"
-	$(call run_with_timer,$(PTHREAD_C_BUILD)/$(PTHREAD_C_NAME),$(PTHREAD_C_OUTPUT))
-	@cat $(PTHREAD_C_OUTPUT) | $(OUTPUT_PARSER)
+	$(call run_with_timer,$(PTHREAD_C_NAME),$(PTHREAD_C_BUILD)/$(PTHREAD_C_NAME),$(PTHREAD_C_OUTPUT))
+	$(call process_with_timer,$(PTHREAD_C_NAME),$(PTHREAD_C_OUTPUT))
 
 #########################################
