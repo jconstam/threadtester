@@ -37,8 +37,8 @@ endef
 
 #########################################
 
-build: c_pthread cpp_pthread
-run: run_c_pthread_start run_c_pthread_shutdown run_cpp_pthread_start run_cpp_pthread_shutdown
+build: c_pthread cpp_pthread cpp_stdthread
+run: run_c_pthread_start run_c_pthread_shutdown run_cpp_pthread_start run_cpp_pthread_shutdown run_cpp_stdthread_start run_cpp_stdthread_shutdown
 	@echo "COMPILING RESULTS"
 	@$(call run_parser,compile_results)
 
@@ -81,5 +81,23 @@ run_cpp_pthread_start: cpp_pthread
 run_cpp_pthread_shutdown: cpp_pthread
 	$(call run_with_timer,$(CPP_PTHREAD_NAME_SHUTDOWN),$(CPP_PTHREAD_BUILD)/$(CPP_PTHREAD_NAME) -e,$(CPP_PTHREAD_OUTPUT_SHUTDOWN))
 	$(call process_with_timer,$(CPP_PTHREAD_NAME_SHUTDOWN),$(CPP_PTHREAD_OUTPUT_SHUTDOWN))
+
+#########################################
+
+CPP_STDTHREAD_NAME=cpp_stdthread
+CPP_STDTHREAD_SRC=$(SRC)/$(CPP_STDTHREAD_NAME)
+CPP_STDTHREAD_BUILD=$(BUILD)/$(CPP_STDTHREAD_NAME)
+CPP_STDTHREAD_NAME_START=$(CPP_STDTHREAD_NAME)_start
+CPP_STDTHREAD_OUTPUT_START=$(BUILD)/$(CPP_STDTHREAD_NAME_START)_output
+CPP_STDTHREAD_NAME_SHUTDOWN=$(CPP_STDTHREAD_NAME)_shutdown
+CPP_STDTHREAD_OUTPUT_SHUTDOWN=$(BUILD)/$(CPP_STDTHREAD_NAME_SHUTDOWN)_output
+cpp_stdthread:
+	$(call cmake_build_with_timer,$(CPP_STDTHREAD_NAME),$(CPP_STDTHREAD_BUILD),$(CPP_STDTHREAD_SRC))
+run_cpp_stdthread_start: cpp_stdthread
+	$(call run_with_timer,$(CPP_STDTHREAD_NAME_START),$(CPP_STDTHREAD_BUILD)/$(CPP_STDTHREAD_NAME) -s,$(CPP_STDTHREAD_OUTPUT_START))
+	$(call process_with_timer,$(CPP_STDTHREAD_NAME_START),$(CPP_STDTHREAD_OUTPUT_START))
+run_cpp_stdthread_shutdown: cpp_stdthread
+	$(call run_with_timer,$(CPP_STDTHREAD_NAME_SHUTDOWN),$(CPP_STDTHREAD_BUILD)/$(CPP_STDTHREAD_NAME) -e,$(CPP_STDTHREAD_OUTPUT_SHUTDOWN))
+	$(call process_with_timer,$(CPP_STDTHREAD_NAME_SHUTDOWN),$(CPP_STDTHREAD_OUTPUT_SHUTDOWN))
 
 #########################################

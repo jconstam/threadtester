@@ -1,9 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+
 #include <unistd.h>
 #include <pthread.h>
-#include <time.h>
-#include <string.h>
 
 #define NSEC_IN_A_SEC	( 1000000000U )
 #define NSEC_IN_A_MSEC	( 1000000U )
@@ -37,7 +38,9 @@ static void* start_thread_func( void *arg )
 
 	GetTime( &( actualStartTime ) );
 	
-	returnedStartTime = ( struct timespec* ) calloc( 1, sizeof( struct timespec ) );
+	usleep( 10 );
+	
+	returnedStartTime = new struct timespec( );
 	memcpy( returnedStartTime, &( actualStartTime ), sizeof( struct timespec ) );
 	
 	pthread_exit( returnedStartTime );
@@ -47,7 +50,9 @@ static void* shutdown_thread_func( void *arg )
 {	
 	struct timespec* endTime;
 
-	endTime = ( struct timespec* ) calloc( 1, sizeof( struct timespec ) );
+	endTime = new struct timespec( );
+	
+	usleep( 10 );
 	
 	GetTime( endTime );
 	
@@ -80,8 +85,8 @@ static PARAMS getParams( int argc, char* const argv[ ] )
 			case( -1 ):
 				break;
 			default:
-				fprintf( stderr, "Unknown flag %c\n", opt );
-				fprintf( stderr, "Usage: %s [-c count] [-s] [-e]\n", argv[ 0 ] );
+				std::cerr << "Unknown flag " << opt << std::endl;
+				std::cerr << "Usage: " << argv[ 0 ] << " [-c count] [-s] [-e]" << std::endl;
 				exit( -1 );
 				break;
 		}
@@ -97,15 +102,15 @@ int main( int argc, char* const argv[ ] )
 	
 	PARAMS params = getParams( argc, argv );
 	
-	printf( "C++\n" );
-	printf( "pthread\n" );
+	std::cout << "C++" << std::endl;
+	std::cout << "pthread" << std::endl;
 	if( params.start == DO_START )
 	{
-		printf( "thread_start\n" );	
+		std::cout << "thread_start" << std::endl;	
 	}
 	else if( params.start == DO_END )
 	{
-		printf( "thread_shutdown\n" );	
+		std::cout << "thread_shutdown" << std::endl;
 	}
 	
 	for( i = 0; i < params.count; i++ )
@@ -123,9 +128,9 @@ int main( int argc, char* const argv[ ] )
 		
 			pthread_join( thread, ( void** ) &( startTime ) );
 			
-			printf( "%f\n", GetMicroDiff( &( preStartTime ), startTime ) );
+			std::cout << GetMicroDiff( &( preStartTime ), startTime ) << std::endl;
 			
-			free( startTime );
+			delete startTime;
 		}
 		else if( params.start == DO_END )
 		{
@@ -138,9 +143,9 @@ int main( int argc, char* const argv[ ] )
 			
 			GetTime( &( postEndTime ) );
 			
-			printf( "%f\n", GetMicroDiff( endTime, &( postEndTime ) ) );
+			std::cout << GetMicroDiff( endTime, &( postEndTime ) ) << std::endl;
 			
-			free( endTime );
+			delete endTime;
 		}
 	}
 	

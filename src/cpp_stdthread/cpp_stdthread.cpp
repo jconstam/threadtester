@@ -1,9 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <cstring>
+#include <string>
+#include <thread>
+#include <future>
+
 #include <unistd.h>
-#include <pthread.h>
-#include <time.h>
-#include <string.h>
 
 #define NSEC_IN_A_SEC	( 1000000000U )
 #define NSEC_IN_A_MSEC	( 1000000U )
@@ -30,32 +33,26 @@ static void GetTime( struct timespec* time )
 	clock_gettime( CLOCK_MONOTONIC_COARSE, time );
 }
 
-static void* start_thread_func( void *arg )
+static void start_thread_func( std::promise<struct timespec> && promise )
 {	
-	struct timespec actualStartTime;
-	struct timespec* returnedStartTime;
+	struct timespec startTime;
 
-	GetTime( &( actualStartTime ) );
+	GetTime( &( startTime ) );
 	
 	usleep( 10 );
 	
-	returnedStartTime = calloc( 1, sizeof( struct timespec ) );
-	memcpy( returnedStartTime, &( actualStartTime ), sizeof( struct timespec ) );
-	
-	pthread_exit( returnedStartTime );
+	promise.set_value( startTime );
 }
 
-static void* shutdown_thread_func( void *arg )
+static void shutdown_thread_func( std::promise<struct timespec> && promise )
 {	
-	struct timespec* endTime;
-
-	endTime = calloc( 1, sizeof( struct timespec ) );
+	struct timespec endTime;
 	
 	usleep( 10 );
 	
-	GetTime( endTime );
+	GetTime( &( endTime ) );
 	
-	pthread_exit( endTime );
+	promise.set_value( endTime );
 }
 
 static PARAMS getParams( int argc, char* const argv[ ] )
@@ -84,8 +81,8 @@ static PARAMS getParams( int argc, char* const argv[ ] )
 			case( -1 ):
 				break;
 			default:
-				fprintf( stderr, "Unknown flag %c\n", opt );
-				fprintf( stderr, "Usage: %s [-c count] [-s] [-e]\n", argv[ 0 ] );
+				std::cerr << "Unknown flag " << opt << std::endl;
+				std::cerr << "Usage: " << argv[ 0 ] << " [-c count] [-s] [-e]" << std::endl;
 				exit( -1 );
 				break;
 		}
@@ -101,15 +98,15 @@ int main( int argc, char* const argv[ ] )
 	
 	PARAMS params = getParams( argc, argv );
 	
-	printf( "C\n" );
-	printf( "pthread\n" );
+	std::cout << "C++" << std::endl;
+	std::cout << "std::thread" << std::endl;
 	if( params.start == DO_START )
 	{
-		printf( "thread_start\n" );	
+		std::cout << "thread_start" << std::endl;	
 	}
 	else if( params.start == DO_END )
 	{
-		printf( "thread_shutdown\n" );	
+		std::cout << "thread_shutdown" << std::endl;
 	}
 	
 	for( i = 0; i < params.count; i++ )
@@ -119,32 +116,32 @@ int main( int argc, char* const argv[ ] )
 		if( params.start == DO_START )
 		{
 			struct timespec preStartTime;
-			struct timespec* startTime;
+			struct timespec startTime;
+			std::promise< struct timespec > promise;
+			auto future = promise.get_future( );
 			
 			GetTime( &( preStartTime ) );
+			std::thread thread( &( start_thread_func ), std::move( promise ) );
 			
-			pthread_create( &( thread ), NULL, start_thread_func, NULL );
-		
-			pthread_join( thread, ( void** ) &( startTime ) );
+			thread.join( );
+			startTime = future.get( );
 			
-			printf( "%f\n", GetMicroDiff( &( preStartTime ), startTime ) );
-			
-			free( startTime );
+			std::cout << GetMicroDiff( &( preStartTime ), &( startTime ) ) << std::endl;
 		}
 		else if( params.start == DO_END )
 		{
 			struct timespec postEndTime;
-			struct timespec* endTime;
+			struct timespec endTime;
+			std::promise< struct timespec > promise;
+			auto future = promise.get_future( );
 			
-			pthread_create( &( thread ), NULL, shutdown_thread_func, NULL );
-		
-			pthread_join( thread, ( void** ) &( endTime ) );
+			std::thread thread( &( shutdown_thread_func ), std::move( promise ) );
 			
+			thread.join( );
 			GetTime( &( postEndTime ) );
+			endTime = future.get( );
 			
-			printf( "%f\n", GetMicroDiff( endTime, &( postEndTime ) ) );
-			
-			free( endTime );
+			std::cout << GetMicroDiff( &( endTime ), &( postEndTime ) ) << std::endl;
 		}
 	}
 	
