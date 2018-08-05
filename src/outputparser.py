@@ -7,9 +7,12 @@ import argparse
 import numpy as np
 
 class Data:
-	def __init__( self, size ):
+	def __init__( self, lang, lib, name, size ):
 		self.index = 0
 		self.data = np.zeros( size )
+		self.lang = lang
+		self.lib = lib
+		self.name = name
 		
 	def add( self, value ):
 		self.data[ self.index ] = value
@@ -31,46 +34,22 @@ class Data:
 		
 	def toJSON( self ):	
 		return {
+			'language': self.lang,
+			'library': self.lib,
+			'name': self.name,
 			'count': self.cnt( ),
 			'max': self.max( ),
 			'min': self.min( ),
 			'avg': self.avg( ),
 			'std': self.std( )
 			}
-	
-
-class ThreadInfo:
-	def __init__( self, size ):
-		self.starts = Data( size )
-		self.ends = Data( size )
-		
-	def addTimes( self, start, end ):
-		self.starts.add( start )
-		self.ends.add( end )
-		
-	def resetIndex( self ):
-		self.starts.resetIndex( )
-		self.ends.resetIndex( )
-		
-	def startInfo( self ):
-		return self.starts
-		
-	def endInfo( self ):
-		return self.ends
-		
-	def toJSON( self ):
-		return { 
-			'start': self.starts.toJSON( ),
-			'end': self.ends.toJSON( )
-			}
 
 def parseData( inputRawData, dataName, jsonFileName ):
-	newData = ThreadInfo( len( inputRawData ) )
+	newData = Data( inputRawData[ 0 ], inputRawData[ 1 ], inputRawData[ 2 ], len( inputRawData ) - 3 )
 	
-	for line in inputRawData:
+	for line in inputRawData[ 3 : ]:
 		if line != '':
-			numbers = line.split( )
-			newData.addTimes( float( numbers[ 0 ] ), float( numbers[ 1 ] ) )
+			newData.add( float( line ) )
 	
 	if os.path.exists( jsonFileName ):
 		with open( jsonFileName, 'r' ) as f:
@@ -82,15 +61,7 @@ def parseData( inputRawData, dataName, jsonFileName ):
 	
 	with open( jsonFileName, 'w' ) as f:
 		json.dump( existingData, f, indent=4, sort_keys=True )
-
-def writeThreadInfo( jsonData, type, f ):
-	f.write( '\n' )
-	f.write( '|Name|Count|Max|Min|Average|Std Dev|\n' )
-	f.write( '|----|-----|---|---|-------|-------|\n' )
-	for key in jsonData:
-		data = jsonData[ key ][ type ]
-		f.write( '|{}|{}|{:.3f}|{:.3f}|{:.3f}|{:.3f}|\n'.format( key, data[ 'count' ], data[ 'max' ], data[ 'min' ], data[ 'avg' ], data[ 'std' ] ) )
-		
+	
 def createMarkdown( jsonFileName, markdownFileName, markdownHeaderFileName ):
 	header = open( markdownHeaderFileName, 'r' ).read( )
 
@@ -100,14 +71,15 @@ def createMarkdown( jsonFileName, markdownFileName, markdownHeaderFileName ):
 	with open( markdownFileName, 'w' ) as f:
 		f.write( header )
 		f.write( '\n' )
-		f.write( '# Thread Start/Stop\n' )
-		f.write( '## Thread Start\n' )
-		f.write( 'Each measurement is the time (in ms) between the call to start the task and the task actually running\n' )
-		writeThreadInfo( jsonData, 'start', f )
+		f.write( '# Data' )
 		f.write( '\n' )
-		f.write( '## Thread Shutdown\n' )
-		f.write( 'Each measurement is the time (in ms) between task exiting and the main receiving notification that the task has exited\n' )
-		writeThreadInfo( jsonData, 'end', f )
+		f.write( '|Language|Library|Type|Count|Max|Min|Average|Std Dev|\n' )
+		f.write( '|--------|-------|----|-----|---|---|-------|-------|\n' )
+		for key in sorted( jsonData ):
+			data = jsonData[ key ]
+			f.write( '|{}|{}|{}|{}|{:.3f}|{:.3f}|{:.3f}|{:.3f}|\n'.format(
+				data[ 'language' ], data[ 'library' ], data[ 'name' ],
+				data[ 'count' ], data[ 'max' ], data[ 'min' ], data[ 'avg' ], data[ 'std' ] ) )
 		
 def main( ):
 	parser = argparse.ArgumentParser( description='Process thread data.' )

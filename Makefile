@@ -37,8 +37,8 @@ endef
 
 #########################################
 
-build: pthread_c pthread_cpp
-run: build run_pthread_c run_pthread_cpp
+build: c_pthread cpp_pthread
+run: run_c_pthread_start run_c_pthread_shutdown run_cpp_pthread_start run_cpp_pthread_shutdown
 	@echo "COMPILING RESULTS"
 	@$(call run_parser,compile_results)
 
@@ -48,26 +48,38 @@ clean:
 
 #########################################
 
-PTHREAD_C_NAME=pthread_c
-PTHREAD_C_SRC=$(SRC)/$(PTHREAD_C_NAME)
-PTHREAD_C_BUILD=$(BUILD)/$(PTHREAD_C_NAME)
-PTHREAD_C_OUTPUT=$(BUILD)/output
-pthread_c:
-	$(call cmake_build_with_timer,$(PTHREAD_C_NAME),$(PTHREAD_C_BUILD),$(PTHREAD_C_SRC))
-run_pthread_c:
-	$(call run_with_timer,$(PTHREAD_C_NAME),$(PTHREAD_C_BUILD)/$(PTHREAD_C_NAME),$(PTHREAD_C_OUTPUT))
-	$(call process_with_timer,$(PTHREAD_C_NAME),$(PTHREAD_C_OUTPUT))
+C_PTHREAD_NAME=c_pthread
+C_PTHREAD_SRC=$(SRC)/$(C_PTHREAD_NAME)
+C_PTHREAD_BUILD=$(BUILD)/$(C_PTHREAD_NAME)
+C_PTHREAD_NAME_START=$(C_PTHREAD_NAME)_start
+C_PTHREAD_OUTPUT_START=$(BUILD)/$(C_PTHREAD_NAME_START)_output
+C_PTHREAD_NAME_SHUTDOWN=$(C_PTHREAD_NAME)_shutdown
+C_PTHREAD_OUTPUT_SHUTDOWN=$(BUILD)/$(C_PTHREAD_NAME_SHUTDOWN)_output
+c_pthread:
+	$(call cmake_build_with_timer,$(C_PTHREAD_NAME),$(C_PTHREAD_BUILD),$(C_PTHREAD_SRC))
+run_c_pthread_start: c_pthread
+	$(call run_with_timer,$(C_PTHREAD_NAME_START),$(C_PTHREAD_BUILD)/$(C_PTHREAD_NAME) -s,$(C_PTHREAD_OUTPUT_START))
+	$(call process_with_timer,$(C_PTHREAD_NAME_START),$(C_PTHREAD_OUTPUT_START))
+run_c_pthread_shutdown: c_pthread
+	$(call run_with_timer,$(C_PTHREAD_NAME_SHUTDOWN),$(C_PTHREAD_BUILD)/$(C_PTHREAD_NAME) -e,$(C_PTHREAD_OUTPUT_SHUTDOWN))
+	$(call process_with_timer,$(C_PTHREAD_NAME_SHUTDOWN),$(C_PTHREAD_OUTPUT_SHUTDOWN))
 
 #########################################
 
-PTHREAD_CPP_NAME=pthread_cpp
-PTHREAD_CPP_SRC=$(SRC)/$(PTHREAD_CPP_NAME)
-PTHREAD_CPP_BUILD=$(BUILD)/$(PTHREAD_CPP_NAME)
-PTHREAD_CPP_OUTPUT=$(BUILD)/output
-pthread_cpp:
-	$(call cmake_build_with_timer,$(PTHREAD_CPP_NAME),$(PTHREAD_CPP_BUILD),$(PTHREAD_CPP_SRC))
-run_pthread_cpp:
-	$(call run_with_timer,$(PTHREAD_CPP_NAME),$(PTHREAD_CPP_BUILD)/$(PTHREAD_CPP_NAME),$(PTHREAD_CPP_OUTPUT))
-	$(call process_with_timer,$(PTHREAD_CPP_NAME),$(PTHREAD_CPP_OUTPUT))
+CPP_PTHREAD_NAME=cpp_pthread
+CPP_PTHREAD_SRC=$(SRC)/$(CPP_PTHREAD_NAME)
+CPP_PTHREAD_BUILD=$(BUILD)/$(CPP_PTHREAD_NAME)
+CPP_PTHREAD_NAME_START=$(CPP_PTHREAD_NAME)_start
+CPP_PTHREAD_OUTPUT_START=$(BUILD)/$(CPP_PTHREAD_NAME_START)_output
+CPP_PTHREAD_NAME_SHUTDOWN=$(CPP_PTHREAD_NAME)_shutdown
+CPP_PTHREAD_OUTPUT_SHUTDOWN=$(BUILD)/$(CPP_PTHREAD_NAME_SHUTDOWN)_output
+cpp_pthread:
+	$(call cmake_build_with_timer,$(CPP_PTHREAD_NAME),$(CPP_PTHREAD_BUILD),$(CPP_PTHREAD_SRC))
+run_cpp_pthread_start: cpp_pthread
+	$(call run_with_timer,$(CPP_PTHREAD_NAME_START),$(CPP_PTHREAD_BUILD)/$(CPP_PTHREAD_NAME) -s,$(CPP_PTHREAD_OUTPUT_START))
+	$(call process_with_timer,$(CPP_PTHREAD_NAME_START),$(CPP_PTHREAD_OUTPUT_START))
+run_cpp_pthread_shutdown: cpp_pthread
+	$(call run_with_timer,$(CPP_PTHREAD_NAME_SHUTDOWN),$(CPP_PTHREAD_BUILD)/$(CPP_PTHREAD_NAME) -e,$(CPP_PTHREAD_OUTPUT_SHUTDOWN))
+	$(call process_with_timer,$(CPP_PTHREAD_NAME_SHUTDOWN),$(CPP_PTHREAD_OUTPUT_SHUTDOWN))
 
 #########################################

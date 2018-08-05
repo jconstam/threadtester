@@ -8,19 +8,27 @@ Some tests of various Linux threading libraries.
 * NumPy 1.8 or later
 * gcc + standard libraries
 
-# Thread Start/Stop
-## Thread Start
-Each measurement is the time (in ms) between the call to start the task and the task actually running
+# Summary
+This project is designed to compare the performance of various threading systems.
 
-|Name|Count|Max|Min|Average|Std Dev|
-|----|-----|---|---|-------|-------|
-|pthread_cpp|1000000|4.333|0.078|0.122|0.013|
-|pthread_c|1000000|4.522|0.077|0.114|0.011|
+## Test Descriptions
+|Name|Description|
+|----|-----------|
+|thread_start|Time between immediately before the thread creation function is called and the first execution of that thread.|
+|thread_shutdown|Time between immediately before a thread terminates and when the creator of the thread receives notification that the thread shut down.|
 
-## Thread Shutdown
-Each measurement is the time (in ms) between task exiting and the main receiving notification that the task has exited
+## Details
+Each line in the following table represents the execution of one of the binaries in this repository.
+For each one, the following information is listed:
+* The language the program was written in.
+* The library (if any) used to run the tests.
+* The test that was performed.
+* Details on the timing of the results.
 
-|Name|Count|Max|Min|Average|Std Dev|
-|----|-----|---|---|-------|-------|
-|pthread_cpp|1000000|1.730|0.072|0.090|0.010|
-|pthread_c|1000000|1.420|0.072|0.089|0.009|
+# Data
+|Language|Library|Type|Count|Max|Min|Average|Std Dev|
+|--------|-------|----|-----|---|---|-------|-------|
+|C|pthread|thread_shutdown|100000|1.734|0.053|0.061|0.013|
+|C|pthread|thread_start|100000|1.346|0.071|0.082|0.013|
+|C++|pthread|thread_shutdown|100000|1.590|0.052|0.060|0.012|
+|C++|pthread|thread_start|100000|2.136|0.071|0.082|0.016|
