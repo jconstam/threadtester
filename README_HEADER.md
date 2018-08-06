@@ -3,9 +3,10 @@ Some tests of various Linux threading libraries.
 
 # Requirements
 * A POSIX-compatible system with pthread
-* CMake v2.8 or later
+* CMake 2.8 or later
 * Python 2.7.x
 * NumPy 1.8 or later
+* MatPlotLib 2.2 or later
 * gcc + standard libraries
 
 # Summary

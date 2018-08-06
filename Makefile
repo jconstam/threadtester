@@ -3,6 +3,7 @@ RUN_COUNT		?=	10000
 ROOT			=	$(shell pwd)
 BUILD			=	$(ROOT)/build
 SRC				=	$(ROOT)/src
+IMG				=	$(ROOT)/img
 
 OUTPUT_PARSER	=	python $(SRC)/outputparser.py
 DATA_FILE		=	$(BUILD)/data.json
@@ -27,7 +28,8 @@ define run_parser
 			--name $(1) \
 			--jsonfile $(DATA_FILE) \
 			--markdownheader $(MD_HEADER_FILE) \
-			--markdownfile $(MD_FILE)
+			--markdownfile $(MD_FILE) \
+			--graphPath $(IMG)
 endef
 
 define process_with_timer
