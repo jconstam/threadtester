@@ -1,10 +1,12 @@
 #include <iostream>
 #include <cstdlib>
-#include <cstring>
 #include <ctime>
+#include <cstring>
+#include <string>
+#include <thread>
+#include <future>
 
 #include <unistd.h>
-#include <pthread.h>
 
 #define NSEC_IN_A_SEC	( 1000000000U )
 #define NSEC_IN_A_MSEC	( 1000000U )
@@ -31,32 +33,26 @@ static void GetTime( struct timespec* time )
 	clock_gettime( CLOCK_MONOTONIC_COARSE, time );
 }
 
-static void* start_thread_func( void *arg )
+static struct timespec start_thread_func( )
 {	
-	struct timespec actualStartTime;
-	struct timespec* returnedStartTime;
+	struct timespec startTime;
 
-	GetTime( &( actualStartTime ) );
+	GetTime( &( startTime ) );
 	
 	usleep( 1000 );
 	
-	returnedStartTime = new struct timespec( );
-	memcpy( returnedStartTime, &( actualStartTime ), sizeof( struct timespec ) );
-	
-	pthread_exit( returnedStartTime );
+	return startTime;
 }
 
-static void* shutdown_thread_func( void *arg )
+static struct timespec shutdown_thread_func( )
 {	
-	struct timespec* endTime;
-
-	endTime = new struct timespec( );
+	struct timespec endTime;
 	
 	usleep( 1000 );
 	
-	GetTime( endTime );
+	GetTime( &( endTime ) );
 	
-	pthread_exit( endTime );
+	return endTime;
 }
 
 static PARAMS getParams( int argc, char* const argv[ ] )
@@ -103,7 +99,7 @@ int main( int argc, char* const argv[ ] )
 	PARAMS params = getParams( argc, argv );
 	
 	std::cout << "C++" << std::endl;
-	std::cout << "pthread" << std::endl;
+	std::cout << "std::async" << std::endl;
 	if( params.start == DO_START )
 	{
 		std::cout << "thread_start" << std::endl;	
@@ -120,32 +116,25 @@ int main( int argc, char* const argv[ ] )
 		if( params.start == DO_START )
 		{
 			struct timespec preStartTime;
-			struct timespec* startTime;
+			struct timespec startTime;
 			
 			GetTime( &( preStartTime ) );
+			auto future = std::async( start_thread_func );
+			startTime = future.get( );
 			
-			pthread_create( &( thread ), NULL, start_thread_func, NULL );
-		
-			pthread_join( thread, ( void** ) &( startTime ) );
-			
-			std::cout << GetMicroDiff( &( preStartTime ), startTime ) << std::endl;
-			
-			delete startTime;
+			std::cout << GetMicroDiff( &( preStartTime ), &( startTime ) ) << std::endl;
 		}
 		else if( params.start == DO_END )
 		{
 			struct timespec postEndTime;
-			struct timespec* endTime;
+			struct timespec endTime;
 			
-			pthread_create( &( thread ), NULL, shutdown_thread_func, NULL );
-		
-			pthread_join( thread, ( void** ) &( endTime ) );
+			auto future = std::async( shutdown_thread_func );
+			endTime = future.get( );
 			
 			GetTime( &( postEndTime ) );
 			
-			std::cout << GetMicroDiff( endTime, &( postEndTime ) ) << std::endl;
-			
-			delete endTime;
+			std::cout << GetMicroDiff( &( endTime ), &( postEndTime ) ) << std::endl;
 		}
 	}
 	

@@ -1,7 +1,5 @@
 cmake_minimum_required( VERSION 2.8 )
 
-set( CMAKE_VERBOSE_MAKEFILE TRUE )
-
 set( PROJECT_CPP_STDTHREAD cpp_stdthread )
 
 project( ${PROJECT_CPP_STDTHREAD} )

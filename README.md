@@ -28,9 +28,11 @@ For each one, the following information is listed:
 # Data
 |Language|Library|Type|Count|Max|Min|Average|Std Dev|
 |--------|-------|----|-----|---|---|-------|-------|
-|C|pthread|thread_shutdown|100000|1.070|0.054|0.066|0.010|
-|C|pthread|thread_start|100000|0.405|0.070|0.081|0.004|
-|C++|pthread|thread_shutdown|100000|0.274|0.052|0.072|0.012|
-|C++|pthread|thread_start|100000|0.397|0.074|0.082|0.004|
-|C++|std::thread|thread_shutdown|100000|0.588|0.057|0.075|0.012|
-|C++|std::thread|thread_start|100000|0.950|0.073|0.085|0.004|
+|C|pthread|thread_shutdown|1000000|21.571|0.054|0.084|0.032|
+|C|pthread|thread_start|1000000|3.528|0.069|0.085|0.011|
+|C++|pthread|thread_shutdown|1000000|29.308|0.053|0.088|0.042|
+|C++|pthread|thread_start|1000000|1.628|0.070|0.087|0.008|
+|C++|std::async|thread_shutdown|1000000|1.616|0.012|0.021|0.006|
+|C++|std::async|thread_start|1000000|4.335|0.008|0.009|0.006|
+|C++|std::thread|thread_shutdown|1000000|29.828|0.068|0.094|0.055|
+|C++|std::thread|thread_start|1000000|2.606|0.081|0.112|0.013|
