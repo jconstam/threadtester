@@ -52,6 +52,7 @@ class Data:
 		
 	def toJSON( self ):	
 		return {
+			'uniqueName': self.uniqueName( ),
 			'language': self.lang,
 			'library': self.lib,
 			'name': self.name,
@@ -64,8 +65,11 @@ class Data:
 			}
 		
 	def graphData( self ):
+		title = '{}\nCount={} Max={:.3f} Min={:.3f} Avg={:.3f} StdDev={:.3f}'.format( self.uniqueName( ), 
+			self.cnt( ), self.max( ), self.min( ), self.avg( ), self.std( ) )
+	
 		fig, ax = plt.subplots( nrows=1, ncols=1 )
-		fig.suptitle( self.uniqueName( ) )
+		fig.suptitle( title )
 		ax.set_ylim( 0, 1 )
 		ax.plot( self.nonZeroData( ) )
 		fig.savefig( self.graphFileName( ) )
@@ -101,14 +105,15 @@ def createMarkdown( jsonFileName, markdownFileName, markdownHeaderFileName, grap
 		f.write( '\n' )
 		f.write( '# Data' )
 		f.write( '\n' )
-		f.write( '|Language|Library|Type|Count|Max|Min|Average|Std Dev|Graph|\n' )
-		f.write( '|--------|-------|----|-----|---|---|-------|-------|-----|\n' )
+		f.write( '|Description|Graph|\n' )
+		f.write( '|-----------|-----|\n' )
 		for key in sorted( jsonData ):
 			data = jsonData[ key ]
-			f.write( '|{}|{}|{}|{}|{:.3f}|{:.3f}|{:.3f}|{:.3f}|{}|\n'.format(
-				data[ 'language' ], data[ 'library' ], data[ 'name' ],
-				data[ 'count' ], data[ 'max' ], data[ 'min' ], data[ 'avg' ], data[ 'std' ], 
-				'[Graph]({})'.format( os.path.relpath( data[ 'graph' ], os.path.dirname( markdownFileName ) ) ) ) )
+			
+			description = '{} - {} - {}'.format( data[ 'language' ], data[ 'library' ], data[ 'name' ] )
+			graph = '![{}]({})'.format( data[ 'uniqueName' ], os.path.relpath( data[ 'graph' ], os.path.dirname( markdownFileName ) ) )
+			
+			f.write( '|{}|{}|\n'.format( description, graph ) )
 
 				
 def main( ):
