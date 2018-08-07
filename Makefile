@@ -13,12 +13,6 @@ MD_FILE			=	$(ROOT)/README.md
 
 #########################################
 
-define cmake_build_with_timer
-	@echo "BUILDING"
-	@mkdir -p $(1)
-	@d=$$(date +%s); cd $(1) && cmake >/dev/null $(2) && make >/dev/null && echo "\tTook $$(($$(date +%s)-d)) seconds"
-endef
-
 define run_with_timer
 	@echo "RUNNING $(1)"
 	@d=$$(date +%s); $(2) -c $(RUN_COUNT) > $(3) && echo "\tTook $$(($$(date +%s)-d)) seconds"
@@ -30,7 +24,8 @@ define run_parser
 			--jsonfile $(DATA_FILE) \
 			--markdownheader $(MD_HEADER_FILE) \
 			--markdownfile $(MD_FILE) \
-			--graphPath $(IMG)
+			--graphPath $(IMG) \
+			--rootPath $(ROOT)
 endef
 
 define process_with_timer
@@ -42,7 +37,9 @@ endef
 
 .PHONY: build
 build:
-	$(call cmake_build_with_timer,$(BUILD),$(SRC))
+	@echo "BUILDING"
+	@mkdir -p $(BUILD)
+	@d=$$(date +%s); cd $(BUILD) && cmake >/dev/null $(SRC) && make >/dev/null && echo "\tTook $$(($$(date +%s)-d)) seconds"
 
 run: run_c_pthread run_cpp_pthread run_cpp_stdthread run_cpp_stdasync
 	@echo "COMPILING RESULTS"

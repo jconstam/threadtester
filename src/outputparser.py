@@ -118,7 +118,7 @@ def parseData( inputRawData, dataName, jsonFileName, graphPath ):
 	with open( jsonFileName, 'w' ) as f:
 		json.dump( existingData, f, indent=4, sort_keys=True )
 	
-def createMarkdown( jsonFileName, markdownFileName, markdownHeaderFileName, graphPath ):
+def createMarkdown( jsonFileName, markdownFileName, markdownHeaderFileName ):
 	header = open( markdownHeaderFileName, 'r' ).read( )
 
 	with open( jsonFileName, 'r' ) as f:
@@ -138,7 +138,7 @@ def createMarkdown( jsonFileName, markdownFileName, markdownHeaderFileName, grap
 					data = jsonData[ proc ][ testName ][ testRunName ]
 					
 					description = '{} - {}'.format( data[ 'language' ], data[ 'library' ] )
-					graph = '![{}]({})'.format( data[ 'uniqueName' ], os.path.relpath( data[ 'graph' ], os.path.dirname( markdownFileName ) ) )
+					graph = '![{}]({})'.format( data[ 'uniqueName' ], data[ 'graph' ] )
 					
 					f.write( '|{}|{}|\n'.format( description, graph ) )
 
@@ -149,14 +149,16 @@ def main( ):
 	parser.add_argument( '--jsonfile', help='JSON file to store data' )
 	parser.add_argument( '--markdownheader', help='Markdown file header' )
 	parser.add_argument( '--markdownfile', help='Markdown file to be generated' )
+	parser.add_argument( '--rootPath', help='Root folder' )
 	parser.add_argument( '--graphPath', help='Path where graphs should be stored', default=os.path.dirname( sys.argv[ 0 ] ) )
 	
 	args = parser.parse_args( )
 	
 	if select.select( [ sys.stdin ], [ ], [ ], 0.0 )[ 0 ]:
-		parseData( [ x.strip( ) for x in sys.stdin.read( ).split( '\n' ) ], args.name, args.jsonfile, args.graphPath )
+		parseData( [ x.strip( ) for x in sys.stdin.read( ).split( '\n' ) ], args.name, args.jsonfile,
+			os.path.relpath( args.graphPath, args.rootPath ) )
 	else:
-		createMarkdown( args.jsonfile, args.markdownfile, args.markdownheader, args.graphPath )
+		createMarkdown( args.jsonfile, args.markdownfile, args.markdownheader )
 
 if __name__ == '__main__':
 	sys.exit( main( ) )
