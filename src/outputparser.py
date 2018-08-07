@@ -1,8 +1,10 @@
 import os
+import re
 import sys
 import json
 import select
 import argparse
+import subprocess
 
 import matplotlib
 matplotlib.use('Agg')
@@ -27,15 +29,16 @@ class Data:
 		self.index = 0;
 		
 	def uniqueName( self ):
-		return '{}__{}__{}'.format( self.lang, self.lib, self.name )
+		return '{}__{}__{}'.format( self.name, self.lang, self.lib )
 	
 	def nonZeroData( self ):
 		return self.data[ np.nonzero( self.data ) ]
 		
 	def graphFileName( self ):
-		fileName = self.uniqueName( )
+		fileName = '{}__{}'.format( getCPUName( ), self.uniqueName( ) )
 		fileName = fileName.replace( '+', 'P' )
 		fileName = fileName.replace( ':', '' )
+		fileName = fileName.replace( ' ', '_' )
 	
 		return os.path.join( self.graphPath, fileName + '.png' )
 	
@@ -50,7 +53,7 @@ class Data:
 	def std( self ):
 		return np.std( self.nonZeroData( ) )
 		
-	def toJSON( self ):	
+	def getJSONData( self ):
 		return {
 			'uniqueName': self.uniqueName( ),
 			'language': self.lang,
@@ -62,7 +65,7 @@ class Data:
 			'avg': self.avg( ),
 			'std': self.std( ),
 			'graph': self.graphFileName( )
-			}
+		}
 		
 	def graphData( self ):
 		title = '{}\nCount={} Max={:.3f} Min={:.3f} Avg={:.3f} StdDev={:.3f}'.format( self.uniqueName( ), 
@@ -77,6 +80,16 @@ class Data:
 		fig.savefig( self.graphFileName( ) )
 		plt.close( fig )	
 
+def getCPUName( ):
+	all_info = subprocess.check_output( 'cat /proc/cpuinfo', shell = True ).strip( )
+	for line in all_info.split( '\n' ):
+		if 'model name' in line:
+			rawName = re.sub( '.*model name.*:', '', line, 1 )
+			rawName = rawName.replace( '@', '' )
+			rawName = rawName.replace( '(R)', '' )
+			rawName = rawName.replace( '(TM)', '' )
+			return ' '.join( rawName.split( ) )
+		
 def parseData( inputRawData, dataName, jsonFileName, graphPath ):
 	newData = Data( inputRawData[ 0 ], inputRawData[ 1 ], inputRawData[ 2 ], len( inputRawData ) - 3, graphPath )
 	
@@ -91,7 +104,14 @@ def parseData( inputRawData, dataName, jsonFileName, graphPath ):
 	else:
 		existingData = {}
 	
-	existingData[ dataName ] = newData.toJSON( )
+	procName = getCPUName( )
+	if not procName in existingData:
+		existingData[ procName ] = {}
+		
+	if not newData.name in existingData[ procName ]:
+		existingData[ procName ][ newData.name ] = {}
+	
+	existingData[ procName ][ newData.name ][ newData.uniqueName( ) ] = newData.getJSONData( )
 	
 	with open( jsonFileName, 'w' ) as f:
 		json.dump( existingData, f, indent=4, sort_keys=True )
@@ -105,17 +125,20 @@ def createMarkdown( jsonFileName, markdownFileName, markdownHeaderFileName, grap
 	with open( markdownFileName, 'w' ) as f:
 		f.write( header )
 		f.write( '\n' )
-		f.write( '# Data' )
-		f.write( '\n' )
-		f.write( '|Description|Graph|\n' )
-		f.write( '|-----------|-----|\n' )
-		for key in sorted( jsonData ):
-			data = jsonData[ key ]
-			
-			description = '{} - {} - {}'.format( data[ 'language' ], data[ 'library' ], data[ 'name' ] )
-			graph = '![{}]({})'.format( data[ 'uniqueName' ], os.path.relpath( data[ 'graph' ], os.path.dirname( markdownFileName ) ) )
-			
-			f.write( '|{}|{}|\n'.format( description, graph ) )
+		f.write( '# Data\n' )
+		for proc in sorted( jsonData ):
+			f.write( '## Processor: {}\n'.format( proc ) )
+			for testName in sorted( jsonData[ proc ] ):
+				f.write( '### Test: {}\n'.format( testName ) )
+				f.write( '|Description|Graph|\n' )
+				f.write( '|-----------|-----|\n' )
+				for testRunName in sorted( jsonData[ proc ][ testName ] ):
+					data = jsonData[ proc ][ testName ][ testRunName ]
+					
+					description = '{} - {}'.format( data[ 'language' ], data[ 'library' ] )
+					graph = '![{}]({})'.format( data[ 'uniqueName' ], os.path.relpath( data[ 'graph' ], os.path.dirname( markdownFileName ) ) )
+					
+					f.write( '|{}|{}|\n'.format( description, graph ) )
 
 				
 def main( ):

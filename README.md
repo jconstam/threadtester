@@ -27,13 +27,18 @@ For each one, the following information is listed:
 * Details on the timing of the results.
 
 # Data
+## Processor: Intel Core i7 CPU 920 2.67GHz
+### Test: thread_shutdown
 |Description|Graph|
 |-----------|-----|
-|C - pthread - thread_shutdown|![C__pthread__thread_shutdown](img/C__pthread__thread_shutdown.png)|
-|C - pthread - thread_start|![C__pthread__thread_start](img/C__pthread__thread_start.png)|
-|C++ - pthread - thread_shutdown|![C++__pthread__thread_shutdown](img/CPP__pthread__thread_shutdown.png)|
-|C++ - pthread - thread_start|![C++__pthread__thread_start](img/CPP__pthread__thread_start.png)|
-|C++ - std::async - thread_shutdown|![C++__std::async__thread_shutdown](img/CPP__stdasync__thread_shutdown.png)|
-|C++ - std::async - thread_start|![C++__std::async__thread_start](img/CPP__stdasync__thread_start.png)|
-|C++ - std::thread - thread_shutdown|![C++__std::thread__thread_shutdown](img/CPP__stdthread__thread_shutdown.png)|
-|C++ - std::thread - thread_start|![C++__std::thread__thread_start](img/CPP__stdthread__thread_start.png)|
+|C++ - pthread|![thread_shutdown__C++__pthread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__CPP__pthread.png)|
+|C++ - std::async|![thread_shutdown__C++__std::async](img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__CPP__stdasync.png)|
+|C++ - std::thread|![thread_shutdown__C++__std::thread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__CPP__stdthread.png)|
+|C - pthread|![thread_shutdown__C__pthread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__C__pthread.png)|
+### Test: thread_start
+|Description|Graph|
+|-----------|-----|
+|C++ - pthread|![thread_start__C++__pthread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__pthread.png)|
+|C++ - std::async|![thread_start__C++__std::async](img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__stdasync.png)|
+|C++ - std::thread|![thread_start__C++__std::thread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__stdthread.png)|
+|C - pthread|![thread_start__C__pthread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__C__pthread.png)|

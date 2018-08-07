@@ -4,9 +4,10 @@ ROOT			=	$(shell pwd)
 BUILD			=	$(ROOT)/build
 SRC				=	$(ROOT)/src
 IMG				=	$(ROOT)/img
+DATA			=	$(ROOT)/data
 
 OUTPUT_PARSER	=	python $(SRC)/outputparser.py
-DATA_FILE		=	$(BUILD)/data.json
+DATA_FILE		=	$(DATA)/data.json
 MD_HEADER_FILE	=	$(ROOT)/README_HEADER.md
 MD_FILE			=	$(ROOT)/README.md
 
@@ -47,6 +48,12 @@ run: run_c_pthread run_cpp_pthread run_cpp_stdthread run_cpp_stdasync
 clean:
 	@echo "Cleaning up $(BUILD)"
 	@rm -rf $(BUILD)
+	
+clean_results:
+	@echo "Cleaning up $(DATA)"
+	@rm -rf $(DATA)/*
+	@echo "Cleaning up $(IMG)"
+	@rm -rf $(IMG)/*
 
 #########################################
 
