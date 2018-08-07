@@ -16,7 +16,7 @@ static struct timespec start_thread_func( )
 
 	GetTime( &( startTime ) );
 	
-	usleep( 1000 );
+	usleep( THREAD_MIN_ALIVE_TIME_US );
 	
 	return startTime;
 }
@@ -25,7 +25,7 @@ static struct timespec shutdown_thread_func( )
 {	
 	struct timespec endTime;
 	
-	usleep( 1000 );
+	usleep( THREAD_MIN_ALIVE_TIME_US );
 	
 	GetTime( &( endTime ) );
 	

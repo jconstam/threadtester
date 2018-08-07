@@ -15,7 +15,7 @@ static void* start_thread_func( void *arg )
 
 	GetTime( &( actualStartTime ) );
 	
-	usleep( 1000 );
+	usleep( THREAD_MIN_ALIVE_TIME_US );
 	
 	returnedStartTime = new struct timespec( );
 	memcpy( returnedStartTime, &( actualStartTime ), sizeof( struct timespec ) );
@@ -29,7 +29,7 @@ static void* shutdown_thread_func( void *arg )
 
 	endTime = new struct timespec( );
 	
-	usleep( 1000 );
+	usleep( THREAD_MIN_ALIVE_TIME_US );
 	
 	GetTime( endTime );
 	

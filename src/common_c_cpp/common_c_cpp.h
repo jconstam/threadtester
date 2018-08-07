@@ -9,6 +9,8 @@ typedef struct PARAMS_STRUCT
 #define DO_START		( 0 )
 #define DO_END			( 1 )
 
+#define THREAD_MIN_ALIVE_TIME_US	( 1000U )
+
 #ifdef __cplusplus
 extern "C"
 {

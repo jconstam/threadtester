@@ -16,7 +16,7 @@ static void start_thread_func( std::promise<struct timespec> && promise )
 
 	GetTime( &( startTime ) );
 	
-	usleep( 1000 );
+	usleep( THREAD_MIN_ALIVE_TIME_US );
 	
 	promise.set_value( startTime );
 }
@@ -25,7 +25,7 @@ static void shutdown_thread_func( std::promise<struct timespec> && promise )
 {	
 	struct timespec endTime;
 	
-	usleep( 1000 );
+	usleep( THREAD_MIN_ALIVE_TIME_US );
 	
 	GetTime( &( endTime ) );
 	
