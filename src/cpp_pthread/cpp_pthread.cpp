@@ -6,30 +6,7 @@
 #include <unistd.h>
 #include <pthread.h>
 
-#define NSEC_IN_A_SEC	( 1000000000U )
-#define NSEC_IN_A_MSEC	( 1000000U )
-
-#define DO_START		( 0 )
-#define DO_END			( 1 )
-
-typedef struct PARAMS_STRUCT
-{
-	int count;
-	int start;
-} PARAMS;
-
-static float GetMicroDiff( struct timespec* timeEarlier, struct timespec* timeLater )
-{
-	unsigned int diffInt = ( ( ( timeLater->tv_sec - timeEarlier->tv_sec ) * NSEC_IN_A_SEC ) 
-		+ ( timeLater->tv_nsec - timeEarlier->tv_nsec ) );
-		
-	return ( float )( diffInt ) / ( float ) ( NSEC_IN_A_MSEC );
-}
-
-static void GetTime( struct timespec* time )
-{
-	clock_gettime( CLOCK_MONOTONIC_COARSE, time );
-}
+#include "common_c_cpp.h"
 
 static void* start_thread_func( void *arg )
 {	
@@ -57,42 +34,6 @@ static void* shutdown_thread_func( void *arg )
 	GetTime( endTime );
 	
 	pthread_exit( endTime );
-}
-
-static PARAMS getParams( int argc, char* const argv[ ] )
-{
-	int opt;
-	PARAMS params;
-	
-	params.count = 1000;
-	params.start = DO_START;
-	
-	do
-	{
-		opt = getopt( argc, argv, "c:se" );
-		
-		switch( opt )
-		{
-			case( 'c' ):
-				params.count = atoi( optarg );
-				break;
-			case( 's' ):
-				params.start = DO_START;
-				break;
-			case ( 'e' ):
-				params.start = DO_END;
-				break;
-			case( -1 ):
-				break;
-			default:
-				std::cerr << "Unknown flag " << opt << std::endl;
-				std::cerr << "Usage: " << argv[ 0 ] << " [-c count] [-s] [-e]" << std::endl;
-				exit( -1 );
-				break;
-		}
-	} while( opt != -1 );
-	
-	return params;
 }
 
 int main( int argc, char* const argv[ ] )
