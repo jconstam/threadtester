@@ -55,5 +55,5 @@ For each one, the following information is listed:
 |-----------|-----|
 |C++ - pthread|![thread_start__C++__pthread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__pthread.png)|
 |C++ - std::async|![thread_start__C++__std::async](img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__stdasync.png)|
-|C++ - std::thread|![thread_start__C++__std::thread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__stdthread.png)|
+|C++ - std::thread|![thread_start__C++__std::thread](/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__stdthread.png)|
 |C - pthread|![thread_start__C__pthread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__C__pthread.png)|
