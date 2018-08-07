@@ -88,6 +88,8 @@ def getCPUName( ):
 			rawName = rawName.replace( '@', '' )
 			rawName = rawName.replace( '(R)', '' )
 			rawName = rawName.replace( '(TM)', '' )
+                        rawName = rawName.replace( '(', '' )
+                        rawName = rawName.replace( ')', '' )
 			return ' '.join( rawName.split( ) )
 		
 def parseData( inputRawData, dataName, jsonFileName, graphPath ):
@@ -158,3 +160,4 @@ def main( ):
 
 if __name__ == '__main__':
 	sys.exit( main( ) )
+
