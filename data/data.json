@@ -1,306 +1,102 @@
 {
-    "ARMv6-compatible processor rev 7 (v6l)": {
-        "thread_shutdown": {
-            "thread_shutdown__C++__pthread": {
-                "avg": 0.25658289, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_(v6l)__thread_shutdown__CPP__pthread.png", 
-                "language": "C++", 
-                "library": "pthread", 
-                "max": 0.608983, 
-                "min": 0.238993, 
-                "name": "thread_shutdown", 
-                "std": 0.041326598350673635, 
-                "uniqueName": "thread_shutdown__C++__pthread"
-            }, 
-            "thread_shutdown__C++__std::async": {
-                "avg": 0.2546229, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_(v6l)__thread_shutdown__CPP__stdasync.png", 
-                "language": "C++", 
-                "library": "std::async", 
-                "max": 0.395989, 
-                "min": 0.241994, 
-                "name": "thread_shutdown", 
-                "std": 0.021504105339446234, 
-                "uniqueName": "thread_shutdown__C++__std::async"
-            }, 
-            "thread_shutdown__C++__std::thread": {
-                "avg": 0.24502318999999997, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_(v6l)__thread_shutdown__CPP__stdthread.png", 
-                "language": "C++", 
-                "library": "std::thread", 
-                "max": 0.481986, 
-                "min": 0.232994, 
-                "name": "thread_shutdown", 
-                "std": 0.024831678343074193, 
-                "uniqueName": "thread_shutdown__C++__std::thread"
-            }, 
-            "thread_shutdown__C__pthread": {
-                "avg": 0.24686316000000003, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_(v6l)__thread_shutdown__C__pthread.png", 
-                "language": "C", 
-                "library": "pthread", 
-                "max": 1.473959, 
-                "min": 0.220994, 
-                "name": "thread_shutdown", 
-                "std": 0.12435405636252643, 
-                "uniqueName": "thread_shutdown__C__pthread"
-            }
-        }, 
-        "thread_start": {
-            "thread_start__C++__pthread": {
-                "avg": 0.3316408299999999, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_(v6l)__thread_start__CPP__pthread.png", 
-                "language": "C++", 
-                "library": "pthread", 
-                "max": 0.590984, 
-                "min": 0.303992, 
-                "name": "thread_start", 
-                "std": 0.04143277401262313, 
-                "uniqueName": "thread_start__C++__pthread"
-            }, 
-            "thread_start__C++__std::async": {
-                "avg": 0.45468738999999997, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_(v6l)__thread_start__CPP__stdasync.png", 
-                "language": "C++", 
-                "library": "std::async", 
-                "max": 0.867976, 
-                "min": 0.425989, 
-                "name": "thread_start", 
-                "std": 0.05114374053877855, 
-                "uniqueName": "thread_start__C++__std::async"
-            }, 
-            "thread_start__C++__std::thread": {
-                "avg": 0.37001970000000006, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_(v6l)__thread_start__CPP__stdthread.png", 
-                "language": "C++", 
-                "library": "std::thread", 
-                "max": 0.551984, 
-                "min": 0.34899, 
-                "name": "thread_start", 
-                "std": 0.032154736806106816, 
-                "uniqueName": "thread_start__C++__std::thread"
-            }, 
-            "thread_start__C__pthread": {
-                "avg": 0.2933918999999999, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_(v6l)__thread_start__C__pthread.png", 
-                "language": "C", 
-                "library": "pthread", 
-                "max": 0.460987, 
-                "min": 0.270993, 
-                "name": "thread_start", 
-                "std": 0.028785985492770606, 
-                "uniqueName": "thread_start__C__pthread"
-            }
-        }
-    }, 
-    "ARMv6-compatible processor rev 7 v6l": {
-        "thread_shutdown": {
-            "thread_shutdown__C++__pthread": {
-                "avg": 0.25467284999999995, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_v6l__thread_shutdown__CPP__pthread.png", 
-                "language": "C++", 
-                "library": "pthread", 
-                "max": 0.568984, 
-                "min": 0.233994, 
-                "name": "thread_shutdown", 
-                "std": 0.03699569252179909, 
-                "uniqueName": "thread_shutdown__C++__pthread"
-            }, 
-            "thread_shutdown__C++__std::async": {
-                "avg": 0.25520286, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_v6l__thread_shutdown__CPP__stdasync.png", 
-                "language": "C++", 
-                "library": "std::async", 
-                "max": 0.396989, 
-                "min": 0.240993, 
-                "name": "thread_shutdown", 
-                "std": 0.022858614116354474, 
-                "uniqueName": "thread_shutdown__C++__std::async"
-            }, 
-            "thread_shutdown__C++__std::thread": {
-                "avg": 0.25317287, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_v6l__thread_shutdown__CPP__stdthread.png", 
-                "language": "C++", 
-                "library": "std::thread", 
-                "max": 0.384989, 
-                "min": 0.235993, 
-                "name": "thread_shutdown", 
-                "std": 0.024143604275109802, 
-                "uniqueName": "thread_shutdown__C++__std::thread"
-            }, 
-            "thread_shutdown__C__pthread": {
-                "avg": 0.24398312, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_v6l__thread_shutdown__C__pthread.png", 
-                "language": "C", 
-                "library": "pthread", 
-                "max": 1.485958, 
-                "min": 0.217994, 
-                "name": "thread_shutdown", 
-                "std": 0.1258621148532218, 
-                "uniqueName": "thread_shutdown__C__pthread"
-            }
-        }, 
-        "thread_start": {
-            "thread_start__C++__pthread": {
-                "avg": 0.3284807599999999, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_v6l__thread_start__CPP__pthread.png", 
-                "language": "C++", 
-                "library": "pthread", 
-                "max": 0.454988, 
-                "min": 0.304991, 
-                "name": "thread_start", 
-                "std": 0.0328999862644713, 
-                "uniqueName": "thread_start__C++__pthread"
-            }, 
-            "thread_start__C++__std::async": {
-                "avg": 0.4592971, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_v6l__thread_start__CPP__stdasync.png", 
-                "language": "C++", 
-                "library": "std::async", 
-                "max": 0.853976, 
-                "min": 0.427988, 
-                "name": "thread_start", 
-                "std": 0.04963879410612228, 
-                "uniqueName": "thread_start__C++__std::async"
-            }, 
-            "thread_start__C++__std::thread": {
-                "avg": 0.37238956, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_v6l__thread_start__CPP__stdthread.png", 
-                "language": "C++", 
-                "library": "std::thread", 
-                "max": 0.588984, 
-                "min": 0.35199, 
-                "name": "thread_start", 
-                "std": 0.034549893965197635, 
-                "uniqueName": "thread_start__C++__std::thread"
-            }, 
-            "thread_start__C__pthread": {
-                "avg": 0.28733191999999996, 
-                "count": 100, 
-                "graph": "/home/pi/threadtester/img/ARMv6-compatible_processor_rev_7_v6l__thread_start__C__pthread.png", 
-                "language": "C", 
-                "library": "pthread", 
-                "max": 0.450987, 
-                "min": 0.269992, 
-                "name": "thread_start", 
-                "std": 0.02525444149201482, 
-                "uniqueName": "thread_start__C__pthread"
-            }
-        }
-    }, 
     "Intel Core i7 CPU 920 2.67GHz": {
         "thread_shutdown": {
             "thread_shutdown__C++__pthread": {
-                "avg": 0.08188419999999993, 
+                "avg": 0.08301595000000014, 
                 "count": 10000, 
                 "graph": "/mnt/c/Users/Juventas/Documents/Development/threadtester/img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__CPP__pthread.png", 
                 "language": "C++", 
                 "library": "pthread", 
-                "max": 0.5092, 
-                "min": 0.0533, 
+                "max": 0.3026, 
+                "min": 0.0528, 
                 "name": "thread_shutdown", 
-                "std": 0.01522536969534731, 
+                "std": 0.01167754343162547, 
                 "uniqueName": "thread_shutdown__C++__pthread"
             }, 
             "thread_shutdown__C++__std::async": {
-                "avg": 0.02004330000000037, 
+                "avg": 0.02102534000000033, 
                 "count": 10000, 
                 "graph": "/mnt/c/Users/Juventas/Documents/Development/threadtester/img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__CPP__stdasync.png", 
                 "language": "C++", 
                 "library": "std::async", 
-                "max": 0.214, 
-                "min": 0.0121, 
+                "max": 0.084599999999999995, 
+                "min": 0.011900000000000001, 
                 "name": "thread_shutdown", 
-                "std": 0.006812564649968452, 
+                "std": 0.005711651414818596, 
                 "uniqueName": "thread_shutdown__C++__std::async"
             }, 
             "thread_shutdown__C++__std::thread": {
-                "avg": 0.08767729999999975, 
+                "avg": 0.08791278000000029, 
                 "count": 10000, 
                 "graph": "/mnt/c/Users/Juventas/Documents/Development/threadtester/img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__CPP__stdthread.png", 
                 "language": "C++", 
                 "library": "std::thread", 
-                "max": 0.5399, 
-                "min": 0.0588, 
+                "max": 0.2258, 
+                "min": 0.0555, 
                 "name": "thread_shutdown", 
-                "std": 0.01505847404984978, 
+                "std": 0.011599877959340752, 
                 "uniqueName": "thread_shutdown__C++__std::thread"
             }, 
             "thread_shutdown__C__pthread": {
-                "avg": 0.08384639000000017, 
+                "avg": 0.08544177999999997, 
                 "count": 10000, 
                 "graph": "/mnt/c/Users/Juventas/Documents/Development/threadtester/img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__C__pthread.png", 
                 "language": "C", 
                 "library": "pthread", 
-                "max": 1.1254, 
-                "min": 0.0541, 
+                "max": 1.1763, 
+                "min": 0.055, 
                 "name": "thread_shutdown", 
-                "std": 0.018691385688811325, 
+                "std": 0.016993339178384085, 
                 "uniqueName": "thread_shutdown__C__pthread"
             }
         }, 
         "thread_start": {
             "thread_start__C++__pthread": {
-                "avg": 0.09520135000000013, 
+                "avg": 0.09266972000000046, 
                 "count": 10000, 
                 "graph": "/mnt/c/Users/Juventas/Documents/Development/threadtester/img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__pthread.png", 
                 "language": "C++", 
                 "library": "pthread", 
-                "max": 0.4868, 
-                "min": 0.0714, 
+                "max": 0.4389, 
+                "min": 0.0776, 
                 "name": "thread_start", 
-                "std": 0.03348506928733317, 
+                "std": 0.017438755090934566, 
                 "uniqueName": "thread_start__C++__pthread"
             }, 
             "thread_start__C++__std::async": {
-                "avg": 0.00954397999999931, 
+                "avg": 0.009310430000000184, 
                 "count": 10000, 
                 "graph": "/mnt/c/Users/Juventas/Documents/Development/threadtester/img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__stdasync.png", 
                 "language": "C++", 
                 "library": "std::async", 
-                "max": 0.2533, 
-                "min": 0.0086, 
+                "max": 0.2504, 
+                "min": 0.0085, 
                 "name": "thread_start", 
-                "std": 0.004008812761853439, 
+                "std": 0.0037843123833927418, 
                 "uniqueName": "thread_start__C++__std::async"
             }, 
             "thread_start__C++__std::thread": {
-                "avg": 0.09814504999999996, 
+                "avg": 0.09555360000000047, 
                 "count": 10000, 
                 "graph": "/mnt/c/Users/Juventas/Documents/Development/threadtester/img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__stdthread.png", 
                 "language": "C++", 
                 "library": "std::thread", 
-                "max": 0.5991, 
-                "min": 0.0772, 
+                "max": 0.3512, 
+                "min": 0.0744, 
                 "name": "thread_start", 
-                "std": 0.032406140212890025, 
+                "std": 0.020098558929435663, 
                 "uniqueName": "thread_start__C++__std::thread"
             }, 
             "thread_start__C__pthread": {
-                "avg": 0.0985481799999997, 
+                "avg": 0.09223946999999973, 
                 "count": 10000, 
                 "graph": "/mnt/c/Users/Juventas/Documents/Development/threadtester/img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__C__pthread.png", 
                 "language": "C", 
                 "library": "pthread", 
-                "max": 0.7193, 
-                "min": 0.0769, 
+                "max": 0.4034, 
+                "min": 0.0738, 
                 "name": "thread_start", 
-                "std": 0.038464638938739484, 
+                "std": 0.017966158329456486, 
                 "uniqueName": "thread_start__C__pthread"
             }
         }
