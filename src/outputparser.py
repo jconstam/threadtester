@@ -28,14 +28,17 @@ class Data:
 	def resetIndex( self ):
 		self.index = 0;
 		
+	def testName( self ):
+		return '{}__{}'.format( self.lang, self.lib )
+		
 	def uniqueName( self ):
-		return '{}__{}__{}'.format( self.name, self.lang, self.lib )
+		return '{}__{}__{}__{}'.format( self.name, getCPUName( ), self.lang, self.lib )
 	
 	def nonZeroData( self ):
 		return self.data[ np.nonzero( self.data ) ]
 		
 	def graphFileName( self ):
-		fileName = '{}__{}'.format( getCPUName( ), self.uniqueName( ) )
+		fileName = self.uniqueName( )
 		fileName = fileName.replace( '+', 'P' )
 		fileName = fileName.replace( ':', '' )
 		fileName = fileName.replace( ' ', '_' )
@@ -107,13 +110,14 @@ def parseData( inputRawData, dataName, jsonFileName, graphPath ):
 		existingData = {}
 	
 	procName = getCPUName( )
-	if not procName in existingData:
-		existingData[ procName ] = {}
-		
-	if not newData.name in existingData[ procName ]:
-		existingData[ procName ][ newData.name ] = {}
 	
-	existingData[ procName ][ newData.name ][ newData.uniqueName( ) ] = newData.getJSONData( )
+	if not newData.name in existingData:
+		existingData[ newData.name ] = {}
+		
+	if not procName in existingData[ newData.name ]:
+		existingData[ newData.name ][ procName ] = {}
+	
+	existingData[ newData.name ][ procName ][ newData.testName( ) ] = newData.getJSONData( )
 	
 	with open( jsonFileName, 'w' ) as f:
 		json.dump( existingData, f, indent=4, sort_keys=True )
@@ -127,20 +131,36 @@ def createMarkdown( jsonFileName, markdownFileName, markdownHeaderFileName ):
 	with open( markdownFileName, 'w' ) as f:
 		f.write( header )
 		f.write( '\n' )
-		f.write( '# Data\n' )
-		for proc in sorted( jsonData ):
-			f.write( '## Processor: {}\n'.format( proc ) )
-			for testName in sorted( jsonData[ proc ] ):
-				f.write( '### Test: {}\n'.format( testName ) )
-				f.write( '|Description|Graph|\n' )
-				f.write( '|-----------|-----|\n' )
-				for testRunName in sorted( jsonData[ proc ][ testName ] ):
-					data = jsonData[ proc ][ testName ][ testRunName ]
-					
+		f.write( '# Results\n' )
+		for testName in sorted( jsonData ):
+			f.write( '\n' )
+			f.write( '## Test: {}\n'.format( testName ) )
+			headerNames = '|Description|'
+			headerBar = '|-----------|'
+			for proc in sorted( jsonData[ testName ] ):
+				headerNames += '{}|'.format( proc )
+				headerBar += '{}|'.format( '-' * len( proc ) )
+			f.write( '\n' )
+			f.write( '{}\n'.format( headerNames ) )
+			f.write( '{}\n'.format( headerBar ) )
+			for proc in sorted( jsonData[ testName ] ):
+				for testRunName in sorted( jsonData[ testName ][ proc ] ):
+					data = jsonData[ testName ][ proc ][ testRunName ]
 					description = '{} - {}'.format( data[ 'language' ], data[ 'library' ] )
 					graph = '![{}]({})'.format( data[ 'uniqueName' ], data[ 'graph' ] )
 					
 					f.write( '|{}|{}|\n'.format( description, graph ) )
+		#	for testName in sorted( jsonData[ proc ] ):
+		#		f.write( '### Test: {}\n'.format( testName ) )
+		#		f.write( '|Description|Graph|\n' )
+		#		f.write( '|-----------|-----|\n' )
+		#		for testRunName in sorted( jsonData[ proc ][ testName ] ):
+		#			data = jsonData[ proc ][ testName ][ testRunName ]
+		#			
+		#			description = '{} - {}'.format( data[ 'language' ], data[ 'library' ] )
+		#			graph = '![{}]({})'.format( data[ 'uniqueName' ], data[ 'graph' ] )
+		#			
+		#			f.write( '|{}|{}|\n'.format( description, graph ) )
 
 				
 def main( ):

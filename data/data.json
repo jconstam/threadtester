@@ -1,103 +1,105 @@
 {
-    "Intel Core i7 CPU 920 2.67GHz": {
-        "thread_shutdown": {
-            "thread_shutdown__C++__pthread": {
-                "avg": 0.0839482080000093, 
-                "count": 100000, 
-                "graph": "img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__CPP__pthread.png", 
+    "thread_shutdown": {
+        "Intel Core i7 CPU 920 2.67GHz": {
+            "C++__pthread": {
+                "avg": 0.07829460000000008, 
+                "count": 1000, 
+                "graph": "img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread.png", 
                 "language": "C++", 
                 "library": "pthread", 
-                "max": 0.3845, 
-                "min": 0.052, 
+                "max": 0.2849, 
+                "min": 0.0549, 
                 "name": "thread_shutdown", 
-                "std": 0.010861105081378166, 
-                "uniqueName": "thread_shutdown__C++__pthread"
+                "std": 0.021628580416661644, 
+                "uniqueName": "thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C++__pthread"
             }, 
-            "thread_shutdown__C++__std::async": {
-                "avg": 0.021442298000001629, 
-                "count": 100000, 
-                "graph": "img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__CPP__stdasync.png", 
+            "C++__std::async": {
+                "avg": 0.018068099999999955, 
+                "count": 1000, 
+                "graph": "img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdasync.png", 
                 "language": "C++", 
                 "library": "std::async", 
-                "max": 6.1703999999999999, 
-                "min": 0.0118, 
+                "max": 0.27300000000000002, 
+                "min": 0.0121, 
                 "name": "thread_shutdown", 
-                "std": 0.020227481901594416, 
-                "uniqueName": "thread_shutdown__C++__std::async"
+                "std": 0.012209757261714914, 
+                "uniqueName": "thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C++__std::async"
             }, 
-            "thread_shutdown__C++__std::thread": {
-                "avg": 0.08940895600000655, 
-                "count": 100000, 
-                "graph": "img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__CPP__stdthread.png", 
+            "C++__std::thread": {
+                "avg": 0.08941379999999981, 
+                "count": 1000, 
+                "graph": "img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdthread.png", 
                 "language": "C++", 
                 "library": "std::thread", 
-                "max": 4.451, 
-                "min": 0.0569, 
+                "max": 0.2894, 
+                "min": 0.0618, 
                 "name": "thread_shutdown", 
-                "std": 0.021531142282521936, 
-                "uniqueName": "thread_shutdown__C++__std::thread"
+                "std": 0.021395610988237737, 
+                "uniqueName": "thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C++__std::thread"
             }, 
-            "thread_shutdown__C__pthread": {
-                "avg": 0.08540559700001003, 
-                "count": 100000, 
-                "graph": "img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__C__pthread.png", 
+            "C__pthread": {
+                "avg": 0.08270129999999998, 
+                "count": 1000, 
+                "graph": "img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__C__pthread.png", 
                 "language": "C", 
                 "library": "pthread", 
-                "max": 5.0616, 
-                "min": 0.0539, 
+                "max": 1.1164, 
+                "min": 0.0551, 
                 "name": "thread_shutdown", 
-                "std": 0.020441506015298802, 
-                "uniqueName": "thread_shutdown__C__pthread"
+                "std": 0.037619000097158364, 
+                "uniqueName": "thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C__pthread"
             }
-        }, 
-        "thread_start": {
-            "thread_start__C++__pthread": {
-                "avg": 0.08867007900001143, 
-                "count": 100000, 
-                "graph": "img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__pthread.png", 
+        }
+    }, 
+    "thread_start": {
+        "Intel Core i7 CPU 920 2.67GHz": {
+            "C++__pthread": {
+                "avg": 0.10050760000000009, 
+                "count": 1000, 
+                "graph": "img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread.png", 
                 "language": "C++", 
                 "library": "pthread", 
-                "max": 0.6329, 
-                "min": 0.0712, 
+                "max": 0.4483, 
+                "min": 0.0786, 
                 "name": "thread_start", 
-                "std": 0.011058844941210582, 
-                "uniqueName": "thread_start__C++__pthread"
+                "std": 0.024083505190067335, 
+                "uniqueName": "thread_start__Intel Core i7 CPU 920 2.67GHz__C++__pthread"
             }, 
-            "thread_start__C++__std::async": {
-                "avg": 0.009133890000003033, 
-                "count": 100000, 
-                "graph": "img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__stdasync.png", 
+            "C++__std::async": {
+                "avg": 0.009593200000000022, 
+                "count": 1000, 
+                "graph": "img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdasync.png", 
                 "language": "C++", 
                 "library": "std::async", 
-                "max": 0.3115, 
-                "min": 0.0083, 
+                "max": 0.2739, 
+                "min": 0.0086, 
                 "name": "thread_start", 
-                "std": 0.0029735365590325014, 
-                "uniqueName": "thread_start__C++__std::async"
+                "std": 0.008727506732165722, 
+                "uniqueName": "thread_start__Intel Core i7 CPU 920 2.67GHz__C++__std::async"
             }, 
-            "thread_start__C++__std::thread": {
-                "avg": 0.09358380200001193, 
-                "count": 100000, 
-                "graph": "img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__stdthread.png", 
+            "C++__std::thread": {
+                "avg": 0.10241590000000013, 
+                "count": 1000, 
+                "graph": "img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdthread.png", 
                 "language": "C++", 
                 "library": "std::thread", 
-                "max": 6.2296, 
-                "min": 0.0742, 
+                "max": 0.2696, 
+                "min": 0.0777, 
                 "name": "thread_start", 
-                "std": 0.02797750098605913, 
-                "uniqueName": "thread_start__C++__std::thread"
+                "std": 0.020657972727012672, 
+                "uniqueName": "thread_start__Intel Core i7 CPU 920 2.67GHz__C++__std::thread"
             }, 
-            "thread_start__C__pthread": {
-                "avg": 0.09229763100000905, 
-                "count": 100000, 
-                "graph": "img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__C__pthread.png", 
+            "C__pthread": {
+                "avg": 0.09896070000000004, 
+                "count": 1000, 
+                "graph": "img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__C__pthread.png", 
                 "language": "C", 
                 "library": "pthread", 
-                "max": 0.8032, 
-                "min": 0.0743, 
+                "max": 0.4827, 
+                "min": 0.0813, 
                 "name": "thread_start", 
-                "std": 0.013078184311587122, 
-                "uniqueName": "thread_start__C__pthread"
+                "std": 0.021287211783368915, 
+                "uniqueName": "thread_start__Intel Core i7 CPU 920 2.67GHz__C__pthread"
             }
         }
     }
