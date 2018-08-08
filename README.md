@@ -26,6 +26,7 @@ For each one, the following information is listed:
 * The test that was performed.
 * Details on the timing of the results.
 
+<<<<<<< HEAD
 # Results
 
 ## Test: thread_shutdown
@@ -45,3 +46,36 @@ For each one, the following information is listed:
 |C++ - std::async|![thread_start__Intel Core i7 CPU 920 2.67GHz__C++__std::async](img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdasync.png)|
 |C++ - std::thread|![thread_start__Intel Core i7 CPU 920 2.67GHz__C++__std::thread](img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdthread.png)|
 |C - pthread|![thread_start__Intel Core i7 CPU 920 2.67GHz__C__pthread](img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__C__pthread.png)|
+=======
+# Data
+## Processor: ARMv6-compatible processor rev 7 v6l
+### Test: thread_shutdown
+|Description|Graph|
+|-----------|-----|
+|C++ - pthread|![thread_shutdown__C++__pthread](img/ARMv6-compatible_processor_rev_7_v6l__thread_shutdown__CPP__pthread.png)|
+|C++ - std::async|![thread_shutdown__C++__std::async](img/ARMv6-compatible_processor_rev_7_v6l__thread_shutdown__CPP__stdasync.png)|
+|C++ - std::thread|![thread_shutdown__C++__std::thread](img/ARMv6-compatible_processor_rev_7_v6l__thread_shutdown__CPP__stdthread.png)|
+|C - pthread|![thread_shutdown__C__pthread](img/ARMv6-compatible_processor_rev_7_v6l__thread_shutdown__C__pthread.png)|
+### Test: thread_start
+|Description|Graph|
+|-----------|-----|
+|C++ - pthread|![thread_start__C++__pthread](img/ARMv6-compatible_processor_rev_7_v6l__thread_start__CPP__pthread.png)|
+|C++ - std::async|![thread_start__C++__std::async](img/ARMv6-compatible_processor_rev_7_v6l__thread_start__CPP__stdasync.png)|
+|C++ - std::thread|![thread_start__C++__std::thread](img/ARMv6-compatible_processor_rev_7_v6l__thread_start__CPP__stdthread.png)|
+|C - pthread|![thread_start__C__pthread](img/ARMv6-compatible_processor_rev_7_v6l__thread_start__C__pthread.png)|
+## Processor: Intel Core i7 CPU 920 2.67GHz
+### Test: thread_shutdown
+|Description|Graph|
+|-----------|-----|
+|C++ - pthread|![thread_shutdown__C++__pthread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__CPP__pthread.png)|
+|C++ - std::async|![thread_shutdown__C++__std::async](img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__CPP__stdasync.png)|
+|C++ - std::thread|![thread_shutdown__C++__std::thread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__CPP__stdthread.png)|
+|C - pthread|![thread_shutdown__C__pthread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_shutdown__C__pthread.png)|
+### Test: thread_start
+|Description|Graph|
+|-----------|-----|
+|C++ - pthread|![thread_start__C++__pthread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__pthread.png)|
+|C++ - std::async|![thread_start__C++__std::async](img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__stdasync.png)|
+|C++ - std::thread|![thread_start__C++__std::thread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__CPP__stdthread.png)|
+|C - pthread|![thread_start__C__pthread](img/Intel_Core_i7_CPU_920_2.67GHz__thread_start__C__pthread.png)|
+>>>>>>> 0f5f0e9d4353542234d3cc3721146cd63c211ca6
