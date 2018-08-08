@@ -29,7 +29,6 @@ For each one, the following information is listed:
 # Results
 
 ## Test: thread_shutdown
-
 |Description|Intel Core i7 CPU 920 2.67GHz|
 |-----------|-----------------------------|
 |C++ - pthread|![thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C++__pthread](img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread.png)|
@@ -38,7 +37,6 @@ For each one, the following information is listed:
 |C - pthread|![thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C__pthread](img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__C__pthread.png)|
 
 ## Test: thread_start
-
 |Description|Intel Core i7 CPU 920 2.67GHz|
 |-----------|-----------------------------|
 |C++ - pthread|![thread_start__Intel Core i7 CPU 920 2.67GHz__C++__pthread](img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread.png)|
