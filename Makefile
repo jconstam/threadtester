@@ -12,6 +12,8 @@ LOOKUP_FILE		=	$(DATA)/lookup.json
 MD_HEADER_FILE	=	$(ROOT)/README_HEADER.md
 MD_FILE			=	$(ROOT)/README.md
 
+SILENT_MAKE		=	>/dev/null
+
 #########################################
 
 define run_with_timer
@@ -41,9 +43,9 @@ endef
 build:
 	@echo "BUILDING"
 	@mkdir -p $(BUILD)
-	@d=$$(date +%s); cd $(BUILD) && cmake >/dev/null $(SRC) && make >/dev/null && echo "\tTook $$(($$(date +%s)-d)) seconds"
+	@d=$$(date +%s); cd $(BUILD) && cmake $(SILENT_MAKE) $(SRC) && make $(SILENT_MAKE) && echo "\tTook $$(($$(date +%s)-d)) seconds"
 
-run: run_c_pthread run_cpp_pthread run_cpp_stdthread run_cpp_stdasync
+run: run_c_pthread run_cpp_pthread run_cpp_stdthread run_cpp_stdasync run_cpp_boostthread
 	@echo "COMPILING RESULTS"
 	@$(call run_parser,compile_results)
 
@@ -116,5 +118,20 @@ run_cpp_stdasync_start: build
 run_cpp_stdasync_shutdown: build
 	$(call run_with_timer,$(CPP_STDASYNC_NAME_SHUTDOWN),$(BUILD)/$(CPP_STDASYNC_NAME) -e,$(CPP_STDASYNC_OUTPUT_SHUTDOWN))
 	$(call process_with_timer,$(CPP_STDASYNC_NAME_SHUTDOWN),$(CPP_STDASYNC_OUTPUT_SHUTDOWN))
+
+#########################################
+
+CPP_BOOSTTHREAD_NAME=cpp_boostthread
+CPP_BOOSTTHREAD_NAME_START=$(CPP_BOOSTTHREAD_NAME)_start
+CPP_BOOSTTHREAD_OUTPUT_START=$(BUILD)/$(CPP_BOOSTTHREAD_NAME_START)_output
+CPP_BOOSTTHREAD_NAME_SHUTDOWN=$(CPP_BOOSTTHREAD_NAME)_shutdown
+CPP_BOOSTTHREAD_OUTPUT_SHUTDOWN=$(BUILD)/$(CPP_BOOSTTHREAD_NAME_SHUTDOWN)_output
+run_cpp_boostthread: run_cpp_boostthread_start run_cpp_boostthread_shutdown
+run_cpp_boostthread_start: build
+	$(call run_with_timer,$(CPP_BOOSTTHREAD_NAME_START),$(BUILD)/$(CPP_BOOSTTHREAD_NAME) -s,$(CPP_BOOSTTHREAD_OUTPUT_START))
+	$(call process_with_timer,$(CPP_BOOSTTHREAD_NAME_START),$(CPP_BOOSTTHREAD_OUTPUT_START))
+run_cpp_boostthread_shutdown: build
+	$(call run_with_timer,$(CPP_BOOSTTHREAD_NAME_SHUTDOWN),$(BUILD)/$(CPP_BOOSTTHREAD_NAME) -e,$(CPP_BOOSTTHREAD_OUTPUT_SHUTDOWN))
+	$(call process_with_timer,$(CPP_BOOSTTHREAD_NAME_SHUTDOWN),$(CPP_BOOSTTHREAD_OUTPUT_SHUTDOWN))
 
 #########################################

@@ -7,6 +7,7 @@ Some tests of various Linux threading libraries.
 * Python 2.7.x
 * NumPy 1.8 or later
 * MatPlotLib 2.2 or later
+* Boost thread library 1.54 or later
 * gcc + standard libraries
 
 # Summary
