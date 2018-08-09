@@ -45,7 +45,7 @@ build:
 	@mkdir -p $(BUILD)
 	@d=$$(date +%s); cd $(BUILD) && cmake $(SILENT_MAKE) $(SRC) && make $(SILENT_MAKE) && echo "\tTook $$(($$(date +%s)-d)) seconds"
 
-run: run_c_pthread run_cpp_pthread run_cpp_stdthread run_cpp_stdasync run_cpp_boostthread
+run: run_c_pthread run_cpp_pthread run_cpp_stdthread run_cpp_stdasync run_cpp_boostthread run_c_semt
 	@echo "COMPILING RESULTS"
 	@$(call run_parser,compile_results)
 
@@ -133,5 +133,15 @@ run_cpp_boostthread_start: build
 run_cpp_boostthread_shutdown: build
 	$(call run_with_timer,$(CPP_BOOSTTHREAD_NAME_SHUTDOWN),$(BUILD)/$(CPP_BOOSTTHREAD_NAME) -e,$(CPP_BOOSTTHREAD_OUTPUT_SHUTDOWN))
 	$(call process_with_timer,$(CPP_BOOSTTHREAD_NAME_SHUTDOWN),$(CPP_BOOSTTHREAD_OUTPUT_SHUTDOWN))
+
+#########################################
+
+C_SEMT_NAME=c_semt
+C_SEMT_NAME_UNLOCK=$(C_SEMT_NAME)_unlock
+C_SEMT_OUTPUT_UNLOCK=$(BUILD)/$(C_SEMT_NAME_UNLOCK)_unlock
+run_c_semt: run_c_semt_start 
+run_c_semt_unlock: build
+	$(call run_with_timer,$(C_SEMT_NAME_START),$(BUILD)/$(C_SEMT_NAME) -s,$(C_SEMT_OUTPUT_START))
+	$(call process_with_timer,$(C_SEMT_NAME_START),$(C_SEMT_OUTPUT_START))
 
 #########################################

@@ -136,7 +136,9 @@ def createMarkdown( jsonFileName, lookupJSONFileName, markdownFileName, markdown
 		f.write( '# Results\n' )
 		for testName in sorted( jsonData ):
 			f.write( '\n' )
-			f.write( '## Test: {}\n'.format( lookupData[ 'Tests' ][ testName ] ) )
+			f.write( '## Test: {}\n'.format( lookupData[ 'Tests' ][ testName ][ 'name' ] ) )
+			f.write( '{}\n'.format( lookupData[ 'Tests' ][ testName ][ 'description' ] ) )
+			f.write( '\n' )
 			headerNames = '|Description|'
 			headerBar = '|-----------|'
 			

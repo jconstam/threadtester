@@ -4,7 +4,17 @@
 		"ARMv6-compatible processor rev 7 v6l":	"Raspberry Pi B2"
 	},
 	"Tests": {
-		"thread_shutdown":						"Thread Shutdown",
-		"thread_start":							"Thread Startup"
+		"thread_shutdown": {
+			"name":			"Thread Shutdown",
+			"description":	"Time between immediately before a thread terminates and when the creator of the thread receives notification that the thread shut down."
+		},
+		"thread_start": {
+			"name":			"Thread Startup",
+			"description":	"Time between immediately before the thread creation function is called and the first execution of that thread."
+		},
+		"sem_unlock": {
+			"name":			"Semaphore Unlock",
+			"description":	"Time between when one thread posts a semaphore and a waiting thread is running."
+		}
 	}
 }

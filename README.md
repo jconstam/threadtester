@@ -13,14 +13,7 @@ Some tests of various Linux threading libraries.
 # Summary
 This project is designed to compare the performance of various threading systems.
 
-## Test Descriptions
-|Name|Description|
-|----|-----------|
-|thread_start|Time between immediately before the thread creation function is called and the first execution of that thread.|
-|thread_shutdown|Time between immediately before a thread terminates and when the creator of the thread receives notification that the thread shut down.|
-
-## Details
-Each line in the following table represents the execution of one of the binaries in this repository.
+Each line in the table represents the execution of one of the binaries in this repository.
 For each one, the following information is listed:
 * The language the program was written in.
 * The library (if any) used to run the tests.
@@ -29,7 +22,16 @@ For each one, the following information is listed:
 
 # Results
 
+## Test: Semaphore Unlock
+Time between when one thread posts a semaphore and a waiting thread is running.
+
+|Description|1st Gen Intel Core i7|
+|-----------|---------------------|
+|C - semt|![sem_unlock__Intel Core i7 CPU 920 2.67GHz__C__semt](img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__C__semt.png)|
+
 ## Test: Thread Shutdown
+Time between immediately before a thread terminates and when the creator of the thread receives notification that the thread shut down.
+
 |Description|1st Gen Intel Core i7|Raspberry Pi B2|
 |-----------|---------------------|---------------|
 |C++ - boost::thread|![thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C++__boost::thread](img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__boostthread.png)|
@@ -39,6 +41,8 @@ For each one, the following information is listed:
 |C - pthread|![thread_shutdown__ARMv6-compatible processor rev 7 v6l__C__pthread](img/thread_shutdown__ARMv6-compatible_processor_rev_7_v6l__C__pthread.png)|![thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C__pthread](img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__C__pthread.png)|
 
 ## Test: Thread Startup
+Time between immediately before the thread creation function is called and the first execution of that thread.
+
 |Description|1st Gen Intel Core i7|Raspberry Pi B2|
 |-----------|---------------------|---------------|
 |C++ - boost::thread|![thread_start__Intel Core i7 CPU 920 2.67GHz__C++__boost::thread](img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__boostthread.png)|
