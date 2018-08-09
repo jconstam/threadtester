@@ -1,0 +1,10 @@
+{
+	"CPUs":	{
+		"Intel Core i7 CPU 920 2.67GHz":		"1st Gen Intel Core i7",
+		"ARMv6-compatible processor rev 7 v6l":	"Raspberry Pi B2"
+	},
+	"Tests": {
+		"thread_shutdown":						"Thread Shutdown",
+		"thread_start":							"Thread Startup"
+	}
+}

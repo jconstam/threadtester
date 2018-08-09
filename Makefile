@@ -8,6 +8,7 @@ DATA			=	$(ROOT)/data
 
 OUTPUT_PARSER	=	python $(SRC)/outputparser.py
 DATA_FILE		=	$(DATA)/data.json
+LOOKUP_FILE		=	$(DATA)/lookup.json
 MD_HEADER_FILE	=	$(ROOT)/README_HEADER.md
 MD_FILE			=	$(ROOT)/README.md
 
@@ -25,7 +26,8 @@ define run_parser
 			--markdownheader $(MD_HEADER_FILE) \
 			--markdownfile $(MD_FILE) \
 			--graphPath $(IMG) \
-			--rootPath $(ROOT)
+			--rootPath $(ROOT) \
+			--lookupjsonFile $(LOOKUP_FILE)
 endef
 
 define process_with_timer
