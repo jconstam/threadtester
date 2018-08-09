@@ -139,9 +139,9 @@ run_cpp_boostthread_shutdown: build
 C_SEMT_NAME=c_semt
 C_SEMT_NAME_UNLOCK=$(C_SEMT_NAME)_unlock
 C_SEMT_OUTPUT_UNLOCK=$(BUILD)/$(C_SEMT_NAME_UNLOCK)_unlock
-run_c_semt: run_c_semt_start 
+run_c_semt: run_c_semt_unlock 
 run_c_semt_unlock: build
-	$(call run_with_timer,$(C_SEMT_NAME_START),$(BUILD)/$(C_SEMT_NAME) -s,$(C_SEMT_OUTPUT_START))
-	$(call process_with_timer,$(C_SEMT_NAME_START),$(C_SEMT_OUTPUT_START))
+	$(call run_with_timer,$(C_SEMT_NAME_UNLOCK),$(BUILD)/$(C_SEMT_NAME) -s,$(C_SEMT_OUTPUT_UNLOCK))
+	$(call process_with_timer,$(C_SEMT_NAME_UNLOCK),$(C_SEMT_OUTPUT_UNLOCK))
 
 #########################################
