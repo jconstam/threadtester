@@ -25,8 +25,13 @@ For each one, the following information is listed:
 ## Test: Semaphore Unlock
 Time between when one thread posts a semaphore and a waiting thread is running.
 
-|Description|Raspberry Pi B2|1st Gen Intel Core i7|
-|-----------|---------------|---------------------|
+|Description|1st Gen Intel Core i7|Raspberry Pi B2|
+|-----------|---------------------|---------------|
+|C++ - pthread_mutex_fast|![sem_unlock__Intel Core i7 CPU 920 2.67GHz__C++__pthread_mutex_fast](img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread_mutex_fast.png)|
+|C++ - pthread_mutex_recursive|![sem_unlock__Intel Core i7 CPU 920 2.67GHz__C++__pthread_mutex_recursive](img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread_mutex_recursive.png)|
+|C++ - semt|![sem_unlock__Intel Core i7 CPU 920 2.67GHz__C++__semt](img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__semt.png)|
+|C - pthread_mutex_fast|![sem_unlock__Intel Core i7 CPU 920 2.67GHz__C__pthread_mutex_fast](img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__C__pthread_mutex_fast.png)|
+|C - pthread_mutex_recursive|![sem_unlock__Intel Core i7 CPU 920 2.67GHz__C__pthread_mutex_recursive](img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__C__pthread_mutex_recursive.png)|
 |C - semt|![sem_unlock__ARMv6-compatible processor rev 7 v6l__C__semt](img/sem_unlock__ARMv6-compatible_processor_rev_7_v6l__C__semt.png)|![sem_unlock__Intel Core i7 CPU 920 2.67GHz__C__semt](img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__C__semt.png)|
 
 ## Test: Thread Shutdown

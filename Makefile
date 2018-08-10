@@ -45,7 +45,7 @@ build:
 	@mkdir -p $(BUILD)
 	@d=$$(date +%s); cd $(BUILD) && cmake $(SILENT_MAKE) $(SRC) && make $(SILENT_MAKE) && echo "\tTook $$(($$(date +%s)-d)) seconds"
 
-run: run_c_pthread run_cpp_pthread run_cpp_stdthread run_cpp_stdasync run_cpp_boostthread run_c_semt run_c_pthreadmutex run_cpp_semt_unlock
+run: run_c_pthread run_cpp_pthread run_cpp_stdthread run_cpp_stdasync run_cpp_boostthread run_c_semt run_c_pthreadmutex run_cpp_semt run_cpp_pthreadmutex
 	@echo "COMPILING RESULTS"
 	@$(call run_parser,compile_results)
 
@@ -168,5 +168,20 @@ run_cpp_semt: run_cpp_semt_unlock
 run_cpp_semt_unlock: build
 	$(call run_with_timer,$(CPP_SEMT_NAME_UNLOCK),$(BUILD)/$(CPP_SEMT_NAME) -s,$(CPP_SEMT_OUTPUT_UNLOCK))
 	$(call process_with_timer,$(CPP_SEMT_NAME_UNLOCK),$(CPP_SEMT_OUTPUT_UNLOCK))
+
+#########################################
+
+CPP_PTHREADMUTEX_NAME=cpp_pthreadmutex
+CPP_PTHREADMUTEXFAST_NAME_UNLOCK=$(CPP_PTHREADMUTEX_NAME)fast_unlock
+CPP_PTHREADMUTEXFAST_OUTPUT_UNLOCK=$(BUILD)/$(CPP_PTHREADMUTEXFAST_NAME_UNLOCK)_output
+CPP_PTHREADMUTEXRECURSIVE_NAME_UNLOCK=$(CPP_PTHREADMUTEX_NAME)recursive_unlock
+CPP_PTHREADMUTEXRECURSIVE_OUTPUT_UNLOCK=$(BUILD)/$(CPP_PTHREADMUTEXRECURSIVE_NAME_UNLOCK)_output
+run_cpp_pthreadmutex: run_cpp_pthreadmutexfast_unlock run_cpp_pthreadmutexrecursive_unlock
+run_cpp_pthreadmutexfast_unlock: build
+	$(call run_with_timer,$(CPP_PTHREADMUTEXFAST_NAME_UNLOCK),$(BUILD)/$(CPP_PTHREADMUTEX_NAME) -s,$(CPP_PTHREADMUTEXFAST_OUTPUT_UNLOCK))
+	$(call process_with_timer,$(CPP_PTHREADMUTEXFAST_NAME_UNLOCK),$(CPP_PTHREADMUTEXFAST_OUTPUT_UNLOCK))
+run_cpp_pthreadmutexrecursive_unlock: build
+	$(call run_with_timer,$(CPP_PTHREADMUTEXRECURSIVE_NAME_UNLOCK),$(BUILD)/$(CPP_PTHREADMUTEX_NAME) -e,$(CPP_PTHREADMUTEXRECURSIVE_OUTPUT_UNLOCK))
+	$(call process_with_timer,$(CPP_PTHREADMUTEXRECURSIVE_NAME_UNLOCK),$(CPP_PTHREADMUTEXRECURSIVE_OUTPUT_UNLOCK))
 
 #########################################
