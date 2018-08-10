@@ -45,7 +45,7 @@ build:
 	@mkdir -p $(BUILD)
 	@d=$$(date +%s); cd $(BUILD) && cmake $(SILENT_MAKE) $(SRC) && make $(SILENT_MAKE) && echo "\tTook $$(($$(date +%s)-d)) seconds"
 
-run: run_c_pthread run_cpp_pthread run_cpp_stdthread run_cpp_stdasync run_cpp_boostthread run_c_semt run_c_pthreadmutex run_cpp_semt run_cpp_pthreadmutex
+run: run_c_pthread run_cpp_pthread run_cpp_stdthread run_cpp_stdasync run_cpp_boostthread run_c_semt run_c_pthreadmutex run_cpp_semt run_cpp_pthreadmutex run_python3_thread
 	@echo "COMPILING RESULTS"
 	@$(call run_parser,compile_results)
 
@@ -183,5 +183,21 @@ run_cpp_pthreadmutexfast_unlock: build
 run_cpp_pthreadmutexrecursive_unlock: build
 	$(call run_with_timer,$(CPP_PTHREADMUTEXRECURSIVE_NAME_UNLOCK),$(BUILD)/$(CPP_PTHREADMUTEX_NAME) -e,$(CPP_PTHREADMUTEXRECURSIVE_OUTPUT_UNLOCK))
 	$(call process_with_timer,$(CPP_PTHREADMUTEXRECURSIVE_NAME_UNLOCK),$(CPP_PTHREADMUTEXRECURSIVE_OUTPUT_UNLOCK))
+
+#########################################
+
+PYTHON3_THREAD_NAME=python3_thread
+PYTHON3_THREAD_SCRIPT=python3 $(SRC)/$(PYTHON3_THREAD_NAME)/$(PYTHON3_THREAD_NAME).py
+PYTHON3_THREAD_NAME_START=$(PYTHON3_THREAD_NAME)_start
+PYTHON3_THREAD_OUTPUT_START=$(BUILD)/$(PYTHON3_THREAD_NAME_START)_output
+PYTHON3_THREAD_NAME_SHUTDOWN=$(PYTHON3_THREAD_NAME)_shutdown
+PYTHON3_THREAD_OUTPUT_SHUTDOWN=$(BUILD)/$(PYTHON3_THREAD_NAME_SHUTDOWN)_output
+run_python3_thread: run_python3_thread_start run_python3_thread_shutdown
+run_python3_thread_start:
+	$(call run_with_timer,$(PYTHON3_THREAD_NAME_START),$(PYTHON3_THREAD_SCRIPT) -s,$(PYTHON3_THREAD_OUTPUT_START))
+	$(call process_with_timer,$(PYTHON3_THREAD_NAME_START),$(PYTHON3_THREAD_OUTPUT_START))
+run_python3_thread_shutdown:
+	$(call run_with_timer,$(PYTHON3_THREAD_NAME_SHUTDOWN),$(PYTHON3_THREAD_SCRIPT) -e,$(PYTHON3_THREAD_OUTPUT_SHUTDOWN))
+	$(call process_with_timer,$(PYTHON3_THREAD_NAME_SHUTDOWN),$(PYTHON3_THREAD_OUTPUT_SHUTDOWN))
 
 #########################################

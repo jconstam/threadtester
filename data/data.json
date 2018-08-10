@@ -2,71 +2,71 @@
     "sem_unlock": {
         "C++__pthread_mutex_fast": {
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.04785368000000021, 
+                "avg": 0.041467210000000004, 
                 "count": 10000, 
                 "graph": "img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread_mutex_fast.png", 
                 "language": "C++", 
                 "library": "pthread_mutex_fast", 
-                "max": 14.9859, 
-                "min": 0.0154, 
+                "max": 0.101, 
+                "min": 0.0161, 
                 "name": "sem_unlock", 
-                "std": 0.2781968106726916, 
+                "std": 0.008611255182370348, 
                 "uniqueName": "sem_unlock__Intel Core i7 CPU 920 2.67GHz__C++__pthread_mutex_fast"
             }
         }, 
         "C++__pthread_mutex_recursive": {
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.041130149999999817, 
+                "avg": 0.041572449999999796, 
                 "count": 10000, 
                 "graph": "img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread_mutex_recursive.png", 
                 "language": "C++", 
                 "library": "pthread_mutex_recursive", 
-                "max": 0.12540000000000001, 
+                "max": 0.1178, 
                 "min": 0.0161, 
                 "name": "sem_unlock", 
-                "std": 0.010563412799730026, 
+                "std": 0.009332586136623668, 
                 "uniqueName": "sem_unlock__Intel Core i7 CPU 920 2.67GHz__C++__pthread_mutex_recursive"
             }
         }, 
         "C++__semt": {
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.03970242000000002, 
+                "avg": 0.041342100000000104, 
                 "count": 10000, 
                 "graph": "img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__semt.png", 
                 "language": "C++", 
                 "library": "semt", 
-                "max": 0.1079, 
-                "min": 0.0159, 
+                "max": 0.2349, 
+                "min": 0.0149, 
                 "name": "sem_unlock", 
-                "std": 0.008295214653256439, 
+                "std": 0.00948248119375935, 
                 "uniqueName": "sem_unlock__Intel Core i7 CPU 920 2.67GHz__C++__semt"
             }
         }, 
         "C__pthread_mutex_fast": {
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.04591148000000025, 
+                "avg": 0.03991894999999983, 
                 "count": 10000, 
                 "graph": "img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__C__pthread_mutex_fast.png", 
                 "language": "C", 
                 "library": "pthread_mutex_fast", 
-                "max": 7.7154, 
-                "min": 0.015, 
+                "max": 0.0876, 
+                "min": 0.0157, 
                 "name": "sem_unlock", 
-                "std": 0.13673531647021428, 
+                "std": 0.007954710673399767, 
                 "uniqueName": "sem_unlock__Intel Core i7 CPU 920 2.67GHz__C__pthread_mutex_fast"
             }
         }, 
         "C__pthread_mutex_recursive": {
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.041755000000000014, 
+                "avg": 0.041066040000000144, 
                 "count": 10000, 
                 "graph": "img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__C__pthread_mutex_recursive.png", 
                 "language": "C", 
                 "library": "pthread_mutex_recursive", 
-                "max": 4.88, 
-                "min": 0.0156, 
+                "max": 0.1247, 
+                "min": 0.0153, 
                 "name": "sem_unlock", 
-                "std": 0.057480137099697765, 
+                "std": 0.008847182529958333, 
                 "uniqueName": "sem_unlock__Intel Core i7 CPU 920 2.67GHz__C__pthread_mutex_recursive"
             }
         }, 
@@ -84,15 +84,15 @@
                 "uniqueName": "sem_unlock__ARMv6-compatible processor rev 7 v6l__C__semt"
             }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.04217062999999982, 
+                "avg": 0.041017299999999805, 
                 "count": 10000, 
                 "graph": "img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__C__semt.png", 
                 "language": "C", 
                 "library": "semt", 
-                "max": 0.1095, 
-                "min": 0.0154, 
+                "max": 0.0989, 
+                "min": 0.0155, 
                 "name": "sem_unlock", 
-                "std": 0.009984622296466628, 
+                "std": 0.008800322648062464, 
                 "uniqueName": "sem_unlock__Intel Core i7 CPU 920 2.67GHz__C__semt"
             }
         }
@@ -112,15 +112,15 @@
                 "uniqueName": "thread_shutdown__ARMv6-compatible processor rev 7 v6l__C++__boost::thread"
             }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.09012011999999982, 
+                "avg": 0.08908320999999979, 
                 "count": 10000, 
                 "graph": "img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__boostthread.png", 
                 "language": "C++", 
                 "library": "boost::thread", 
-                "max": 0.2705, 
-                "min": 0.0524, 
+                "max": 0.6019, 
+                "min": 0.0523, 
                 "name": "thread_shutdown", 
-                "std": 0.012481898621027155, 
+                "std": 0.015104185946150888, 
                 "uniqueName": "thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C++__boost::thread"
             }
         }, 
@@ -138,15 +138,15 @@
                 "uniqueName": "thread_shutdown__ARMv6-compatible processor rev 7 v6l__C++__pthread"
             }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.08358001999999984, 
+                "avg": 0.08494217999999978, 
                 "count": 10000, 
                 "graph": "img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread.png", 
                 "language": "C++", 
                 "library": "pthread", 
-                "max": 0.2874, 
-                "min": 0.0539, 
+                "max": 0.3689, 
+                "min": 0.054, 
                 "name": "thread_shutdown", 
-                "std": 0.011905111372834797, 
+                "std": 0.011717510351930574, 
                 "uniqueName": "thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C++__pthread"
             }
         }, 
@@ -164,15 +164,15 @@
                 "uniqueName": "thread_shutdown__ARMv6-compatible processor rev 7 v6l__C++__std::async"
             }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.02177056999999962, 
+                "avg": 0.02138410000000073, 
                 "count": 10000, 
                 "graph": "img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdasync.png", 
                 "language": "C++", 
                 "library": "std::async", 
-                "max": 0.4056, 
+                "max": 0.0887, 
                 "min": 0.0121, 
                 "name": "thread_shutdown", 
-                "std": 0.007064330037243296, 
+                "std": 0.005419086195107013, 
                 "uniqueName": "thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C++__std::async"
             }
         }, 
@@ -190,15 +190,15 @@
                 "uniqueName": "thread_shutdown__ARMv6-compatible processor rev 7 v6l__C++__std::thread"
             }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.08986076999999988, 
+                "avg": 0.08897034000000009, 
                 "count": 10000, 
                 "graph": "img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdthread.png", 
                 "language": "C++", 
                 "library": "std::thread", 
-                "max": 0.243, 
-                "min": 0.0574, 
+                "max": 0.2709, 
+                "min": 0.0601, 
                 "name": "thread_shutdown", 
-                "std": 0.012417099581105977, 
+                "std": 0.011260824316381065, 
                 "uniqueName": "thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C++__std::thread"
             }
         }, 
@@ -216,16 +216,30 @@
                 "uniqueName": "thread_shutdown__ARMv6-compatible processor rev 7 v6l__C__pthread"
             }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.08475037999999967, 
+                "avg": 0.08587462999999984, 
                 "count": 10000, 
                 "graph": "img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__C__pthread.png", 
                 "language": "C", 
                 "library": "pthread", 
-                "max": 1.1235, 
-                "min": 0.0542, 
+                "max": 1.1826, 
+                "min": 0.0548, 
                 "name": "thread_shutdown", 
-                "std": 0.01590388254029812, 
+                "std": 0.01563372909331275, 
                 "uniqueName": "thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C__pthread"
+            }
+        }, 
+        "python3__thread": {
+            "Intel Core i7 CPU 920 2.67GHz": {
+                "avg": 0.057395190163515505, 
+                "count": 10000, 
+                "graph": "img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__python3__thread.png", 
+                "language": "python3", 
+                "library": "thread", 
+                "max": 0.12539996532723308, 
+                "min": 0.032400013878941536, 
+                "name": "thread_shutdown", 
+                "std": 0.0090922865881251421, 
+                "uniqueName": "thread_shutdown__Intel Core i7 CPU 920 2.67GHz__python3__thread"
             }
         }
     }, 
@@ -244,15 +258,15 @@
                 "uniqueName": "thread_start__ARMv6-compatible processor rev 7 v6l__C++__boost::thread"
             }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.09635442999999909, 
+                "avg": 0.0941553799999997, 
                 "count": 10000, 
                 "graph": "img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__boostthread.png", 
                 "language": "C++", 
                 "library": "boost::thread", 
-                "max": 0.6331, 
-                "min": 0.0824, 
+                "max": 0.355, 
+                "min": 0.0798, 
                 "name": "thread_start", 
-                "std": 0.01119956188317641, 
+                "std": 0.01013169221086009, 
                 "uniqueName": "thread_start__Intel Core i7 CPU 920 2.67GHz__C++__boost::thread"
             }
         }, 
@@ -270,15 +284,15 @@
                 "uniqueName": "thread_start__ARMv6-compatible processor rev 7 v6l__C++__pthread"
             }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.10887325000000003, 
+                "avg": 0.09207366000000043, 
                 "count": 10000, 
                 "graph": "img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread.png", 
                 "language": "C++", 
                 "library": "pthread", 
-                "max": 0.4219, 
-                "min": 0.0936, 
+                "max": 0.4269, 
+                "min": 0.0777, 
                 "name": "thread_start", 
-                "std": 0.012697756630109896, 
+                "std": 0.010165106797491002, 
                 "uniqueName": "thread_start__Intel Core i7 CPU 920 2.67GHz__C++__pthread"
             }
         }, 
@@ -296,15 +310,15 @@
                 "uniqueName": "thread_start__ARMv6-compatible processor rev 7 v6l__C++__std::async"
             }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.009669770000000312, 
+                "avg": 0.009541080000001036, 
                 "count": 10000, 
                 "graph": "img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdasync.png", 
                 "language": "C++", 
                 "library": "std::async", 
-                "max": 0.4301, 
-                "min": 0.0084, 
+                "max": 0.2589, 
+                "min": 0.0086, 
                 "name": "thread_start", 
-                "std": 0.008499150966249588, 
+                "std": 0.003517673440443244, 
                 "uniqueName": "thread_start__Intel Core i7 CPU 920 2.67GHz__C++__std::async"
             }
         }, 
@@ -322,15 +336,15 @@
                 "uniqueName": "thread_start__ARMv6-compatible processor rev 7 v6l__C++__std::thread"
             }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.10856281000000026, 
+                "avg": 0.09488320999999912, 
                 "count": 10000, 
                 "graph": "img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdthread.png", 
                 "language": "C++", 
                 "library": "std::thread", 
-                "max": 0.9381, 
-                "min": 0.0823, 
+                "max": 0.328, 
+                "min": 0.0792, 
                 "name": "thread_start", 
-                "std": 0.01940564881429895, 
+                "std": 0.010560303077843013, 
                 "uniqueName": "thread_start__Intel Core i7 CPU 920 2.67GHz__C++__std::thread"
             }
         }, 
@@ -348,16 +362,30 @@
                 "uniqueName": "thread_start__ARMv6-compatible processor rev 7 v6l__C__pthread"
             }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.09942240999999956, 
+                "avg": 0.09191651999999972, 
                 "count": 10000, 
                 "graph": "img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__C__pthread.png", 
                 "language": "C", 
                 "library": "pthread", 
-                "max": 0.7194, 
-                "min": 0.0768, 
+                "max": 0.5074, 
+                "min": 0.076, 
                 "name": "thread_start", 
-                "std": 0.017511324986759103, 
+                "std": 0.011714508145440897, 
                 "uniqueName": "thread_start__Intel Core i7 CPU 920 2.67GHz__C__pthread"
+            }
+        }, 
+        "python3__thread": {
+            "Intel Core i7 CPU 920 2.67GHz": {
+                "avg": 0.1305988598498516, 
+                "count": 10000, 
+                "graph": "img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__python3__thread.png", 
+                "language": "python3", 
+                "library": "thread", 
+                "max": 0.395399983972311, 
+                "min": 0.11520000407472253, 
+                "name": "thread_start", 
+                "std": 0.014510392967563963, 
+                "uniqueName": "thread_start__Intel Core i7 CPU 920 2.67GHz__python3__thread"
             }
         }
     }

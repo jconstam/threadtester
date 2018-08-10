@@ -44,6 +44,7 @@ Time between immediately before a thread terminates and when the creator of the 
 |C++ - std::async|![thread_shutdown__ARMv6-compatible processor rev 7 v6l__C++__std::async](img/thread_shutdown__ARMv6-compatible_processor_rev_7_v6l__CPP__stdasync.png)|![thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C++__std::async](img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdasync.png)|
 |C++ - std::thread|![thread_shutdown__ARMv6-compatible processor rev 7 v6l__C++__std::thread](img/thread_shutdown__ARMv6-compatible_processor_rev_7_v6l__CPP__stdthread.png)|![thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C++__std::thread](img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdthread.png)|
 |C - pthread|![thread_shutdown__ARMv6-compatible processor rev 7 v6l__C__pthread](img/thread_shutdown__ARMv6-compatible_processor_rev_7_v6l__C__pthread.png)|![thread_shutdown__Intel Core i7 CPU 920 2.67GHz__C__pthread](img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__C__pthread.png)|
+|python3 - thread|![thread_shutdown__Intel Core i7 CPU 920 2.67GHz__python3__thread](img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__python3__thread.png)|
 
 ## Test: Thread Startup
 Time between immediately before the thread creation function is called and the first execution of that thread.
@@ -55,3 +56,4 @@ Time between immediately before the thread creation function is called and the f
 |C++ - std::async|![thread_start__ARMv6-compatible processor rev 7 v6l__C++__std::async](img/thread_start__ARMv6-compatible_processor_rev_7_v6l__CPP__stdasync.png)|![thread_start__Intel Core i7 CPU 920 2.67GHz__C++__std::async](img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdasync.png)|
 |C++ - std::thread|![thread_start__ARMv6-compatible processor rev 7 v6l__C++__std::thread](img/thread_start__ARMv6-compatible_processor_rev_7_v6l__CPP__stdthread.png)|![thread_start__Intel Core i7 CPU 920 2.67GHz__C++__std::thread](img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdthread.png)|
 |C - pthread|![thread_start__ARMv6-compatible processor rev 7 v6l__C__pthread](img/thread_start__ARMv6-compatible_processor_rev_7_v6l__C__pthread.png)|![thread_start__Intel Core i7 CPU 920 2.67GHz__C__pthread](img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__C__pthread.png)|
+|python3 - thread|![thread_start__Intel Core i7 CPU 920 2.67GHz__python3__thread](img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__python3__thread.png)|
