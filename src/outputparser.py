@@ -76,10 +76,10 @@ class Data:
 	
 		fig, ax = plt.subplots( nrows=1, ncols=1 )
 		fig.suptitle( title )
-		ax.set_ylim( 0, 1 )
 		ax.set_ylabel( 'Time (ms)' )
 		ax.set_xlabel( 'Test Number' )
-		ax.plot( self.nonZeroData( ) )
+		ax.semilogy( self.nonZeroData( ) )
+		ax.set_ylim( 0, 10 )
 		fig.savefig( self.graphFileName( ) )
 		plt.close( fig )	
 

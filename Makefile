@@ -54,8 +54,8 @@ clean:
 	@rm -rf $(BUILD)
 	
 clean_results:
-	@echo "Cleaning up $(DATA)"
-	@rm -rf $(DATA)/*
+	@echo "Cleaning up $(DATA_FILE)"
+	@rm -rf $(DATA_FILE)
 	@echo "Cleaning up $(IMG)"
 	@rm -rf $(IMG)/*
 
