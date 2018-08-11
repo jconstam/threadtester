@@ -12,6 +12,8 @@ matplotlib.use('Agg')
 import numpy as np
 import matplotlib.pyplot as plt
 
+import jinja2
+
 class Data:
 	def __init__( self, lang, lib, name, size, graphPath ):
 		self.index = 0
@@ -122,53 +124,25 @@ def parseData( inputRawData, dataName, jsonFileName, graphPath ):
 	with open( jsonFileName, 'w' ) as f:
 		json.dump( existingData, f, indent=4, sort_keys=True )
 	
-def createMarkdown( jsonFileName, lookupJSONFileName, markdownFileName, markdownHeaderFileName ):
-	header = open( markdownHeaderFileName, 'r' ).read( )
-
+def createHTML( jsonFileName, lookupJSONFileName, htmlFileName, templateFileName ):
 	with open( jsonFileName, 'r' ) as f:
-		jsonData = json.load( f )
+		jsonData = json.load( f, encoding='utf-8' )
 	with open( lookupJSONFileName, 'r' ) as f:
-		lookupData = json.load( f )
-			
-	with open( markdownFileName, 'w' ) as f:
-		f.write( header )
-		f.write( '\n' )
-		f.write( '# Results\n' )
-		for testName in sorted( jsonData ):
-			f.write( '\n' )
-			f.write( '## Test: {}\n'.format( lookupData[ 'Tests' ][ testName ][ 'name' ] ) )
-			f.write( '{}\n'.format( lookupData[ 'Tests' ][ testName ][ 'description' ] ) )
-			f.write( '\n' )
-			headerNames = '|Description|'
-			headerBar = '|-----------|'
-			
-			tableData = ''
-			for testRunName in sorted( jsonData[ testName ] ):				
-				currLine = ''
-				for proc in sorted( jsonData[ testName ][ testRunName ] ):
-					data = jsonData[ testName ][ testRunName ][ proc ]
-					if proc in lookupData[ 'CPUs' ]:
-						procName = lookupData[ 'CPUs' ][ proc ]
-					else:
-						procName = proc
-					if not procName in headerNames:
-						headerNames += '{}|'.format( procName )
-						headerBar += '{}|'.format( '-' * len ( procName ) )
-					if not currLine:
-						currLine += '|{} - {}|'.format( data[ 'language' ], data[ 'library' ] )
-					currLine += '![{}]({})|'.format( data[ 'uniqueName' ], data[ 'graph' ] )
-				tableData += '{}\n'.format( currLine )
-			
-			f.write( '{}\n'.format( headerNames ) )
-			f.write( '{}\n'.format( headerBar ) )
-			f.write( '{}'.format( tableData ) )
+		lookupData = json.load( f, encoding='utf-8' )
+	with open( templateFileName, 'r' ) as f:
+		templateData = f.read( )
+	
+	t = jinja2.Template( templateData )
+	
+	with open( htmlFileName, 'w' ) as f:
+		f.write( t.render( results = jsonData, lookup = lookupData ) )
 
 def main( ):
 	parser = argparse.ArgumentParser( description='Process thread data.' )
 	parser.add_argument( '--name', help='Data name' )
 	parser.add_argument( '--jsonfile', help='JSON file to store data' )
-	parser.add_argument( '--markdownheader', help='Markdown file header' )
-	parser.add_argument( '--markdownfile', help='Markdown file to be generated' )
+	parser.add_argument( '--htmlFile', help='HTML file to be generated' )
+	parser.add_argument( '--htmlTemplate', help='HTML template' )
 	parser.add_argument( '--rootPath', help='Root folder' )
 	parser.add_argument( '--graphPath', help='Path where graphs should be stored', default=os.path.dirname( sys.argv[ 0 ] ) )
 	parser.add_argument( '--lookupjsonFile', help='JSON file to lookup strings' )
@@ -179,7 +153,7 @@ def main( ):
 		parseData( [ x.strip( ) for x in sys.stdin.read( ).split( '\n' ) ], args.name, args.jsonfile,
 			os.path.relpath( args.graphPath, args.rootPath ) )
 	else:
-		createMarkdown( args.jsonfile, args.lookupjsonFile, args.markdownfile, args.markdownheader )
+		createHTML( args.jsonfile, args.lookupjsonFile, args.htmlFile, args.htmlTemplate )
 
 if __name__ == '__main__':
 	sys.exit( main( ) )

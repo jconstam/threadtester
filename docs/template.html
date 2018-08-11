@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>Thread Tester</title>
+	</head>
+	<body>
+		<h1>Results</h1>
+		{% for testName in results %}
+			<h2>{{lookup[ 'Tests' ][ testName ][ 'name' ]}}</h2>
+			<p>{{lookup[ 'Tests' ][ testName ][ 'description' ]}}</p>
+			{% for proc in lookup[ "CPUs" ] %}
+				<h3>{{lookup[ "CPUs" ][ proc ]}}</h3>
+				<table border="1">
+					<tr>
+						<th>Language</th>
+						<th>Library</th>
+						<th>Average (ms)</th>
+						<th>Std Dev (ms)</th>
+						<th>Max (ms)</th>
+						<th>Min (ms)</th>
+						<th>Graph</th>
+					</tr>
+					{% for runName in results[ testName ] %}
+					<tr>
+						<td>{{results[ testName ][ runName ][ proc ][ "language" ]}}</td>
+						<td>{{results[ testName ][ runName ][ proc ][ "library" ]}}</td>
+						<td align="center">{{'%.3f' | format( results[ testName ][ runName ][ proc ][ "avg" ] | float )}}</td>
+						<td align="center">{{'%.3f' | format( results[ testName ][ runName ][ proc ][ "std" ] | float )}}</td>
+						<td align="center">{{'%.3f' | format( results[ testName ][ runName ][ proc ][ "max" ] | float )}}</td>
+						<td align="center">{{'%.3f' | format( results[ testName ][ runName ][ proc ][ "min" ] | float )}}</td>
+						<td><a href="../{{results[ testName ][ runName ][ proc ][ "graph" ]}}">Result Graph</a></td>
+					</tr>
+					{% endfor %}
+				</table>
+			{% endfor %}
+		{% endfor %}
+	</body>
+</html>

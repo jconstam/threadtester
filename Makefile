@@ -5,12 +5,13 @@ BUILD			=	$(ROOT)/build
 SRC				=	$(ROOT)/src
 IMG				=	$(ROOT)/img
 DATA			=	$(ROOT)/data
+DOCS			=	$(ROOT)/docs
 
 OUTPUT_PARSER	=	python $(SRC)/outputparser.py
 DATA_FILE		=	$(DATA)/data.json
 LOOKUP_FILE		=	$(DATA)/lookup.json
-MD_HEADER_FILE	=	$(ROOT)/README_HEADER.md
-MD_FILE			=	$(ROOT)/README.md
+HTML_FILE		=	$(DOCS)/index.html
+HTML_TEMPLATE	=	$(DOCS)/template.html
 
 SILENT_MAKE		=	>/dev/null
 
@@ -25,8 +26,8 @@ define run_parser
 	$(OUTPUT_PARSER) \
 		--name $(1) \
 		--jsonfile $(DATA_FILE) \
-		--markdownheader $(MD_HEADER_FILE) \
-		--markdownfile $(MD_FILE) \
+		--htmlFile $(HTML_FILE) \
+		--htmlTemplate $(HTML_TEMPLATE) \
 		--graphPath $(IMG) \
 		--rootPath $(ROOT) \
 		--lookupjsonFile $(LOOKUP_FILE)
@@ -49,6 +50,10 @@ run: run_c_pthread run_cpp_pthread run_cpp_stdthread run_cpp_stdasync run_cpp_bo
 	@echo "COMPILING RESULTS"
 	@$(call run_parser,compile_results)
 
+.PHONY: results
+results:
+	$(call run_parser,compile_results)
+	
 clean:
 	@echo "Cleaning up $(BUILD)"
 	@rm -rf $(BUILD)
