@@ -80,8 +80,7 @@ class Data:
 		fig.suptitle( title )
 		ax.set_ylabel( 'Time (ms)' )
 		ax.set_xlabel( 'Test Number' )
-		ax.semilogy( self.nonZeroData( ) )
-		ax.set_ylim( 0, 10 )
+		ax.plot( self.nonZeroData( ) )
 		fig.savefig( self.graphFileName( ) )
 		plt.close( fig )	
 
@@ -123,37 +122,19 @@ def parseData( inputRawData, dataName, jsonFileName, graphPath ):
 	
 	with open( jsonFileName, 'w' ) as f:
 		json.dump( existingData, f, indent=4, sort_keys=True )
-	
-def createHTML( jsonFileName, lookupJSONFileName, htmlFileName, templateFileName ):
-	with open( jsonFileName, 'r' ) as f:
-		jsonData = json.load( f, encoding='utf-8' )
-	with open( lookupJSONFileName, 'r' ) as f:
-		lookupData = json.load( f, encoding='utf-8' )
-	with open( templateFileName, 'r' ) as f:
-		templateData = f.read( )
-	
-	t = jinja2.Template( templateData )
-	
-	with open( htmlFileName, 'w' ) as f:
-		f.write( t.render( results = jsonData, lookup = lookupData ) )
 
 def main( ):
 	parser = argparse.ArgumentParser( description='Process thread data.' )
-	parser.add_argument( '--name', help='Data name' )
-	parser.add_argument( '--jsonfile', help='JSON file to store data' )
-	parser.add_argument( '--htmlFile', help='HTML file to be generated' )
-	parser.add_argument( '--htmlTemplate', help='HTML template' )
-	parser.add_argument( '--rootPath', help='Root folder' )
-	parser.add_argument( '--graphPath', help='Path where graphs should be stored', default=os.path.dirname( sys.argv[ 0 ] ) )
-	parser.add_argument( '--lookupjsonFile', help='JSON file to lookup strings' )
+	parser.add_argument( '--name', required=True, help='Data name' )
+	parser.add_argument( '--jsonfile', required=True, help='JSON file to store data' )
+	parser.add_argument( '--rootPath', required=True, help='Root folder' )
+	parser.add_argument( '--graphPath', required=True, help='Path where graphs should be stored', default=os.path.dirname( sys.argv[ 0 ] ) )
+	parser.add_argument( '--lookupjsonFile', required=True, help='JSON file to lookup strings' )
 	
 	args = parser.parse_args( )
 	
-	if select.select( [ sys.stdin ], [ ], [ ], 0.0 )[ 0 ]:
-		parseData( [ x.strip( ) for x in sys.stdin.read( ).split( '\n' ) ], args.name, args.jsonfile,
-			os.path.relpath( args.graphPath, args.rootPath ) )
-	else:
-		createHTML( args.jsonfile, args.lookupjsonFile, args.htmlFile, args.htmlTemplate )
+	parseData( [ x.strip( ) for x in sys.stdin.read( ).split( '\n' ) ], args.name, args.jsonfile,
+		os.path.relpath( args.graphPath, args.rootPath ) )
 
 if __name__ == '__main__':
 	sys.exit( main( ) )

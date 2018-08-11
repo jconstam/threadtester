@@ -8,6 +8,7 @@ DATA			=	$(ROOT)/data
 DOCS			=	$(ROOT)/docs
 
 OUTPUT_PARSER	=	python $(SRC)/outputparser.py
+GEN_HTML		=	python $(SRC)/generateHTML.py
 DATA_FILE		=	$(DATA)/data.json
 LOOKUP_FILE		=	$(DATA)/lookup.json
 HTML_FILE		=	$(DOCS)/index.html
@@ -26,11 +27,17 @@ define run_parser
 	$(OUTPUT_PARSER) \
 		--name $(1) \
 		--jsonfile $(DATA_FILE) \
-		--htmlFile $(HTML_FILE) \
-		--htmlTemplate $(HTML_TEMPLATE) \
 		--graphPath $(IMG) \
 		--rootPath $(ROOT) \
 		--lookupjsonFile $(LOOKUP_FILE)
+endef
+
+define run_generateHTML
+	$(GEN_HTML) \
+		--jsonfile $(DATA_FILE) \
+		--lookupjsonFile $(LOOKUP_FILE) \
+		--htmlFile $(HTML_FILE) \
+		--htmlTemplate $(HTML_TEMPLATE)
 endef
 
 define process_with_timer
@@ -46,13 +53,13 @@ build:
 	@mkdir -p $(BUILD)
 	@d=$$(date +%s); cd $(BUILD) && cmake $(SILENT_MAKE) $(SRC) && make $(SILENT_MAKE) && echo "\tTook $$(($$(date +%s)-d)) seconds"
 
+.PHONY: run
 run: run_c_pthread run_cpp_pthread run_cpp_stdthread run_cpp_stdasync run_cpp_boostthread run_c_semt run_c_pthreadmutex run_cpp_semt run_cpp_pthreadmutex run_python3_thread
-	@echo "COMPILING RESULTS"
-	@$(call run_parser,compile_results)
 
 .PHONY: results
 results:
-	$(call run_parser,compile_results)
+	@echo "COMPILING FINAL RESULTS"
+	@d=$$(date +%s); $(call run_generateHTML) && echo "\tTook $$(($$(date +%s)-d)) seconds"
 	
 clean:
 	@echo "Cleaning up $(BUILD)"

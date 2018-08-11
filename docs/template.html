@@ -3,6 +3,21 @@
 		<title>Thread Tester</title>
 	</head>
 	<body>
+		<h1>Summary</h1>
+		<p>
+			Each of the following sections contains the results of a specific test.<br>
+			Within each section there is a subsection for each processor the tests were run on.<br>
+			Under each processor each run of each test is described with the following information:<br>
+			<ul>
+				<li>The language the test was written in</li>
+				<li>The library used to execute the test (if any)</li>
+				<li>The average execution time of a single test run in ms</li>
+				<li>The standard devition of the execution time of a single test run in ms</li>
+				<li>The maximum execution time of a single test run in ms</li>
+				<li>The minimum execution time of a single test run in ms</li>
+				<li>A link to a graph of the raw data</li>
+			</ul>
+		</p>
 		<h1>Results</h1>
 		{% for testName in results %}
 			<h2>{{lookup[ 'Tests' ][ testName ][ 'name' ]}}</h2>
@@ -13,10 +28,10 @@
 					<tr>
 						<th>Language</th>
 						<th>Library</th>
-						<th>Average (ms)</th>
-						<th>Std Dev (ms)</th>
-						<th>Max (ms)</th>
-						<th>Min (ms)</th>
+						<th>Average</th>
+						<th>Std Dev</th>
+						<th>Max</th>
+						<th>Min</th>
 						<th>Graph</th>
 					</tr>
 					{% for runName in results[ testName ] %}

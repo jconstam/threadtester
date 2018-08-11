@@ -3,6 +3,21 @@
 		<title>Thread Tester</title>
 	</head>
 	<body>
+		<h1>Summary</h1>
+		<p>
+			Each of the following sections contains the results of a specific test.<br>
+			Within each section there is a subsection for each processor the tests were run on.<br>
+			Under each processor each run of each test is described with the following information:<br>
+			<ul>
+				<li>The language the test was written in</li>
+				<li>The library used to execute the test (if any)</li>
+				<li>The average execution time of a single test run in ms</li>
+				<li>The standard devition of the execution time of a single test run in ms</li>
+				<li>The maximum execution time of a single test run in ms</li>
+				<li>The minimum execution time of a single test run in ms</li>
+				<li>A link to a graph of the raw data</li>
+			</ul>
+		</p>
 		<h1>Results</h1>
 		
 			<h2>Thread Startup</h2>
@@ -13,70 +28,70 @@
 					<tr>
 						<th>Language</th>
 						<th>Library</th>
-						<th>Average (ms)</th>
-						<th>Std Dev (ms)</th>
-						<th>Max (ms)</th>
-						<th>Min (ms)</th>
+						<th>Average</th>
+						<th>Std Dev</th>
+						<th>Max</th>
+						<th>Min</th>
 						<th>Graph</th>
 					</tr>
 					
 					<tr>
 						<td>python3</td>
 						<td>thread</td>
-						<td align="center">0.133</td>
+						<td align="center">0.141</td>
 						<td align="center">0.016</td>
-						<td align="center">0.677</td>
-						<td align="center">0.113</td>
+						<td align="center">0.862</td>
+						<td align="center">0.123</td>
 						<td><a href="../img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__python3__thread.png">Result Graph</a></td>
 					</tr>
 					
 					<tr>
 						<td>C++</td>
 						<td>std::async</td>
-						<td align="center">0.010</td>
-						<td align="center">0.004</td>
-						<td align="center">0.285</td>
 						<td align="center">0.009</td>
+						<td align="center">0.003</td>
+						<td align="center">0.270</td>
+						<td align="center">0.008</td>
 						<td><a href="../img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdasync.png">Result Graph</a></td>
 					</tr>
 					
 					<tr>
 						<td>C</td>
 						<td>pthread</td>
-						<td align="center">0.094</td>
-						<td align="center">0.017</td>
-						<td align="center">0.922</td>
-						<td align="center">0.076</td>
+						<td align="center">0.089</td>
+						<td align="center">0.011</td>
+						<td align="center">0.429</td>
+						<td align="center">0.073</td>
 						<td><a href="../img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__C__pthread.png">Result Graph</a></td>
 					</tr>
 					
 					<tr>
 						<td>C++</td>
 						<td>std::thread</td>
-						<td align="center">0.094</td>
+						<td align="center">0.103</td>
 						<td align="center">0.009</td>
-						<td align="center">0.241</td>
-						<td align="center">0.079</td>
+						<td align="center">0.270</td>
+						<td align="center">0.089</td>
 						<td><a href="../img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdthread.png">Result Graph</a></td>
 					</tr>
 					
 					<tr>
 						<td>C++</td>
 						<td>pthread</td>
-						<td align="center">0.091</td>
-						<td align="center">0.011</td>
-						<td align="center">0.428</td>
-						<td align="center">0.076</td>
+						<td align="center">0.100</td>
+						<td align="center">0.012</td>
+						<td align="center">0.442</td>
+						<td align="center">0.079</td>
 						<td><a href="../img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread.png">Result Graph</a></td>
 					</tr>
 					
 					<tr>
 						<td>C++</td>
 						<td>boost::thread</td>
-						<td align="center">0.094</td>
+						<td align="center">0.103</td>
 						<td align="center">0.010</td>
-						<td align="center">0.334</td>
-						<td align="center">0.080</td>
+						<td align="center">0.318</td>
+						<td align="center">0.087</td>
 						<td><a href="../img/thread_start__Intel_Core_i7_CPU_920_2.67GHz__CPP__boostthread.png">Result Graph</a></td>
 					</tr>
 					
@@ -87,10 +102,10 @@
 					<tr>
 						<th>Language</th>
 						<th>Library</th>
-						<th>Average (ms)</th>
-						<th>Std Dev (ms)</th>
-						<th>Max (ms)</th>
-						<th>Min (ms)</th>
+						<th>Average</th>
+						<th>Std Dev</th>
+						<th>Max</th>
+						<th>Min</th>
 						<th>Graph</th>
 					</tr>
 					
@@ -165,10 +180,10 @@
 					<tr>
 						<th>Language</th>
 						<th>Library</th>
-						<th>Average (ms)</th>
-						<th>Std Dev (ms)</th>
-						<th>Max (ms)</th>
-						<th>Min (ms)</th>
+						<th>Average</th>
+						<th>Std Dev</th>
+						<th>Max</th>
+						<th>Min</th>
 						<th>Graph</th>
 					</tr>
 					
@@ -176,38 +191,38 @@
 						<td>C</td>
 						<td>semt</td>
 						<td align="center">0.041</td>
-						<td align="center">0.009</td>
-						<td align="center">0.105</td>
-						<td align="center">0.016</td>
+						<td align="center">0.008</td>
+						<td align="center">0.092</td>
+						<td align="center">0.015</td>
 						<td><a href="../img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__C__semt.png">Result Graph</a></td>
 					</tr>
 					
 					<tr>
 						<td>C</td>
 						<td>pthread_mutex_recursive</td>
-						<td align="center">0.042</td>
-						<td align="center">0.010</td>
-						<td align="center">0.108</td>
-						<td align="center">0.016</td>
+						<td align="center">0.040</td>
+						<td align="center">0.009</td>
+						<td align="center">0.104</td>
+						<td align="center">0.015</td>
 						<td><a href="../img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__C__pthread_mutex_recursive.png">Result Graph</a></td>
 					</tr>
 					
 					<tr>
 						<td>C</td>
 						<td>pthread_mutex_fast</td>
-						<td align="center">0.042</td>
+						<td align="center">0.038</td>
 						<td align="center">0.009</td>
-						<td align="center">0.102</td>
-						<td align="center">0.016</td>
+						<td align="center">0.151</td>
+						<td align="center">0.015</td>
 						<td><a href="../img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__C__pthread_mutex_fast.png">Result Graph</a></td>
 					</tr>
 					
 					<tr>
 						<td>C++</td>
 						<td>pthread_mutex_fast</td>
-						<td align="center">0.042</td>
-						<td align="center">0.015</td>
-						<td align="center">1.150</td>
+						<td align="center">0.039</td>
+						<td align="center">0.008</td>
+						<td align="center">0.140</td>
 						<td align="center">0.015</td>
 						<td><a href="../img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread_mutex_fast.png">Result Graph</a></td>
 					</tr>
@@ -215,10 +230,10 @@
 					<tr>
 						<td>C++</td>
 						<td>semt</td>
-						<td align="center">0.042</td>
-						<td align="center">0.026</td>
-						<td align="center">2.494</td>
-						<td align="center">0.016</td>
+						<td align="center">0.041</td>
+						<td align="center">0.009</td>
+						<td align="center">0.192</td>
+						<td align="center">0.015</td>
 						<td><a href="../img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__semt.png">Result Graph</a></td>
 					</tr>
 					
@@ -226,9 +241,9 @@
 						<td>C++</td>
 						<td>pthread_mutex_recursive</td>
 						<td align="center">0.041</td>
-						<td align="center">0.010</td>
-						<td align="center">0.116</td>
-						<td align="center">0.016</td>
+						<td align="center">0.009</td>
+						<td align="center">0.112</td>
+						<td align="center">0.015</td>
 						<td><a href="../img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread_mutex_recursive.png">Result Graph</a></td>
 					</tr>
 					
@@ -239,10 +254,10 @@
 					<tr>
 						<th>Language</th>
 						<th>Library</th>
-						<th>Average (ms)</th>
-						<th>Std Dev (ms)</th>
-						<th>Max (ms)</th>
-						<th>Min (ms)</th>
+						<th>Average</th>
+						<th>Std Dev</th>
+						<th>Max</th>
+						<th>Min</th>
 						<th>Graph</th>
 					</tr>
 					
@@ -317,19 +332,19 @@
 					<tr>
 						<th>Language</th>
 						<th>Library</th>
-						<th>Average (ms)</th>
-						<th>Std Dev (ms)</th>
-						<th>Max (ms)</th>
-						<th>Min (ms)</th>
+						<th>Average</th>
+						<th>Std Dev</th>
+						<th>Max</th>
+						<th>Min</th>
 						<th>Graph</th>
 					</tr>
 					
 					<tr>
 						<td>python3</td>
 						<td>thread</td>
-						<td align="center">0.055</td>
+						<td align="center">0.058</td>
 						<td align="center">0.009</td>
-						<td align="center">0.159</td>
+						<td align="center">0.124</td>
 						<td align="center">0.030</td>
 						<td><a href="../img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__python3__thread.png">Result Graph</a></td>
 					</tr>
@@ -339,7 +354,7 @@
 						<td>std::async</td>
 						<td align="center">0.022</td>
 						<td align="center">0.005</td>
-						<td align="center">0.072</td>
+						<td align="center">0.105</td>
 						<td align="center">0.012</td>
 						<td><a href="../img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdasync.png">Result Graph</a></td>
 					</tr>
@@ -348,19 +363,19 @@
 						<td>C</td>
 						<td>pthread</td>
 						<td align="center">0.084</td>
-						<td align="center">0.017</td>
-						<td align="center">1.231</td>
-						<td align="center">0.053</td>
+						<td align="center">0.015</td>
+						<td align="center">1.170</td>
+						<td align="center">0.052</td>
 						<td><a href="../img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__C__pthread.png">Result Graph</a></td>
 					</tr>
 					
 					<tr>
 						<td>C++</td>
 						<td>std::thread</td>
-						<td align="center">0.088</td>
-						<td align="center">0.011</td>
-						<td align="center">0.234</td>
-						<td align="center">0.058</td>
+						<td align="center">0.089</td>
+						<td align="center">0.010</td>
+						<td align="center">0.232</td>
+						<td align="center">0.056</td>
 						<td><a href="../img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__stdthread.png">Result Graph</a></td>
 					</tr>
 					
@@ -368,19 +383,19 @@
 						<td>C++</td>
 						<td>pthread</td>
 						<td align="center">0.083</td>
-						<td align="center">0.012</td>
-						<td align="center">0.360</td>
-						<td align="center">0.054</td>
+						<td align="center">0.010</td>
+						<td align="center">0.273</td>
+						<td align="center">0.051</td>
 						<td><a href="../img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__pthread.png">Result Graph</a></td>
 					</tr>
 					
 					<tr>
 						<td>C++</td>
 						<td>boost::thread</td>
-						<td align="center">0.092</td>
-						<td align="center">0.013</td>
-						<td align="center">0.219</td>
-						<td align="center">0.053</td>
+						<td align="center">0.088</td>
+						<td align="center">0.012</td>
+						<td align="center">0.281</td>
+						<td align="center">0.051</td>
 						<td><a href="../img/thread_shutdown__Intel_Core_i7_CPU_920_2.67GHz__CPP__boostthread.png">Result Graph</a></td>
 					</tr>
 					
@@ -391,10 +406,10 @@
 					<tr>
 						<th>Language</th>
 						<th>Library</th>
-						<th>Average (ms)</th>
-						<th>Std Dev (ms)</th>
-						<th>Max (ms)</th>
-						<th>Min (ms)</th>
+						<th>Average</th>
+						<th>Std Dev</th>
+						<th>Max</th>
+						<th>Min</th>
 						<th>Graph</th>
 					</tr>
 					

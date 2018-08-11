@@ -14,13 +14,5 @@ Some tests of various Linux threading libraries.
 # Summary
 This project is designed to compare the performance of various threading systems.
 
-Each line in the table represents the execution of one of the binaries in this repository.
-For each one, the following information is listed:
-* The language the program was written in.
-* The library (if any) used to run the tests.
-* The test that was performed.
-* Details on the timing of the results.
-
 # Results
-
 See [GitHub Pages](https://jconstam.github.io/threadtester/)
