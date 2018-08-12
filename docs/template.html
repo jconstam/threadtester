@@ -22,6 +22,7 @@
 		{% for testName in results %}
 			<h2>{{lookup[ 'Tests' ][ testName ][ 'name' ]}}</h2>
 			<p>{{lookup[ 'Tests' ][ testName ][ 'description' ]}}</p>
+			<img src="{{htmlRelPath}}/{{graphs[ testName ]}}">
 			{% for proc in lookup[ "CPUs" ] %}
 				<h3>{{lookup[ "CPUs" ][ proc ]}}</h3>
 				<table border="1">
@@ -42,7 +43,7 @@
 						<td align="center">{{'%.3f' | format( results[ testName ][ runName ][ proc ][ "std" ] | float )}}</td>
 						<td align="center">{{'%.3f' | format( results[ testName ][ runName ][ proc ][ "max" ] | float )}}</td>
 						<td align="center">{{'%.3f' | format( results[ testName ][ runName ][ proc ][ "min" ] | float )}}</td>
-						<td><a href="../{{results[ testName ][ runName ][ proc ][ "graph" ]}}">Result Graph</a></td>
+						<td><a href="{{htmlRelPath}}/{{results[ testName ][ runName ][ proc ][ "graph" ]}}">Result Graph</a></td>
 					</tr>
 					{% endfor %}
 				</table>

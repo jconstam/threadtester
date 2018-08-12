@@ -37,7 +37,9 @@ define run_generateHTML
 		--jsonfile $(DATA_FILE) \
 		--lookupjsonFile $(LOOKUP_FILE) \
 		--htmlFile $(HTML_FILE) \
-		--htmlTemplate $(HTML_TEMPLATE)
+		--htmlTemplate $(HTML_TEMPLATE) \
+		--graphPath $(IMG) \
+		--rootPath $(ROOT)
 endef
 
 define process_with_timer
