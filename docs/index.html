@@ -23,6 +23,33 @@
 			<h2>Thread Startup</h2>
 			<p>Time between immediately before the thread creation function is called and the first execution of that thread.</p>
 			<img src="img/thread_start.png">
+			<table border="1" align=center>
+				
+				<tr>
+					<td>A = python3 - thread</td>
+				</tr>
+				
+				<tr>
+					<td>C = C - pthread</td>
+				</tr>
+				
+				<tr>
+					<td>B = C++ - std::async</td>
+				</tr>
+				
+				<tr>
+					<td>E = C++ - pthread</td>
+				</tr>
+				
+				<tr>
+					<td>D = C++ - std::thread</td>
+				</tr>
+				
+				<tr>
+					<td>F = C++ - boost::thread</td>
+				</tr>
+				
+			</table>
 			
 				<h3>1st Gen Intel Core i7</h3>
 				<table border="1">
@@ -176,6 +203,49 @@
 			<h2>Semaphore Unlock</h2>
 			<p>Time between when one thread posts a semaphore and a waiting thread is running.</p>
 			<img src="img/sem_unlock.png">
+			<table border="1" align=center>
+				
+				<tr>
+					<td>A = C++ - semt</td>
+				</tr>
+				
+				<tr>
+					<td>C = C++ - boost_namedmutex_fast</td>
+				</tr>
+				
+				<tr>
+					<td>B = C++ - boost_mutex_fast</td>
+				</tr>
+				
+				<tr>
+					<td>E = C++ - pthread_mutex_fast</td>
+				</tr>
+				
+				<tr>
+					<td>D = C - pthread_mutex_fast</td>
+				</tr>
+				
+				<tr>
+					<td>G = C - pthread_mutex_recursive</td>
+				</tr>
+				
+				<tr>
+					<td>F = C++ - boost_namedmutex_recursive</td>
+				</tr>
+				
+				<tr>
+					<td>I = C++ - pthread_mutex_recursive</td>
+				</tr>
+				
+				<tr>
+					<td>H = C - semt</td>
+				</tr>
+				
+				<tr>
+					<td>J = C++ - boost_mutex_recursive</td>
+				</tr>
+				
+			</table>
 			
 				<h3>1st Gen Intel Core i7</h3>
 				<table border="1">
@@ -409,6 +479,33 @@
 			<h2>Thread Shutdown</h2>
 			<p>Time between immediately before a thread terminates and when the creator of the thread receives notification that the thread shut down.</p>
 			<img src="img/thread_shutdown.png">
+			<table border="1" align=center>
+				
+				<tr>
+					<td>A = python3 - thread</td>
+				</tr>
+				
+				<tr>
+					<td>C = C - pthread</td>
+				</tr>
+				
+				<tr>
+					<td>B = C++ - std::async</td>
+				</tr>
+				
+				<tr>
+					<td>E = C++ - pthread</td>
+				</tr>
+				
+				<tr>
+					<td>D = C++ - std::thread</td>
+				</tr>
+				
+				<tr>
+					<td>F = C++ - boost::thread</td>
+				</tr>
+				
+			</table>
 			
 				<h3>1st Gen Intel Core i7</h3>
 				<table border="1">

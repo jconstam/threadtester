@@ -22,7 +22,14 @@
 		{% for testName in results %}
 			<h2>{{lookup[ 'Tests' ][ testName ][ 'name' ]}}</h2>
 			<p>{{lookup[ 'Tests' ][ testName ][ 'description' ]}}</p>
-			<img src="{{graphs[ testName ]}}">
+			<img src="{{graphs[ testName ][ 'path' ]}}">
+			<table border="1" align=center>
+				{% for char in graphs[ testName ][ 'text' ] %}
+				<tr>
+					<td>{{graphs[ testName ][ 'text' ][ char ]}}</td>
+				</tr>
+				{% endfor %}
+			</table>
 			{% for proc in lookup[ "CPUs" ] %}
 				<h3>{{lookup[ "CPUs" ][ proc ]}}</h3>
 				<table border="1">

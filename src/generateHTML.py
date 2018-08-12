@@ -22,6 +22,7 @@ def graphData( args ):
 	
 	results = {}
 	for test in jsonData:
+		results[ test ] = {}
 		title = lookupData[ 'Tests' ][ test ][ 'name' ]
 	
 		avgs = {}
@@ -34,7 +35,7 @@ def graphData( args ):
 		axisLabels = []
 			
 		count = 0
-		textLines = {}
+		results[ test ][ 'text' ] = {}
 		for testRun in jsonData[ test ]:
 			currChar = chr( ord( 'A' ) + count )
 			axisLabels.append( currChar )
@@ -46,10 +47,8 @@ def graphData( args ):
 				errors[ proc ].append( data[ 'std' ] )
 				label = '{} - {}'.format( data[ 'language' ], data[ 'library' ] )
 				labels[ proc ].append( label )
-				if not currChar in textLines:
-					textLines[ currChar ] = '{} = {}'.format( currChar, label )
-		
-		text = '\n'.join( [ textLines[ letter ] for letter in sorted( textLines ) ] )
+				if not currChar in results[ test ][ 'text' ]:
+					results[ test ][ 'text' ][ currChar ] = '{} = {}'.format( currChar, label )
 
 		N = len( avgs.itervalues().next() )
 		ind = np.arange( N )
@@ -68,12 +67,11 @@ def graphData( args ):
 		ax.set_xticklabels( axisLabels )
 		box = ax.get_position()
 		ax.set_position([box.x0, box.y0 + box.height * 0.2, box.width, box.height * 0.8])
-		ax.legend( graphs, [ lookupData[ 'CPUs' ][ proc ] for proc in procs ], loc='upper left', bbox_to_anchor=(0.5, -0.05) )
-		ax.text( 0.13, 0.2, text, fontsize=10, transform=fig.transFigure, verticalalignment='top', 
-			bbox=dict( boxstyle='square', facecolor='white', alpha=1 ) )
+		ax.legend( graphs, [ lookupData[ 'CPUs' ][ proc ] for proc in procs ], loc='upper center',
+			bbox_to_anchor=( 0.5, -0.05 ), fancybox=True, shadow=True )
 		
 		path = os.path.join( os.path.relpath( args.graphPath, os.path.dirname( args.htmlFile ) ), test + '.png' )
-		results[ test ] = path
+		results[ test ][ 'path' ] = path
 		
 		fig.savefig( os.path.join( os.path.dirname( args.htmlFile ), path ) )
 		plt.close( fig )
