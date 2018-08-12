@@ -72,10 +72,10 @@ def graphData( args ):
 		ax.text( 0.13, 0.2, text, fontsize=10, transform=fig.transFigure, verticalalignment='top', 
 			bbox=dict( boxstyle='square', facecolor='white', alpha=1 ) )
 		
-		path = os.path.join( os.path.relpath( args.graphPath, args.rootPath ), test + '.png' )
+		path = os.path.join( os.path.relpath( args.graphPath, os.path.dirname( args.htmlFile ) ), test + '.png' )
 		results[ test ] = path
 		
-		fig.savefig( path )
+		fig.savefig( os.path.join( os.path.dirname( args.htmlFile ), path ) )
 		plt.close( fig )
 
 	return results
@@ -86,14 +86,11 @@ def main( ):
 	parser.add_argument( '--lookupjsonFile', required=True, help='JSON file to lookup strings' )
 	parser.add_argument( '--htmlFile', required=True, help='HTML file to be generated' )
 	parser.add_argument( '--htmlTemplate', required=True, help='HTML template' )
-	parser.add_argument( '--rootPath', required=True, help='Root folder' )
 	parser.add_argument( '--graphPath', required=True, help='Path where graphs should be stored', default=os.path.dirname( sys.argv[ 0 ] ) )
 	
 	args = parser.parse_args( )
 		
 	graphs = graphData( args )
-	
-	htmlRelPath = os.path.relpath( args.rootPath, os.path.dirname( args.htmlFile ) )
 	
 	with open( args.jsonfile, 'r' ) as f:
 		jsonData = json.load( f, encoding='utf-8' )
@@ -105,7 +102,7 @@ def main( ):
 	t = jinja2.Template( templateData )
 	
 	with open( args.htmlFile, 'w' ) as f:
-		f.write( t.render( results = jsonData, lookup = lookupData, graphs = graphs, htmlRelPath = htmlRelPath ) )
+		f.write( t.render( results = jsonData, lookup = lookupData, graphs = graphs ) )
 
 if __name__ == '__main__':
 	sys.exit( main( ) )

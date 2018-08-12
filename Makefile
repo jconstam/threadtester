@@ -3,7 +3,7 @@ RUN_COUNT		?=	10000
 ROOT			=	$(shell pwd)
 BUILD			=	$(ROOT)/build
 SRC				=	$(ROOT)/src
-IMG				=	$(ROOT)/img
+IMG				=	$(ROOT)/docs/img
 DATA			=	$(ROOT)/data
 DOCS			=	$(ROOT)/docs
 
@@ -38,8 +38,7 @@ define run_generateHTML
 		--lookupjsonFile $(LOOKUP_FILE) \
 		--htmlFile $(HTML_FILE) \
 		--htmlTemplate $(HTML_TEMPLATE) \
-		--graphPath $(IMG) \
-		--rootPath $(ROOT)
+		--graphPath $(IMG) 
 endef
 
 define process_with_timer
