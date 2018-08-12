@@ -2,15 +2,15 @@
     "sem_unlock": {
         "C++__boost_mutex_fast": {
             "ARMv6-compatible processor rev 7 v6l": {
-                "avg": 0.0625448601, 
+                "avg": 0.0635941907, 
                 "count": 10000, 
                 "graph": "docs/img/sem_unlock__ARMv6-compatible_processor_rev_7_v6l__CPP__boost_mutex_fast.png", 
                 "language": "C++", 
                 "library": "boost_mutex_fast", 
-                "max": 0.523986, 
-                "min": 0.052998, 
+                "max": 0.728981, 
+                "min": 0.054998, 
                 "name": "sem_unlock", 
-                "std": 0.015546304640014231, 
+                "std": 0.014070840795500939, 
                 "uniqueName": "sem_unlock__ARMv6-compatible processor rev 7 v6l__C++__boost_mutex_fast"
             }, 
             "Intel Core i7 CPU 920 2.67GHz": {
@@ -27,6 +27,18 @@
             }
         }, 
         "C++__boost_mutex_recursive": {
+            "ARMv6-compatible processor rev 7 v6l": {
+                "avg": 0.0651279375, 
+                "count": 10000, 
+                "graph": "docs/img/sem_unlock__ARMv6-compatible_processor_rev_7_v6l__CPP__boost_mutex_recursive.png", 
+                "language": "C++", 
+                "library": "boost_mutex_recursive", 
+                "max": 0.524986, 
+                "min": 0.054998, 
+                "name": "sem_unlock", 
+                "std": 0.011951081901041168, 
+                "uniqueName": "sem_unlock__ARMv6-compatible processor rev 7 v6l__C++__boost_mutex_recursive"
+            }, 
             "Intel Core i7 CPU 920 2.67GHz": {
                 "avg": 0.03782112999999991, 
                 "count": 10000, 
@@ -41,6 +53,18 @@
             }
         }, 
         "C++__boost_namedmutex_fast": {
+            "ARMv6-compatible processor rev 7 v6l": {
+                "avg": 0.0677373751, 
+                "count": 10000, 
+                "graph": "docs/img/sem_unlock__ARMv6-compatible_processor_rev_7_v6l__CPP__boost_namedmutex_fast.png", 
+                "language": "C++", 
+                "library": "boost_namedmutex_fast", 
+                "max": 0.637982, 
+                "min": 0.057998, 
+                "name": "sem_unlock", 
+                "std": 0.01437333593903656, 
+                "uniqueName": "sem_unlock__ARMv6-compatible processor rev 7 v6l__C++__boost_namedmutex_fast"
+            }, 
             "Intel Core i7 CPU 920 2.67GHz": {
                 "avg": 0.04396944000000013, 
                 "count": 10000, 
@@ -55,16 +79,28 @@
             }
         }, 
         "C++__boost_namedmutex_recursive": {
+            "ARMv6-compatible processor rev 7 v6l": {
+                "avg": 0.0681119585, 
+                "count": 10000, 
+                "graph": "docs/img/sem_unlock__ARMv6-compatible_processor_rev_7_v6l__CPP__boost_namedmutex_recursive.png", 
+                "language": "C++", 
+                "library": "boost_namedmutex_recursive", 
+                "max": 0.325991, 
+                "min": 0.057998, 
+                "name": "sem_unlock", 
+                "std": 0.012322934876115257, 
+                "uniqueName": "sem_unlock__ARMv6-compatible processor rev 7 v6l__C++__boost_namedmutex_recursive"
+            }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.043591860000000253, 
+                "avg": 0.04359186000000025, 
                 "count": 10000, 
                 "graph": "docs/img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__boost_namedmutex_recursive.png", 
                 "language": "C++", 
                 "library": "boost_namedmutex_recursive", 
                 "max": 0.1125, 
-                "min": 0.018100000000000002, 
+                "min": 0.0181, 
                 "name": "sem_unlock", 
-                "std": 0.0099797076981442967, 
+                "std": 0.009979707698144297, 
                 "uniqueName": "sem_unlock__Intel Core i7 CPU 920 2.67GHz__C++__boost_namedmutex_recursive"
             }
         }, 
