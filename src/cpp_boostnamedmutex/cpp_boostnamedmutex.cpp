@@ -5,8 +5,8 @@
 
 #include <unistd.h>
 
-#include <boost/interprocess/sync/interprocess_mutex.hpp>
-#include <boost/interprocess/sync/interprocess_recursive_mutex.hpp>
+#include <boost/interprocess/sync/named_mutex.hpp>
+#include <boost/interprocess/sync/named_recursive_mutex.hpp>
 
 #include "common_c_cpp.h"
 
@@ -15,14 +15,14 @@ static void* sem_thread_func( void* arg )
 	struct timespec actualAfterWaitTime;
 	struct timespec* returnedAfterWaitTime;
 	
-	( ( boost::interprocess::interprocess_mutex* ) arg )->lock( );
+	( ( boost::interprocess::named_mutex* ) arg )->lock( );
 
 	GetTime( &( actualAfterWaitTime ) );
 	
 	returnedAfterWaitTime = new struct timespec( );
 	memcpy( returnedAfterWaitTime, &( actualAfterWaitTime ), sizeof( struct timespec ) );
 	
-	( ( boost::interprocess::interprocess_mutex* ) arg )->unlock( );
+	( ( boost::interprocess::named_mutex* ) arg )->unlock( );
 	
 	pthread_exit( returnedAfterWaitTime );
 }
@@ -32,14 +32,14 @@ static void* sem_thread_func_recursive( void* arg )
 	struct timespec actualAfterWaitTime;
 	struct timespec* returnedAfterWaitTime;
 	
-	( ( boost::interprocess::interprocess_recursive_mutex* ) arg )->lock( );
+	( ( boost::interprocess::named_recursive_mutex* ) arg )->lock( );
 
 	GetTime( &( actualAfterWaitTime ) );
 	
 	returnedAfterWaitTime = new struct timespec( );
 	memcpy( returnedAfterWaitTime, &( actualAfterWaitTime ), sizeof( struct timespec ) );
 	
-	( ( boost::interprocess::interprocess_recursive_mutex* ) arg )->unlock( );
+	( ( boost::interprocess::named_recursive_mutex* ) arg )->unlock( );
 	
 	pthread_exit( returnedAfterWaitTime );
 }
@@ -54,10 +54,13 @@ int main( int argc, char* const argv[ ] )
 	std::cout << "C++" << std::endl;
 	if( params.start == DO_START )
 	{
-		std::cout << "boost_mutex_fast" << std::endl;
+		boost::interprocess::named_mutex::remove( "test_mutex" );
+		
+		std::cout << "boost_namedmutex_fast" << std::endl;
 		std::cout << "sem_unlock" << std::endl;
-		boost::interprocess::interprocess_mutex mutex;
-	
+		
+		boost::interprocess::named_mutex mutex( boost::interprocess::create_only, "test_mutex" );
+
 		for( i = 0; i < params.count; i++ )
 		{
 			mutex.lock( );
@@ -80,13 +83,18 @@ int main( int argc, char* const argv[ ] )
 			
 			delete afterWaitTime;
 		}
+		
+		boost::interprocess::named_mutex::remove( "test_mutex" );
 	}
 	else if( params.start == DO_END )
 	{
-		std::cout << "boost_mutex_recursive" << std::endl;
+		boost::interprocess::named_recursive_mutex::remove( "test_recursive_mutex" );
+		
+		std::cout << "boost_namedmutex_recursive" << std::endl;
 		std::cout << "sem_unlock" << std::endl;
-		boost::interprocess::interprocess_recursive_mutex mutex;
-	
+		
+		boost::interprocess::named_recursive_mutex mutex( boost::interprocess::create_only, "test_recursive_mutex" );
+
 		for( i = 0; i < params.count; i++ )
 		{
 			mutex.lock( );
@@ -109,6 +117,8 @@ int main( int argc, char* const argv[ ] )
 			
 			delete afterWaitTime;
 		}
+		
+		boost::interprocess::named_recursive_mutex::remove( "test_recursive_mutex" );
 	}
 	
 	return 0;

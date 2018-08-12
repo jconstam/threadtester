@@ -11,6 +11,7 @@ set( PROJECT_CPP_BOOSTTHREAD cpp_boostthread )
 set( PROJECT_CPP_SEMT cpp_semt )
 set( PROJECT_CPP_PTHREADMUTEX cpp_pthreadmutex )
 set( PROJECT_CPP_BOOSTMUTEX cpp_boostmutex )
+set( PROJECT_CPP_BOOSTNAMEDMUTEX cpp_boostnamedmutex )
 
 project( ${PROJECT_C_PTHREAD} )
 project( ${PROJECT_C_SEMT} )
@@ -23,6 +24,7 @@ project( ${PROJECT_CPP_BOOSTTHREAD} )
 project( ${PROJECT_CPP_SEMT} )
 project( ${PROJECT_CPP_PTHREADMUTEX} )
 project( ${PROJECT_CPP_BOOSTMUTEX} )
+project( ${PROJECT_CPP_BOOSTNAMEDMUTEX} )
 
 set( COMMON common_c_cpp )
 
@@ -42,6 +44,7 @@ add_executable( ${PROJECT_CPP_BOOSTTHREAD} ${PROJECT_CPP_BOOSTTHREAD}/${PROJECT_
 add_executable( ${PROJECT_CPP_SEMT} ${PROJECT_CPP_SEMT}/${PROJECT_CPP_SEMT}.cpp ${COMMON}/${COMMON}.c )
 add_executable( ${PROJECT_CPP_PTHREADMUTEX} ${PROJECT_CPP_PTHREADMUTEX}/${PROJECT_CPP_PTHREADMUTEX}.cpp ${COMMON}/${COMMON}.c )
 add_executable( ${PROJECT_CPP_BOOSTMUTEX} ${PROJECT_CPP_BOOSTMUTEX}/${PROJECT_CPP_BOOSTMUTEX}.cpp ${COMMON}/${COMMON}.c )
+add_executable( ${PROJECT_CPP_BOOSTNAMEDMUTEX} ${PROJECT_CPP_BOOSTNAMEDMUTEX}/${PROJECT_CPP_BOOSTNAMEDMUTEX}.cpp ${COMMON}/${COMMON}.c )
 
 target_link_libraries( ${PROJECT_C_PTHREAD} pthread )
 target_link_libraries( ${PROJECT_C_SEMT} pthread )
@@ -52,3 +55,4 @@ target_link_libraries( ${PROJECT_CPP_BOOSTTHREAD} boost_system boost_thread )
 target_link_libraries( ${PROJECT_CPP_SEMT} pthread )
 target_link_libraries( ${PROJECT_CPP_PTHREADMUTEX} pthread )
 target_link_libraries( ${PROJECT_CPP_BOOSTMUTEX} boost_system )
+target_link_libraries( ${PROJECT_CPP_BOOSTNAMEDMUTEX} rt boost_system )

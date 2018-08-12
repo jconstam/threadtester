@@ -14,16 +14,58 @@
                 "uniqueName": "sem_unlock__ARMv6-compatible processor rev 7 v6l__C++__boost_mutex_fast"
             }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 0.0432254800000004, 
+                "avg": 0.038940890000000124, 
                 "count": 10000, 
                 "graph": "docs/img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__boost_mutex_fast.png", 
                 "language": "C++", 
                 "library": "boost_mutex_fast", 
-                "max": 0.0978, 
-                "min": 0.0171, 
+                "max": 0.3146, 
+                "min": 0.0166, 
                 "name": "sem_unlock", 
-                "std": 0.009564151649236874, 
+                "std": 0.012621661578726458, 
                 "uniqueName": "sem_unlock__Intel Core i7 CPU 920 2.67GHz__C++__boost_mutex_fast"
+            }
+        }, 
+        "C++__boost_mutex_recursive": {
+            "Intel Core i7 CPU 920 2.67GHz": {
+                "avg": 0.03782112999999991, 
+                "count": 10000, 
+                "graph": "docs/img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__boost_mutex_recursive.png", 
+                "language": "C++", 
+                "library": "boost_mutex_recursive", 
+                "max": 0.1572, 
+                "min": 0.0168, 
+                "name": "sem_unlock", 
+                "std": 0.011558649511214474, 
+                "uniqueName": "sem_unlock__Intel Core i7 CPU 920 2.67GHz__C++__boost_mutex_recursive"
+            }
+        }, 
+        "C++__boost_namedmutex_fast": {
+            "Intel Core i7 CPU 920 2.67GHz": {
+                "avg": 0.04396944000000013, 
+                "count": 10000, 
+                "graph": "docs/img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__boost_namedmutex_fast.png", 
+                "language": "C++", 
+                "library": "boost_namedmutex_fast", 
+                "max": 0.2933, 
+                "min": 0.0172, 
+                "name": "sem_unlock", 
+                "std": 0.010731079632842188, 
+                "uniqueName": "sem_unlock__Intel Core i7 CPU 920 2.67GHz__C++__boost_namedmutex_fast"
+            }
+        }, 
+        "C++__boost_namedmutex_recursive": {
+            "Intel Core i7 CPU 920 2.67GHz": {
+                "avg": 0.043591860000000253, 
+                "count": 10000, 
+                "graph": "docs/img/sem_unlock__Intel_Core_i7_CPU_920_2.67GHz__CPP__boost_namedmutex_recursive.png", 
+                "language": "C++", 
+                "library": "boost_namedmutex_recursive", 
+                "max": 0.1125, 
+                "min": 0.018100000000000002, 
+                "name": "sem_unlock", 
+                "std": 0.0099797076981442967, 
+                "uniqueName": "sem_unlock__Intel Core i7 CPU 920 2.67GHz__C++__boost_namedmutex_recursive"
             }
         }, 
         "C++__pthread_mutex_fast": {

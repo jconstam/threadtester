@@ -66,7 +66,8 @@ run: \
 	run_cpp_semt \
 	run_cpp_pthreadmutex \
 	run_python3_thread \
-	run_cpp_boostmutex
+	run_cpp_boostmutex \
+	run_cpp_boostnamedmutex
 
 .PHONY: results
 results:
@@ -238,5 +239,20 @@ run_cpp_boostmutexfast_unlock: build
 run_cpp_boostmutexrecursive_unlock: build
 	$(call run_with_timer,$(CPP_BOOSTMUTEXRECURSIVE_NAME_UNLOCK),$(BUILD)/$(CPP_BOOSTMUTEX_NAME) -e,$(CPP_BOOSTMUTEXRECURSIVE_OUTPUT_UNLOCK))
 	$(call process_with_timer,$(CPP_BOOSTMUTEXRECURSIVE_NAME_UNLOCK),$(CPP_BOOSTMUTEXRECURSIVE_OUTPUT_UNLOCK))
+
+#########################################
+
+CPP_BOOSTNAMEDMUTEX_NAME=cpp_boostnamedmutex
+CPP_BOOSTNAMEDMUTEXFAST_NAME_UNLOCK=$(CPP_BOOSTNAMEDMUTEX_NAME)fast_unlock
+CPP_BOOSTNAMEDMUTEXFAST_OUTPUT_UNLOCK=$(BUILD)/$(CPP_BOOSTNAMEDMUTEXFAST_NAME_UNLOCK)_output
+CPP_BOOSTNAMEDMUTEXRECURSIVE_NAME_UNLOCK=$(CPP_BOOSTNAMEDMUTEX_NAME)recursive_unlock
+CPP_BOOSTNAMEDMUTEXRECURSIVE_OUTPUT_UNLOCK=$(BUILD)/$(CPP_BOOSTNAMEDMUTEXRECURSIVE_NAME_UNLOCK)_output
+run_cpp_boostnamedmutex: run_cpp_boostnamedmutexfast_unlock run_cpp_boostnamedmutexrecursive_unlock
+run_cpp_boostnamedmutexfast_unlock: build
+	$(call run_with_timer,$(CPP_BOOSTNAMEDMUTEXFAST_NAME_UNLOCK),$(BUILD)/$(CPP_BOOSTNAMEDMUTEX_NAME) -s,$(CPP_BOOSTNAMEDMUTEXFAST_OUTPUT_UNLOCK))
+	$(call process_with_timer,$(CPP_BOOSTNAMEDMUTEXFAST_NAME_UNLOCK),$(CPP_BOOSTNAMEDMUTEXFAST_OUTPUT_UNLOCK))
+run_cpp_boostnamedmutexrecursive_unlock: build
+	$(call run_with_timer,$(CPP_BOOSTNAMEDMUTEXRECURSIVE_NAME_UNLOCK),$(BUILD)/$(CPP_BOOSTNAMEDMUTEX_NAME) -e,$(CPP_BOOSTNAMEDMUTEXRECURSIVE_OUTPUT_UNLOCK))
+	$(call process_with_timer,$(CPP_BOOSTNAMEDMUTEXRECURSIVE_NAME_UNLOCK),$(CPP_BOOSTNAMEDMUTEXRECURSIVE_OUTPUT_UNLOCK))
 
 #########################################
