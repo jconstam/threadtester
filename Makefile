@@ -55,7 +55,18 @@ build:
 	@d=$$(date +%s); cd $(BUILD) && cmake $(SILENT_MAKE) $(SRC) && make $(SILENT_MAKE) && echo "\tTook $$(($$(date +%s)-d)) seconds"
 
 .PHONY: run
-run: run_c_pthread run_cpp_pthread run_cpp_stdthread run_cpp_stdasync run_cpp_boostthread run_c_semt run_c_pthreadmutex run_cpp_semt run_cpp_pthreadmutex run_python3_thread
+run: \
+	run_c_pthread \
+	run_cpp_pthread \
+	run_cpp_stdthread \
+	run_cpp_stdasync \
+	run_cpp_boostthread \
+	run_c_semt \
+	run_c_pthreadmutex \
+	run_cpp_semt \
+	run_cpp_pthreadmutex \
+	run_python3_thread \
+	run_cpp_boostmutex
 
 .PHONY: results
 results:
@@ -212,5 +223,20 @@ run_python3_thread_start:
 run_python3_thread_shutdown:
 	$(call run_with_timer,$(PYTHON3_THREAD_NAME_SHUTDOWN),$(PYTHON3_THREAD_SCRIPT) -e,$(PYTHON3_THREAD_OUTPUT_SHUTDOWN))
 	$(call process_with_timer,$(PYTHON3_THREAD_NAME_SHUTDOWN),$(PYTHON3_THREAD_OUTPUT_SHUTDOWN))
+
+#########################################
+
+CPP_BOOSTMUTEX_NAME=cpp_boostmutex
+CPP_BOOSTMUTEXFAST_NAME_UNLOCK=$(CPP_BOOSTMUTEX_NAME)fast_unlock
+CPP_BOOSTMUTEXFAST_OUTPUT_UNLOCK=$(BUILD)/$(CPP_BOOSTMUTEXFAST_NAME_UNLOCK)_output
+CPP_BOOSTMUTEXRECURSIVE_NAME_UNLOCK=$(CPP_BOOSTMUTEX_NAME)recursive_unlock
+CPP_BOOSTMUTEXRECURSIVE_OUTPUT_UNLOCK=$(BUILD)/$(CPP_BOOSTMUTEXRECURSIVE_NAME_UNLOCK)_output
+run_cpp_boostmutex: run_cpp_boostmutexfast_unlock run_cpp_boostmutexrecursive_unlock
+run_cpp_boostmutexfast_unlock: build
+	$(call run_with_timer,$(CPP_BOOSTMUTEXFAST_NAME_UNLOCK),$(BUILD)/$(CPP_BOOSTMUTEX_NAME) -s,$(CPP_BOOSTMUTEXFAST_OUTPUT_UNLOCK))
+	$(call process_with_timer,$(CPP_BOOSTMUTEXFAST_NAME_UNLOCK),$(CPP_BOOSTMUTEXFAST_OUTPUT_UNLOCK))
+run_cpp_boostmutexrecursive_unlock: build
+	$(call run_with_timer,$(CPP_BOOSTMUTEXRECURSIVE_NAME_UNLOCK),$(BUILD)/$(CPP_BOOSTMUTEX_NAME) -e,$(CPP_BOOSTMUTEXRECURSIVE_OUTPUT_UNLOCK))
+	$(call process_with_timer,$(CPP_BOOSTMUTEXRECURSIVE_NAME_UNLOCK),$(CPP_BOOSTMUTEXRECURSIVE_OUTPUT_UNLOCK))
 
 #########################################
