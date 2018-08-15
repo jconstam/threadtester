@@ -67,7 +67,8 @@ run: \
 	run_cpp_pthreadmutex \
 	run_python3_thread \
 	run_cpp_boostmutex \
-	run_cpp_boostnamedmutex
+	run_cpp_boostnamedmutex \
+	run_c_mqueue
 
 .PHONY: results
 results:
@@ -162,52 +163,52 @@ run_cpp_boostthread_shutdown: build
 #########################################
 
 C_SEMT_NAME=c_semt
-C_SEMT_NAME_UNLOCK=$(C_SEMT_NAME)_unlock
-C_SEMT_OUTPUT_UNLOCK=$(BUILD)/$(C_SEMT_NAME_UNLOCK)_output
-run_c_semt: run_c_semt_unlock 
-run_c_semt_unlock: build
-	$(call run_with_timer,$(C_SEMT_NAME_UNLOCK),$(BUILD)/$(C_SEMT_NAME) -s,$(C_SEMT_OUTPUT_UNLOCK))
-	$(call process_with_timer,$(C_SEMT_NAME_UNLOCK),$(C_SEMT_OUTPUT_UNLOCK))
+C_SEMT_NAME=$(C_SEMT_NAME)
+C_SEMT_OUTPUT=$(BUILD)/$(C_SEMT_NAME)_output
+run_c_semt: run_c_semt 
+run_c_semt: build
+	$(call run_with_timer,$(C_SEMT_NAME),$(BUILD)/$(C_SEMT_NAME) -s,$(C_SEMT_OUTPUT))
+	$(call process_with_timer,$(C_SEMT_NAME),$(C_SEMT_OUTPUT))
 
 #########################################
 
 C_PTHREADMUTEX_NAME=c_pthreadmutex
-C_PTHREADMUTEXFAST_NAME_UNLOCK=$(C_PTHREADMUTEX_NAME)fast_unlock
-C_PTHREADMUTEXFAST_OUTPUT_UNLOCK=$(BUILD)/$(C_PTHREADMUTEXFAST_NAME_UNLOCK)_output
-C_PTHREADMUTEXRECURSIVE_NAME_UNLOCK=$(C_PTHREADMUTEX_NAME)recursive_unlock
-C_PTHREADMUTEXRECURSIVE_OUTPUT_UNLOCK=$(BUILD)/$(C_PTHREADMUTEXRECURSIVE_NAME_UNLOCK)_output
-run_c_pthreadmutex: run_c_pthreadmutexfast_unlock run_c_pthreadmutexrecursive_unlock
-run_c_pthreadmutexfast_unlock: build
-	$(call run_with_timer,$(C_PTHREADMUTEXFAST_NAME_UNLOCK),$(BUILD)/$(C_PTHREADMUTEX_NAME) -s,$(C_PTHREADMUTEXFAST_OUTPUT_UNLOCK))
-	$(call process_with_timer,$(C_PTHREADMUTEXFAST_NAME_UNLOCK),$(C_PTHREADMUTEXFAST_OUTPUT_UNLOCK))
-run_c_pthreadmutexrecursive_unlock: build
-	$(call run_with_timer,$(C_PTHREADMUTEXRECURSIVE_NAME_UNLOCK),$(BUILD)/$(C_PTHREADMUTEX_NAME) -e,$(C_PTHREADMUTEXRECURSIVE_OUTPUT_UNLOCK))
-	$(call process_with_timer,$(C_PTHREADMUTEXRECURSIVE_NAME_UNLOCK),$(C_PTHREADMUTEXRECURSIVE_OUTPUT_UNLOCK))
+C_PTHREADMUTEXFAST_NAME=$(C_PTHREADMUTEX_NAME)fast
+C_PTHREADMUTEXFAST_OUTPUT=$(BUILD)/$(C_PTHREADMUTEXFAST_NAME)_output
+C_PTHREADMUTEXRECURSIVE_NAME=$(C_PTHREADMUTEX_NAME)recursive
+C_PTHREADMUTEXRECURSIVE_OUTPUT=$(BUILD)/$(C_PTHREADMUTEXRECURSIVE_NAME)_output
+run_c_pthreadmutex: run_c_pthreadmutexfast run_c_pthreadmutexrecursive
+run_c_pthreadmutexfast: build
+	$(call run_with_timer,$(C_PTHREADMUTEXFAST_NAME),$(BUILD)/$(C_PTHREADMUTEX_NAME) -s,$(C_PTHREADMUTEXFAST_OUTPUT))
+	$(call process_with_timer,$(C_PTHREADMUTEXFAST_NAME),$(C_PTHREADMUTEXFAST_OUTPUT))
+run_c_pthreadmutexrecursive: build
+	$(call run_with_timer,$(C_PTHREADMUTEXRECURSIVE_NAME),$(BUILD)/$(C_PTHREADMUTEX_NAME) -e,$(C_PTHREADMUTEXRECURSIVE_OUTPUT))
+	$(call process_with_timer,$(C_PTHREADMUTEXRECURSIVE_NAME),$(C_PTHREADMUTEXRECURSIVE_OUTPUT))
 
 #########################################
 
 CPP_SEMT_NAME=cpp_semt
-CPP_SEMT_NAME_UNLOCK=$(CPP_SEMT_NAME)_unlock
-CPP_SEMT_OUTPUT_UNLOCK=$(BUILD)/$(CPP_SEMT_NAME_UNLOCK)_output
-run_cpp_semt: run_cpp_semt_unlock 
-run_cpp_semt_unlock: build
-	$(call run_with_timer,$(CPP_SEMT_NAME_UNLOCK),$(BUILD)/$(CPP_SEMT_NAME) -s,$(CPP_SEMT_OUTPUT_UNLOCK))
-	$(call process_with_timer,$(CPP_SEMT_NAME_UNLOCK),$(CPP_SEMT_OUTPUT_UNLOCK))
+CPP_SEMT_NAME=$(CPP_SEMT_NAME)
+CPP_SEMT_OUTPUT=$(BUILD)/$(CPP_SEMT_NAME)_output
+run_cpp_semt: run_cpp_semt 
+run_cpp_semt: build
+	$(call run_with_timer,$(CPP_SEMT_NAME),$(BUILD)/$(CPP_SEMT_NAME) -s,$(CPP_SEMT_OUTPUT))
+	$(call process_with_timer,$(CPP_SEMT_NAME),$(CPP_SEMT_OUTPUT))
 
 #########################################
 
 CPP_PTHREADMUTEX_NAME=cpp_pthreadmutex
-CPP_PTHREADMUTEXFAST_NAME_UNLOCK=$(CPP_PTHREADMUTEX_NAME)fast_unlock
-CPP_PTHREADMUTEXFAST_OUTPUT_UNLOCK=$(BUILD)/$(CPP_PTHREADMUTEXFAST_NAME_UNLOCK)_output
-CPP_PTHREADMUTEXRECURSIVE_NAME_UNLOCK=$(CPP_PTHREADMUTEX_NAME)recursive_unlock
-CPP_PTHREADMUTEXRECURSIVE_OUTPUT_UNLOCK=$(BUILD)/$(CPP_PTHREADMUTEXRECURSIVE_NAME_UNLOCK)_output
-run_cpp_pthreadmutex: run_cpp_pthreadmutexfast_unlock run_cpp_pthreadmutexrecursive_unlock
-run_cpp_pthreadmutexfast_unlock: build
-	$(call run_with_timer,$(CPP_PTHREADMUTEXFAST_NAME_UNLOCK),$(BUILD)/$(CPP_PTHREADMUTEX_NAME) -s,$(CPP_PTHREADMUTEXFAST_OUTPUT_UNLOCK))
-	$(call process_with_timer,$(CPP_PTHREADMUTEXFAST_NAME_UNLOCK),$(CPP_PTHREADMUTEXFAST_OUTPUT_UNLOCK))
-run_cpp_pthreadmutexrecursive_unlock: build
-	$(call run_with_timer,$(CPP_PTHREADMUTEXRECURSIVE_NAME_UNLOCK),$(BUILD)/$(CPP_PTHREADMUTEX_NAME) -e,$(CPP_PTHREADMUTEXRECURSIVE_OUTPUT_UNLOCK))
-	$(call process_with_timer,$(CPP_PTHREADMUTEXRECURSIVE_NAME_UNLOCK),$(CPP_PTHREADMUTEXRECURSIVE_OUTPUT_UNLOCK))
+CPP_PTHREADMUTEXFAST_NAME=$(CPP_PTHREADMUTEX_NAME)fast
+CPP_PTHREADMUTEXFAST_OUTPUT=$(BUILD)/$(CPP_PTHREADMUTEXFAST_NAME)_output
+CPP_PTHREADMUTEXRECURSIVE_NAME=$(CPP_PTHREADMUTEX_NAME)recursive
+CPP_PTHREADMUTEXRECURSIVE_OUTPUT=$(BUILD)/$(CPP_PTHREADMUTEXRECURSIVE_NAME)_output
+run_cpp_pthreadmutex: run_cpp_pthreadmutexfast run_cpp_pthreadmutexrecursive
+run_cpp_pthreadmutexfast: build
+	$(call run_with_timer,$(CPP_PTHREADMUTEXFAST_NAME),$(BUILD)/$(CPP_PTHREADMUTEX_NAME) -s,$(CPP_PTHREADMUTEXFAST_OUTPUT))
+	$(call process_with_timer,$(CPP_PTHREADMUTEXFAST_NAME),$(CPP_PTHREADMUTEXFAST_OUTPUT))
+run_cpp_pthreadmutexrecursive: build
+	$(call run_with_timer,$(CPP_PTHREADMUTEXRECURSIVE_NAME),$(BUILD)/$(CPP_PTHREADMUTEX_NAME) -e,$(CPP_PTHREADMUTEXRECURSIVE_OUTPUT))
+	$(call process_with_timer,$(CPP_PTHREADMUTEXRECURSIVE_NAME),$(CPP_PTHREADMUTEXRECURSIVE_OUTPUT))
 
 #########################################
 
@@ -228,31 +229,46 @@ run_python3_thread_shutdown:
 #########################################
 
 CPP_BOOSTMUTEX_NAME=cpp_boostmutex
-CPP_BOOSTMUTEXFAST_NAME_UNLOCK=$(CPP_BOOSTMUTEX_NAME)fast_unlock
-CPP_BOOSTMUTEXFAST_OUTPUT_UNLOCK=$(BUILD)/$(CPP_BOOSTMUTEXFAST_NAME_UNLOCK)_output
-CPP_BOOSTMUTEXRECURSIVE_NAME_UNLOCK=$(CPP_BOOSTMUTEX_NAME)recursive_unlock
-CPP_BOOSTMUTEXRECURSIVE_OUTPUT_UNLOCK=$(BUILD)/$(CPP_BOOSTMUTEXRECURSIVE_NAME_UNLOCK)_output
-run_cpp_boostmutex: run_cpp_boostmutexfast_unlock run_cpp_boostmutexrecursive_unlock
-run_cpp_boostmutexfast_unlock: build
-	$(call run_with_timer,$(CPP_BOOSTMUTEXFAST_NAME_UNLOCK),$(BUILD)/$(CPP_BOOSTMUTEX_NAME) -s,$(CPP_BOOSTMUTEXFAST_OUTPUT_UNLOCK))
-	$(call process_with_timer,$(CPP_BOOSTMUTEXFAST_NAME_UNLOCK),$(CPP_BOOSTMUTEXFAST_OUTPUT_UNLOCK))
-run_cpp_boostmutexrecursive_unlock: build
-	$(call run_with_timer,$(CPP_BOOSTMUTEXRECURSIVE_NAME_UNLOCK),$(BUILD)/$(CPP_BOOSTMUTEX_NAME) -e,$(CPP_BOOSTMUTEXRECURSIVE_OUTPUT_UNLOCK))
-	$(call process_with_timer,$(CPP_BOOSTMUTEXRECURSIVE_NAME_UNLOCK),$(CPP_BOOSTMUTEXRECURSIVE_OUTPUT_UNLOCK))
+CPP_BOOSTMUTEXFAST_NAME=$(CPP_BOOSTMUTEX_NAME)fast
+CPP_BOOSTMUTEXFAST_OUTPUT=$(BUILD)/$(CPP_BOOSTMUTEXFAST_NAME)_output
+CPP_BOOSTMUTEXRECURSIVE_NAME=$(CPP_BOOSTMUTEX_NAME)recursive
+CPP_BOOSTMUTEXRECURSIVE_OUTPUT=$(BUILD)/$(CPP_BOOSTMUTEXRECURSIVE_NAME)_output
+run_cpp_boostmutex: run_cpp_boostmutexfast run_cpp_boostmutexrecursive
+run_cpp_boostmutexfast: build
+	$(call run_with_timer,$(CPP_BOOSTMUTEXFAST_NAME),$(BUILD)/$(CPP_BOOSTMUTEX_NAME) -s,$(CPP_BOOSTMUTEXFAST_OUTPUT))
+	$(call process_with_timer,$(CPP_BOOSTMUTEXFAST_NAME),$(CPP_BOOSTMUTEXFAST_OUTPUT))
+run_cpp_boostmutexrecursive: build
+	$(call run_with_timer,$(CPP_BOOSTMUTEXRECURSIVE_NAME),$(BUILD)/$(CPP_BOOSTMUTEX_NAME) -e,$(CPP_BOOSTMUTEXRECURSIVE_OUTPUT))
+	$(call process_with_timer,$(CPP_BOOSTMUTEXRECURSIVE_NAME),$(CPP_BOOSTMUTEXRECURSIVE_OUTPUT))
 
 #########################################
 
 CPP_BOOSTNAMEDMUTEX_NAME=cpp_boostnamedmutex
-CPP_BOOSTNAMEDMUTEXFAST_NAME_UNLOCK=$(CPP_BOOSTNAMEDMUTEX_NAME)fast_unlock
-CPP_BOOSTNAMEDMUTEXFAST_OUTPUT_UNLOCK=$(BUILD)/$(CPP_BOOSTNAMEDMUTEXFAST_NAME_UNLOCK)_output
-CPP_BOOSTNAMEDMUTEXRECURSIVE_NAME_UNLOCK=$(CPP_BOOSTNAMEDMUTEX_NAME)recursive_unlock
-CPP_BOOSTNAMEDMUTEXRECURSIVE_OUTPUT_UNLOCK=$(BUILD)/$(CPP_BOOSTNAMEDMUTEXRECURSIVE_NAME_UNLOCK)_output
-run_cpp_boostnamedmutex: run_cpp_boostnamedmutexfast_unlock run_cpp_boostnamedmutexrecursive_unlock
-run_cpp_boostnamedmutexfast_unlock: build
-	$(call run_with_timer,$(CPP_BOOSTNAMEDMUTEXFAST_NAME_UNLOCK),$(BUILD)/$(CPP_BOOSTNAMEDMUTEX_NAME) -s,$(CPP_BOOSTNAMEDMUTEXFAST_OUTPUT_UNLOCK))
-	$(call process_with_timer,$(CPP_BOOSTNAMEDMUTEXFAST_NAME_UNLOCK),$(CPP_BOOSTNAMEDMUTEXFAST_OUTPUT_UNLOCK))
-run_cpp_boostnamedmutexrecursive_unlock: build
-	$(call run_with_timer,$(CPP_BOOSTNAMEDMUTEXRECURSIVE_NAME_UNLOCK),$(BUILD)/$(CPP_BOOSTNAMEDMUTEX_NAME) -e,$(CPP_BOOSTNAMEDMUTEXRECURSIVE_OUTPUT_UNLOCK))
-	$(call process_with_timer,$(CPP_BOOSTNAMEDMUTEXRECURSIVE_NAME_UNLOCK),$(CPP_BOOSTNAMEDMUTEXRECURSIVE_OUTPUT_UNLOCK))
+CPP_BOOSTNAMEDMUTEXFAST_NAME=$(CPP_BOOSTNAMEDMUTEX_NAME)fast
+CPP_BOOSTNAMEDMUTEXFAST_OUTPUT=$(BUILD)/$(CPP_BOOSTNAMEDMUTEXFAST_NAME)_output
+CPP_BOOSTNAMEDMUTEXRECURSIVE_NAME=$(CPP_BOOSTNAMEDMUTEX_NAME)recursive
+CPP_BOOSTNAMEDMUTEXRECURSIVE_OUTPUT=$(BUILD)/$(CPP_BOOSTNAMEDMUTEXRECURSIVE_NAME)_output
+run_cpp_boostnamedmutex: run_cpp_boostnamedmutexfast run_cpp_boostnamedmutexrecursive
+run_cpp_boostnamedmutexfast: build
+	$(call run_with_timer,$(CPP_BOOSTNAMEDMUTEXFAST_NAME),$(BUILD)/$(CPP_BOOSTNAMEDMUTEX_NAME) -s,$(CPP_BOOSTNAMEDMUTEXFAST_OUTPUT))
+	$(call process_with_timer,$(CPP_BOOSTNAMEDMUTEXFAST_NAME),$(CPP_BOOSTNAMEDMUTEXFAST_OUTPUT))
+run_cpp_boostnamedmutexrecursive: build
+	$(call run_with_timer,$(CPP_BOOSTNAMEDMUTEXRECURSIVE_NAME),$(BUILD)/$(CPP_BOOSTNAMEDMUTEX_NAME) -e,$(CPP_BOOSTNAMEDMUTEXRECURSIVE_OUTPUT))
+	$(call process_with_timer,$(CPP_BOOSTNAMEDMUTEXRECURSIVE_NAME),$(CPP_BOOSTNAMEDMUTEXRECURSIVE_OUTPUT))
+
+#########################################
+
+C_MQUEUE_NAME=c_mqueue
+C_MQUEUESMALL_NAME=$(C_MQUEUE_NAME)_small
+C_MQUEUESMALL_OUTPUT=$(BUILD)/$(C_MQUEUESMALL_NAME)_output
+C_MQUEUELARGE_NAME=$(C_MQUEUE_NAME)_large
+C_MQUEUELARGE_OUTPUT=$(BUILD)/$(C_MQUEUELARGE_NAME)_output
+run_c_mqueue: run_c_mqueuefast run_c_mqueuerecursive
+run_c_mqueuefast: build
+	$(call run_with_timer,$(C_MQUEUESMALL_NAME),$(BUILD)/$(C_MQUEUE_NAME) -s,$(C_MQUEUESMALL_OUTPUT))
+	$(call process_with_timer,$(C_MQUEUESMALL_NAME),$(C_MQUEUESMALL_OUTPUT))
+run_c_mqueuerecursive: build
+	$(call run_with_timer,$(C_MQUEUELARGE_NAME),$(BUILD)/$(C_MQUEUE_NAME) -e,$(C_MQUEUELARGE_OUTPUT))
+	$(call process_with_timer,$(C_MQUEUELARGE_NAME),$(C_MQUEUELARGE_OUTPUT))
 
 #########################################

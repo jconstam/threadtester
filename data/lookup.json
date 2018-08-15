@@ -15,6 +15,10 @@
 		"sem_unlock": {
 			"name":			"Semaphore Unlock",
 			"description":	"Time between when one thread posts a semaphore and a waiting thread is running."
+		},
+		"msg_sendrcv": {
+			"name":			"Message Send/Receive",
+			"description":	"Time between when one thread sends a message and a waiting thread receives it."
 		}
 	}
 }
