@@ -1,20 +1,44 @@
 {
     "msg_sendrcv": {
         "C__mqueue_large": {
+            "ARMv6-compatible processor rev 7 v6l": {
+                "avg": 4293.8888173605, 
+                "count": 10000, 
+                "graph": "docs/img/msg_sendrcv__ARMv6-compatible_processor_rev_7_v6l__C__mqueue_large.png", 
+                "language": "C", 
+                "library": "mqueue_large", 
+                "max": 4294.550293, 
+                "min": 4286.399414, 
+                "name": "msg_sendrcv", 
+                "std": 0.08246051028093396, 
+                "uniqueName": "msg_sendrcv__ARMv6-compatible processor rev 7 v6l__C__mqueue_large"
+            }, 
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 4293.2465783155913, 
+                "avg": 4293.246578315591, 
                 "count": 10000, 
                 "graph": "docs/img/msg_sendrcv__Intel_Core_i7_CPU_920_2.67GHz__C__mqueue_large.png", 
                 "language": "C", 
                 "library": "mqueue_large", 
-                "max": 4293.9462890000004, 
-                "min": 4292.9790039999998, 
+                "max": 4293.946289, 
+                "min": 4292.979004, 
                 "name": "msg_sendrcv", 
                 "std": 0.21101736588575865, 
                 "uniqueName": "msg_sendrcv__Intel Core i7 CPU 920 2.67GHz__C__mqueue_large"
             }
         }, 
         "C__mqueue_small": {
+            "ARMv6-compatible processor rev 7 v6l": {
+                "avg": 4293.8915071586, 
+                "count": 10000, 
+                "graph": "docs/img/msg_sendrcv__ARMv6-compatible_processor_rev_7_v6l__C__mqueue_small.png", 
+                "language": "C", 
+                "library": "mqueue_small", 
+                "max": 4294.158203, 
+                "min": 4292.959473, 
+                "name": "msg_sendrcv", 
+                "std": 0.021056010683355542, 
+                "uniqueName": "msg_sendrcv__ARMv6-compatible processor rev 7 v6l__C__mqueue_small"
+            }, 
             "Intel Core i7 CPU 920 2.67GHz": {
                 "avg": 4293.340200635265, 
                 "count": 10000, 
