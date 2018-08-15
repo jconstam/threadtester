@@ -11,6 +11,9 @@ typedef struct PARAMS_STRUCT
 
 #define THREAD_MIN_ALIVE_TIME_US	( 1000U )
 
+#define SMALL_MSG_SIZE	( 10U )
+#define LARGE_MSG_SIZE	( 1000000U )
+
 #ifdef __cplusplus
 extern "C"
 {

@@ -68,7 +68,7 @@ run: \
 	run_python3_thread \
 	run_cpp_boostmutex \
 	run_cpp_boostnamedmutex \
-	run_c_mqueue
+	run_cpp_boostmsgqueue
 
 .PHONY: results
 results:
@@ -258,17 +258,17 @@ run_cpp_boostnamedmutexrecursive: build
 
 #########################################
 
-C_MQUEUE_NAME=c_mqueue
-C_MQUEUESMALL_NAME=$(C_MQUEUE_NAME)_small
-C_MQUEUESMALL_OUTPUT=$(BUILD)/$(C_MQUEUESMALL_NAME)_output
-C_MQUEUELARGE_NAME=$(C_MQUEUE_NAME)_large
-C_MQUEUELARGE_OUTPUT=$(BUILD)/$(C_MQUEUELARGE_NAME)_output
-run_c_mqueue: run_c_mqueuefast run_c_mqueuerecursive
-run_c_mqueuefast: build
-	$(call run_with_timer,$(C_MQUEUESMALL_NAME),$(BUILD)/$(C_MQUEUE_NAME) -s,$(C_MQUEUESMALL_OUTPUT))
-	$(call process_with_timer,$(C_MQUEUESMALL_NAME),$(C_MQUEUESMALL_OUTPUT))
-run_c_mqueuerecursive: build
-	$(call run_with_timer,$(C_MQUEUELARGE_NAME),$(BUILD)/$(C_MQUEUE_NAME) -e,$(C_MQUEUELARGE_OUTPUT))
-	$(call process_with_timer,$(C_MQUEUELARGE_NAME),$(C_MQUEUELARGE_OUTPUT))
+CPP_BOOSTMSGQUEUE_NAME=cpp_boostmsgqueue
+CPP_BOOSTMSGQUEUESMALL_NAME=$(CPP_BOOSTMSGQUEUE_NAME)_small
+CPP_BOOSTMSGQUEUESMALL_OUTPUT=$(BUILD)/$(CPP_BOOSTMSGQUEUESMALL_NAME)_output
+CPP_BOOSTMSGQUEUELARGE_NAME=$(CPP_BOOSTMSGQUEUE_NAME)_large
+CPP_BOOSTMSGQUEUELARGE_OUTPUT=$(BUILD)/$(CPP_BOOSTMSGQUEUELARGE_NAME)_output
+run_cpp_boostmsgqueue: run_cpp_boostmsgqueuesmall run_cpp_boostmsgqueuelarge
+run_cpp_boostmsgqueuesmall: build
+	$(call run_with_timer,$(CPP_BOOSTMSGQUEUESMALL_NAME),$(BUILD)/$(CPP_BOOSTMSGQUEUE_NAME) -s,$(CPP_BOOSTMSGQUEUESMALL_OUTPUT))
+	$(call process_with_timer,$(CPP_BOOSTMSGQUEUESMALL_NAME),$(CPP_BOOSTMSGQUEUESMALL_OUTPUT))
+run_cpp_boostmsgqueuelarge: build
+	$(call run_with_timer,$(CPP_BOOSTMSGQUEUELARGE_NAME),$(BUILD)/$(CPP_BOOSTMSGQUEUE_NAME) -e,$(CPP_BOOSTMSGQUEUELARGE_OUTPUT))
+	$(call process_with_timer,$(CPP_BOOSTMSGQUEUELARGE_NAME),$(CPP_BOOSTMSGQUEUELARGE_OUTPUT))
 
 #########################################

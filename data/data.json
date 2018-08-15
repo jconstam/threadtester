@@ -1,55 +1,31 @@
 {
     "msg_sendrcv": {
-        "C__mqueue_large": {
-            "ARMv6-compatible processor rev 7 v6l": {
-                "avg": 4293.8888173605, 
-                "count": 10000, 
-                "graph": "docs/img/msg_sendrcv__ARMv6-compatible_processor_rev_7_v6l__C__mqueue_large.png", 
-                "language": "C", 
-                "library": "mqueue_large", 
-                "max": 4294.550293, 
-                "min": 4286.399414, 
-                "name": "msg_sendrcv", 
-                "std": 0.08246051028093396, 
-                "uniqueName": "msg_sendrcv__ARMv6-compatible processor rev 7 v6l__C__mqueue_large"
-            }, 
+        "C++__boost::message_queue_large": {
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 4293.246578315591, 
+                "avg": 1.8820255099999863, 
                 "count": 10000, 
-                "graph": "docs/img/msg_sendrcv__Intel_Core_i7_CPU_920_2.67GHz__C__mqueue_large.png", 
-                "language": "C", 
-                "library": "mqueue_large", 
-                "max": 4293.946289, 
-                "min": 4292.979004, 
+                "graph": "docs/img/msg_sendrcv__Intel_Core_i7_CPU_920_2.67GHz__CPP__boostmessage_queue_large.png", 
+                "language": "C++", 
+                "library": "boost::message_queue_large", 
+                "max": 40.524500000000003, 
+                "min": 1.7445999999999999, 
                 "name": "msg_sendrcv", 
-                "std": 0.21101736588575865, 
-                "uniqueName": "msg_sendrcv__Intel Core i7 CPU 920 2.67GHz__C__mqueue_large"
+                "std": 0.3970338812900468, 
+                "uniqueName": "msg_sendrcv__Intel Core i7 CPU 920 2.67GHz__C++__boost::message_queue_large"
             }
         }, 
-        "C__mqueue_small": {
-            "ARMv6-compatible processor rev 7 v6l": {
-                "avg": 4293.8915071586, 
-                "count": 10000, 
-                "graph": "docs/img/msg_sendrcv__ARMv6-compatible_processor_rev_7_v6l__C__mqueue_small.png", 
-                "language": "C", 
-                "library": "mqueue_small", 
-                "max": 4294.158203, 
-                "min": 4292.959473, 
-                "name": "msg_sendrcv", 
-                "std": 0.021056010683355542, 
-                "uniqueName": "msg_sendrcv__ARMv6-compatible processor rev 7 v6l__C__mqueue_small"
-            }, 
+        "C++__boost::message_queue_small": {
             "Intel Core i7 CPU 920 2.67GHz": {
-                "avg": 4293.340200635265, 
+                "avg": 0.056904759999999985, 
                 "count": 10000, 
-                "graph": "docs/img/msg_sendrcv__Intel_Core_i7_CPU_920_2.67GHz__C__mqueue_small.png", 
-                "language": "C", 
-                "library": "mqueue_small", 
-                "max": 4293.938477, 
-                "min": 4293.001465, 
+                "graph": "docs/img/msg_sendrcv__Intel_Core_i7_CPU_920_2.67GHz__CPP__boostmessage_queue_small.png", 
+                "language": "C++", 
+                "library": "boost::message_queue_small", 
+                "max": 0.1222, 
+                "min": 0.0271, 
                 "name": "msg_sendrcv", 
-                "std": 0.2442033679844307, 
-                "uniqueName": "msg_sendrcv__Intel Core i7 CPU 920 2.67GHz__C__mqueue_small"
+                "std": 0.00994843823634639, 
+                "uniqueName": "msg_sendrcv__Intel Core i7 CPU 920 2.67GHz__C++__boost::message_queue_small"
             }
         }
     }, 
