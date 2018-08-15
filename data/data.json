@@ -1,20 +1,44 @@
 {
     "msg_sendrcv": {
         "C++__boost::message_queue_large": {
+            "ARMv6-compatible processor rev 7 v6l": {
+                "avg": 14.217736799999999, 
+                "count": 10000, 
+                "graph": "docs/img/msg_sendrcv__ARMv6-compatible_processor_rev_7_v6l__CPP__boostmessage_queue_large.png", 
+                "language": "C++", 
+                "library": "boost::message_queue_large", 
+                "max": 43.5096, 
+                "min": 13.9806, 
+                "name": "msg_sendrcv", 
+                "std": 0.614957207928942, 
+                "uniqueName": "msg_sendrcv__ARMv6-compatible processor rev 7 v6l__C++__boost::message_queue_large"
+            }, 
             "Intel Core i7 CPU 920 2.67GHz": {
                 "avg": 1.8820255099999863, 
                 "count": 10000, 
                 "graph": "docs/img/msg_sendrcv__Intel_Core_i7_CPU_920_2.67GHz__CPP__boostmessage_queue_large.png", 
                 "language": "C++", 
                 "library": "boost::message_queue_large", 
-                "max": 40.524500000000003, 
-                "min": 1.7445999999999999, 
+                "max": 40.5245, 
+                "min": 1.7446, 
                 "name": "msg_sendrcv", 
                 "std": 0.3970338812900468, 
                 "uniqueName": "msg_sendrcv__Intel Core i7 CPU 920 2.67GHz__C++__boost::message_queue_large"
             }
         }, 
         "C++__boost::message_queue_small": {
+            "ARMv6-compatible processor rev 7 v6l": {
+                "avg": 0.1486223289, 
+                "count": 10000, 
+                "graph": "docs/img/msg_sendrcv__ARMv6-compatible_processor_rev_7_v6l__CPP__boostmessage_queue_small.png", 
+                "language": "C++", 
+                "library": "boost::message_queue_small", 
+                "max": 1.77794, 
+                "min": 0.097997, 
+                "name": "msg_sendrcv", 
+                "std": 0.0290326948085176, 
+                "uniqueName": "msg_sendrcv__ARMv6-compatible processor rev 7 v6l__C++__boost::message_queue_small"
+            }, 
             "Intel Core i7 CPU 920 2.67GHz": {
                 "avg": 0.056904759999999985, 
                 "count": 10000, 
