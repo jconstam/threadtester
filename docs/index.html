@@ -200,6 +200,90 @@
 				</table>
 			
 		
+			<h2>Message Send/Receive</h2>
+			<p>Time between when one thread sends a message and a waiting thread receives it.</p>
+			<img src="img/msg_sendrcv.png">
+			<table border="1" align=center>
+				
+				<tr>
+					<td>A = C - mqueue_large</td>
+				</tr>
+				
+				<tr>
+					<td>B = C - mqueue_small</td>
+				</tr>
+				
+			</table>
+			
+				<h3>1st Gen Intel Core i7</h3>
+				<table border="1">
+					<tr>
+						<th>Language</th>
+						<th>Library</th>
+						<th>Average</th>
+						<th>Std Dev</th>
+						<th>Max</th>
+						<th>Min</th>
+						<th>Graph</th>
+					</tr>
+					
+					<tr>
+						<td>C</td>
+						<td>mqueue_large</td>
+						<td align="center">4293.247</td>
+						<td align="center">0.211</td>
+						<td align="center">4293.946</td>
+						<td align="center">4292.979</td>
+						<td><a href="docs/img/msg_sendrcv__Intel_Core_i7_CPU_920_2.67GHz__C__mqueue_large.png">Result Graph</a></td>
+					</tr>
+					
+					<tr>
+						<td>C</td>
+						<td>mqueue_small</td>
+						<td align="center">4293.340</td>
+						<td align="center">0.244</td>
+						<td align="center">4293.938</td>
+						<td align="center">4293.001</td>
+						<td><a href="docs/img/msg_sendrcv__Intel_Core_i7_CPU_920_2.67GHz__C__mqueue_small.png">Result Graph</a></td>
+					</tr>
+					
+				</table>
+			
+				<h3>Raspberry Pi B2</h3>
+				<table border="1">
+					<tr>
+						<th>Language</th>
+						<th>Library</th>
+						<th>Average</th>
+						<th>Std Dev</th>
+						<th>Max</th>
+						<th>Min</th>
+						<th>Graph</th>
+					</tr>
+					
+					<tr>
+						<td>C</td>
+						<td>mqueue_large</td>
+						<td align="center">4293.889</td>
+						<td align="center">0.082</td>
+						<td align="center">4294.550</td>
+						<td align="center">4286.399</td>
+						<td><a href="docs/img/msg_sendrcv__ARMv6-compatible_processor_rev_7_v6l__C__mqueue_large.png">Result Graph</a></td>
+					</tr>
+					
+					<tr>
+						<td>C</td>
+						<td>mqueue_small</td>
+						<td align="center">4293.892</td>
+						<td align="center">0.021</td>
+						<td align="center">4294.158</td>
+						<td align="center">4292.959</td>
+						<td><a href="docs/img/msg_sendrcv__ARMv6-compatible_processor_rev_7_v6l__C__mqueue_small.png">Result Graph</a></td>
+					</tr>
+					
+				</table>
+			
+		
 			<h2>Semaphore Unlock</h2>
 			<p>Time between when one thread posts a semaphore and a waiting thread is running.</p>
 			<img src="img/sem_unlock.png">
